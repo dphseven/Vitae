@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="Vitae.View.KeywordToolView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vitae.View" mc:Ignorable="d">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- BROWSER AREA -->
+
+        <Grid Grid.Column="0" Margin="0" >
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0 0 10 10">
+                <TextBox Name="TextInputBlock" Text="{Binding Url}" 
+                         MinWidth="200" Margin="0 0 10 0" AcceptsReturn="True" />
+                <Button Name="GoToUrlButton" Content="Go" Click="GoToUrlButton_Click"
+                        Width="60" />
+            </StackPanel>
+    
+            <WebBrowser Name="browser"
+                        Grid.Row="1" Margin="0 0 10 10"  />
+
+        </Grid>
+
+
+
+    <!-- KEYWORD AREA -->
+        
+        <StackPanel Grid.Column="2" Margin="0 0 30 30">
+
+            <Grid Margin="0 0 0 30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Slider Value="{Binding MinimumKeywordLength}"
+                        Name="KeywordLengthSlider" IsSnapToTickEnabled="True" Minimum="3" Maximum="20" TickPlacement="Both" 
+                        Grid.Column="0" />
+                <Label Content="{Binding ElementName=KeywordLengthSlider, Path=Value}" Grid.Column="1" />
+            </Grid>
+
+            <Button Name="FindKeywordsButton" Content="Find Keywords" Click="FindKeywordsButton_Click"
+                    Height="30" Width="100" Margin="0 0 30 30" HorizontalAlignment="Left" />
+
+            <Label Content="Keywords" FontWeight="Bold" Margin="0 0 30 30" Visibility="Collapsed" />
+
+            <Border Style="{StaticResource ThinBlueBorderStyle}" Margin="0 0 30 30" >
+                <TextBlock Text="{Binding MessageDisplayed}"
+                           Name="MessageDisplayBlock" TextWrapping="Wrap"
+                           HorizontalAlignment="Left" VerticalAlignment="Top" />
+            </Border>
+        </StackPanel>
+
+        
+        
+    </Grid>
+</UserControl>

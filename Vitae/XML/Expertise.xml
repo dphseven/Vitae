@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Expertise>
+  <ExpertiseItem Category="Business Analysis" Expertise="Thought Leader in Field" />
+  <ExpertiseItem Category="Business Analysis" Expertise="Project-Level Analysis" />
+  <ExpertiseItem Category="Business Analysis" Expertise="Business Process Management" />
+  <ExpertiseItem Category="Business Analysis" Expertise="Business Architecture" />
+  <ExpertiseItem Category="Business Analysis" Expertise="Enterprise Analysis" />
+  <ExpertiseItem Category="Business Analysis" Expertise="Agile Product Ownership" />
+  <ExpertiseItem Category="Business Analysis" Expertise="BA Leadership" />
+  <ExpertiseItem Category="Business Analysis" Expertise="Center of Excellence (COE) Development" />
+  <ExpertiseItem Category="Product Development" Expertise="Agile Product Development" />
+  <ExpertiseItem Category="Product Development" Expertise="Traditional/Gated Product Development" />
+  <ExpertiseItem Category="Product Development" Expertise="Business Analysis" />
+  <ExpertiseItem Category="Product Development" Expertise="Design Thinking" />
+  <ExpertiseItem Category="Product Development" Expertise="Customer Development" />
+  <ExpertiseItem Category="Product Development" Expertise="Product Strategy" />
+  <ExpertiseItem Category="Product Development" Expertise="Road Map Development" />
+  <ExpertiseItem Category="Project Management" Expertise="Full Lifecycle; Business and Technology" />
+  <ExpertiseItem Category="Project Management" Expertise="Traditional/Iterative/Agile" />
+  <ExpertiseItem Category="Project Management" Expertise="Schedule Management" />
+  <ExpertiseItem Category="Project Management" Expertise="Risk and Issue Management" />
+  <ExpertiseItem Category="Project Management" Expertise="Finance and PMO" />
+  <ExpertiseItem Category="Project Management" Expertise="Stakeholder Management" />
+  <ExpertiseItem Category="Project Management" Expertise="Communications Planning and Management" />
+  <ExpertiseItem Category="Project Management" Expertise="Matrixed Environments" />
+  <ExpertiseItem Category="Project Management" Expertise="Management by Influence" />
+  <ExpertiseItem Category="Project Management" Expertise="Servant Leadership" />
+  <ExpertiseItem Category="Financial Services" Expertise="Wealth Management" />
+  <ExpertiseItem Category="Financial Services" Expertise="Private Banking" />
+  <ExpertiseItem Category="Financial Services" Expertise="Banking" />
+  <ExpertiseItem Category="Financial Services" Expertise="Financial Planning" />
+  <ExpertiseItem Category="Financial Services" Expertise="Asset Allocation" />
+  <ExpertiseItem Category="Financial Services" Expertise="Investment Management" />
+  <ExpertiseItem Category="Financial Services" Expertise="Fixed Income" />
+  <ExpertiseItem Category="Financial Services" Expertise="Equities" />
+  <ExpertiseItem Category="Financial Services" Expertise="Alternative Investments" />
+  <ExpertiseItem Category="Financial Services" Expertise="Structured Products" />
+  <ExpertiseItem Category="Financial Services" Expertise="Listed and OTC Derivatives" />
+  <ExpertiseItem Category="Financial Services" Expertise="Former Financial Advisor and Supervisory Principal" />
+  <ExpertiseItem Category="Digital/Online/Mobile" Expertise="Award-winning products" />
+  <ExpertiseItem Category="Digital/Online/Mobile" Expertise="Introduced the first private banking iPad app" />
+  <ExpertiseItem Category="Digital/Online/Mobile" Expertise="Client and front office digital experiences" />
+</Expertise>

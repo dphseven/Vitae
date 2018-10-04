@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EducationItems>
+  <EducationItem Guid="23828900-4ec7-406f-9f4c-9444bfc08133">
+    <Credential>Certificate, Business Project Management</Credential>
+    <Institution>New York University</Institution>
+  </EducationItem>
+  <EducationItem Guid="ddff87ab-6fea-407a-acfb-ca951ce5f0e9">
+    <Credential>BS, Business Management</Credential>
+    <Institution>Western Governors University</Institution>
+  </EducationItem>
+  <EducationItem Guid="b90f2692-aca8-40f2-91e8-cef2d8745b5a">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
+  <EducationItem Guid="ac433091-adbc-4e57-b680-c069a76f9b01">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
+  <EducationItem Guid="164e1bed-7872-461a-990a-ef6d6be1b8e5">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
+</EducationItems>
