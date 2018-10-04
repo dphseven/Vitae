@@ -170,7 +170,6 @@
 
         public IList<IGeneralInfoEntity> GetAllGeneralInfos() 
         {
-            this.Insert(new GeneralInfoEntity());
             throw new NotImplementedException();
         }
 

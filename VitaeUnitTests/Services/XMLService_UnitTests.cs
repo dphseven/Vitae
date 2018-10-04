@@ -103,7 +103,9 @@ namespace VitaeUnitTests
         [TestMethod()]
         public void GetAllGeneralInfos_Works()
         {
-            Assert.Inconclusive();
+            var list = xs.GetAllGeneralInfos();
+
+            Assert.IsNotNull(list);
         }
 
         [TestMethod()]
