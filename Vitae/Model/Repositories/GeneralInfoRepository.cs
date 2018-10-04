@@ -44,7 +44,10 @@ namespace Vitae.Model
         {
             try
             {
-                return xs.GetAllGeneralInfos();
+                return new List<IGeneralInfoEntity>
+                {
+                    xs.GetGeneralInformation(Guid.Empty)
+                };
             }
             catch (Exception)
             {

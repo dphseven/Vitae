@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<GeneralInfo>
-  <FullName>Don Hussey</FullName>
-  <Phone>646-413-4777</Phone>
-  <Email>dphseven@gmail.com</Email>
-  <AddLine1>1884 Columbia Road NW #708</AddLine1>
-  <AddLine2>Washington, DC 20009</AddLine2>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GeneralInfo Guid="cb822e79-0666-4bdc-8a8c-efce471ae0b0">
+  <FullName>test1</FullName>
+  <Phone>test5</Phone>
+  <Email>test4</Email>
+  <AddLine1>test2</AddLine1>
+  <AddLine2>test3</AddLine2>
 </GeneralInfo>

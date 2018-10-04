@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Jobs>
-  <Job Employer="NorwalkAberdeen" StartDate="July 2013" EndDate="Present">
+  <Job Guid="" Employer="NorwalkAberdeen" StartDate="July 2013" EndDate="Present">
     <JobTitles>
       <JobTitle>Founder, Business Analyst/Product Owner Training Firm</JobTitle>
       <JobTitle>Founder, Business Analysis/Project Management Training Firm</JobTitle>
@@ -20,7 +20,7 @@
       <Detail>Designed and developed a proprietary CRM and Lead Management platform for institutional sales (.Net, C#, WPF). Designed and developed the NorwalkAberdeen website, including the development of custom widgets and integration with third party services (HTML/CSS/JS).</Detail>
     </Details>
   </Job>
-  <Job Employer="Citigroup" StartDate="March 2008" EndDate="July 2013">
+  <Job Guid="" Employer="Citigroup" StartDate="March 2008" EndDate="July 2013">
     <JobTitles>
       <JobTitle>Senior Vice President, Online Product Management</JobTitle>
       <JobTitle>Senior Vice President, Business Analysis Manager</JobTitle>
@@ -44,7 +44,7 @@
       <Detail>Held the FINRA Series 7, 9, 10, 24, and 66 securities licenses.</Detail>
     </Details>
   </Job>
-  <Job Employer="Morgan Stanley" StartDate="June 2002" EndDate="March 2008">
+  <Job Guid="" Employer="Morgan Stanley" StartDate="June 2002" EndDate="March 2008">
     <JobTitles>
       <JobTitle>Product Manager/Business Analyst</JobTitle>
       <JobTitle>Product Owner/Business Analyst</JobTitle>

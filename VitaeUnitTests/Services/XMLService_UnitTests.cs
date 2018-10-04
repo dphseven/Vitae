@@ -101,53 +101,143 @@ namespace VitaeUnitTests
         }
 
         [TestMethod()]
-        public void GetAllGeneralInfos_Works()
+        public void DeleteGeneralInfo_Works() 
         {
-            var list = xs.GetAllGeneralInfos();
+            xs.DeleteGeneralInfo(Guid.Empty);
+            var newGI = xs.GetGeneralInformation(Guid.Empty);
+
+            Assert.IsNotNull(newGI);
+            Assert.AreEqual(string.Empty, newGI.FullName);
+            Assert.AreEqual(string.Empty, newGI.Add1);
+            Assert.AreEqual(string.Empty, newGI.Add2);
+            Assert.AreEqual(string.Empty, newGI.Phone);
+            Assert.AreEqual(string.Empty, newGI.Email);
+        }
+
+        [TestMethod()]
+        public void Update_EducationEntity_Works() 
+        {
+            IEducationEntity ee = new EducationEntity 
+            {
+                Credential = "testCred",
+                Institution = "testInst"
+            };
+            var g = xs.Insert(ee);
+            IEducationEntity eeNew = new EducationEntity 
+            {
+                Credential = "updated",
+                Institution = "updated"
+            };
+
+            xs.Update(g, eeNew);
+
+            var eeNewest = xs.GetEducation(g);
+
+            Assert.AreEqual("updated", eeNewest.Credential);
+            Assert.AreEqual("updated", eeNewest.Institution);
+        }
+
+        [TestMethod()]
+        public void GetAllEducations_Works() 
+        {
+            var list = xs.GetAllEducations();
 
             Assert.IsNotNull(list);
+            Assert.IsTrue(list.Count > 0);
+            Assert.AreNotEqual(string.Empty, list[0].Credential);
+            Assert.AreNotEqual(string.Empty, list[0].Institution);
         }
 
         [TestMethod()]
-        public void DeleteGeneralInfo_Works()
+        public void GetEducation_Works() 
         {
-            Assert.Inconclusive();
+            var tbInserted = new EducationEntity
+            {
+                Credential = "testCred",
+                Institution = "testInst"
+            };
+            var g = xs.Insert(tbInserted);
+
+            var ed = xs.GetEducation(g);
+
+            Assert.IsNotNull(ed);
+            Assert.AreEqual("testCred", ed.Credential);
+            Assert.AreEqual("testInst", ed.Institution);
         }
 
         [TestMethod()]
-        public void Update_Works()
+        public void Insert_GeneralInfoEntity_Works() 
         {
-            Assert.Inconclusive();
+            var initialGI = new GeneralInfoEntity
+            {
+                FullName = "test1",
+                Add1 = "test2",
+                Add2 = "test3",
+                Email = "test4",
+                Phone = "test5"
+            };
+
+            var guid = xs.Insert(initialGI);
+            var gie = xs.GetGeneralInformation(guid);
+
+            Assert.IsNotNull(guid);
+            Assert.AreNotEqual(Guid.Empty, guid);
+            Assert.AreEqual("test1", gie.FullName);
+            Assert.AreEqual("test2", gie.Add1);
+            Assert.AreEqual("test3", gie.Add2);
+            Assert.AreEqual("test4", gie.Email);
+            Assert.AreEqual("test5", gie.Phone);
         }
 
         [TestMethod()]
-        public void GetAllEducations_Works()
+        public void Delete_Education_Works() 
         {
-            Assert.Inconclusive();
+            var edInsert = new EducationEntity();
+            var g = xs.Insert(edInsert);
+            var result1 = xs.GetEducation(g);
+            Assert.IsNotNull(result1);
+
+            xs.Delete(g);
+
+            var result2 = xs.GetEducation(g);
+            Assert.IsNull(result2);
         }
 
         [TestMethod()]
-        public void GetEducation_Works()
+        public void Update_ExperienceEntity_Works() 
         {
-            Assert.Inconclusive();
-        }
+            var ee1 = new ExperienceEntity
+            {
+                Employer = "testEmp",
+                EndDate = "end1", 
+                StartDate = "start1",
+                Titles = new List<string> { "t1", "t2", "t3" }, 
+                Details = new List<string> { "d1", "d2", "d3" }
+            };
+            var g = xs.Insert(ee1);
+            var ee2 = new ExperienceEntity
+            {
+                Employer = "upd",
+                EndDate = "upd",
+                StartDate = "upd",
+                Titles = new List<string> { "updt1", "updt2", "updt3" },
+                Details = new List<string> { "updd1", "updd2", "updd3" }
+            };
+            
+            xs.Update(g, ee2);
 
-        [TestMethod()]
-        public void Insert_Works1()
-        {
-            Assert.Inconclusive();
-        }
+            var final = xs.GetExperience(g);
 
-        [TestMethod()]
-        public void Delete_Works()
-        {
-            Assert.Inconclusive();
-        }
-
-        [TestMethod()]
-        public void Update_Works1()
-        {
-            Assert.Inconclusive();
+            Assert.IsNotNull(final);
+            Assert.AreEqual("upd", final.Employer);
+            Assert.AreEqual("upd", final.EndDate);
+            Assert.AreEqual("upd", final.StartDate);
+            Assert.AreEqual("updt1", final.Titles[0]);
+            Assert.AreEqual("updt2", final.Titles[1]);
+            Assert.AreEqual("updt3", final.Titles[2]);
+            Assert.AreEqual("updd1", final.Details[0]);
+            Assert.AreEqual("updd2", final.Details[1]);
+            Assert.AreEqual("updd3", final.Details[2]);
         }
 
         [TestMethod()]

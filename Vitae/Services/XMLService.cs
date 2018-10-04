@@ -141,41 +141,47 @@
             }
         }
 
-        /// <exception cref="InvalidOperationException"/>
         public Guid Insert(IGeneralInfoEntity entity) 
         {
-            if (this.GetAllGeneralInfos().Count > 0)
-                throw new InvalidOperationException("There is already a GeneralInfo node on file.");
-
             using (var ioc = new VitaeNinjectKernel())
             {
                 XDocument doc = new XDocument();
                 doc = XDocument.Load(generalInfoFilePath);
                 var guid = Guid.NewGuid();
-                
-                var newElement = new XElement("GeneralInfo",
-                    new XAttribute("Guid", guid.ToString()),
-                    new XElement("FullName", entity.FullName),
-                    new XElement("AddLine1", entity.Add1),
-                    new XElement("AddLine2", entity.Add2),
-                    new XElement("Phone", entity.Phone),
-                    new XElement("Email", entity.Email));
 
-                doc.Root.Add(newElement);
-                doc.Save(educationFilePath);
+                var ele = doc.Root;
+                if (ele.Attribute("Guid") != null) ele.Attribute("Guid").Value = guid.ToString();
+                else ele.Add(new XAttribute("Guid", guid.ToString()));
+
+                ele.Element("FullName").Value = entity.FullName;
+                ele.Element("AddLine1").Value = entity.Add1;
+                ele.Element("AddLine2").Value = entity.Add2;
+                ele.Element("Phone").Value = entity.Phone;
+                ele.Element("Email").Value = entity.Email;
+
+                doc.Save(generalInfoFilePath);
 
                 return guid;
             }
         }
 
-        public IList<IGeneralInfoEntity> GetAllGeneralInfos() 
-        {
-            throw new NotImplementedException();
-        }
-
         public void DeleteGeneralInfo(Guid guid) 
         {
-            throw new NotImplementedException();
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                XDocument doc = new XDocument();
+                doc = XDocument.Load(generalInfoFilePath);
+
+                if (doc.Root.Attribute("Guid") != null) 
+                    doc.Root.Attribute("Guid").Value = "";
+                doc.Root.Element("FullName").Value = "";
+                doc.Root.Element("AddLine1").Value = "";
+                doc.Root.Element("AddLine2").Value = "";
+                doc.Root.Element("Phone").Value = "";
+                doc.Root.Element("Email").Value = "";
+
+                doc.Save(generalInfoFilePath);
+            }
         }
 
         public void Update(Guid g, IGeneralInfoEntity t) 
@@ -363,12 +369,54 @@
 
         public Guid Insert(IExperienceEntity entity) 
         {
-            throw new NotImplementedException();
+            var guid = Guid.NewGuid();
+
+            var doc = XDocument.Load(experienceFilePath);
+
+            var el = new XElement("Job");
+            el.Add(new XAttribute("Employer", entity.Employer));
+            el.Add(new XAttribute("StartDate", entity.StartDate));
+            el.Add(new XAttribute("EndDate", entity.EndDate));
+            el.Add(new XAttribute("Guid", guid.ToString()));
+            el.Add(new XElement("JobTitles"));
+            foreach (var title in entity.Titles)
+            {
+                el.Element("JobTitles").Add(new XElement("JobTitle", title));
+            }
+            el.Add(new XElement("Details"));
+            foreach (var detail in entity.Details)
+            {
+                el.Element("Details").Add(new XElement("Detail", detail));
+            }
+
+            doc.Root.Add(el);
+
+            doc.Save(experienceFilePath);
+
+            return guid;
         }
 
         public IExperienceEntity GetExperience(Guid guid) 
         {
-            throw new NotImplementedException();
+            var doc = XDocument.Load(experienceFilePath);
+
+            var eeXml = doc.Root.Elements("Job").SingleOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
+
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var ee = ioc.Get<IExperienceEntity>();
+                ee.Employer = eeXml.Attribute("Employer").Value;
+                ee.StartDate = eeXml.Attribute("StartDate").Value;
+                ee.EndDate = eeXml.Attribute("EndDate").Value;
+
+                foreach (var title in eeXml.Element("JobTitles").Elements("JobTitle"))
+                    ee.Titles.Add(title.Value);
+
+                foreach (var detail in eeXml.Element("Details").Elements("Detail"))
+                    ee.Details.Add(detail.Value);
+
+                return ee;
+            }
         }
 
         public IList<IExperienceEntity> GetAllExperiences() 
@@ -412,9 +460,28 @@
 
         public void Update(Guid guid, IExperienceEntity entity) 
         {
-            throw new NotImplementedException();
-        }
+            var doc = XDocument.Load(experienceFilePath);
 
+            int testCount = doc.Root.Elements("Job").Where(T => T.Attribute("Guid").Value.Contains(guid.ToString())).Count();
+
+            if (testCount == 0) throw new ArgumentException("guid not found.");
+
+            var job = doc.Root.Elements("Job").FirstOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
+
+            job.SetAttributeValue("Employer", entity.Employer);
+            job.SetAttributeValue("StartDate", entity.StartDate);
+            job.SetAttributeValue("EndDate", entity.EndDate);
+
+            job.Element("JobTitles").Elements("JobTitle").Remove();
+            foreach (var newTitle in entity.Titles)
+                job.Element("JobTitles").Add(new XElement("JobTitle", newTitle));
+
+            job.Element("Details").Elements("Detail").Remove();
+            foreach (var newDetail in entity.Details)
+                job.Element("Details").Add(new XElement("Detail", newDetail));
+
+            doc.Save(experienceFilePath);
+        }
 
     }
 }

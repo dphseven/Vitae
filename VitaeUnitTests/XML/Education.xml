@@ -1,22 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EducationItems>
-  <EducationItem Guid="23828900-4ec7-406f-9f4c-9444bfc08133">
+  <EducationItem Guid="">
     <Credential>Certificate, Business Project Management</Credential>
     <Institution>New York University</Institution>
   </EducationItem>
-  <EducationItem Guid="ddff87ab-6fea-407a-acfb-ca951ce5f0e9">
+  <EducationItem Guid="">
     <Credential>BS, Business Management</Credential>
     <Institution>Western Governors University</Institution>
   </EducationItem>
-  <EducationItem Guid="b90f2692-aca8-40f2-91e8-cef2d8745b5a">
+  <EducationItem Guid="daa7c0c4-346c-45fa-a2da-b111b928cca2">
     <Credential>testCred</Credential>
     <Institution>testInst</Institution>
   </EducationItem>
-  <EducationItem Guid="ac433091-adbc-4e57-b680-c069a76f9b01">
+  <EducationItem Guid="e9eb621f-460e-4da8-883c-562dfb7d46fc">
     <Credential>testCred</Credential>
     <Institution>testInst</Institution>
   </EducationItem>
-  <EducationItem Guid="164e1bed-7872-461a-990a-ef6d6be1b8e5">
+  <EducationItem Guid="f4042468-d66e-440f-93f1-95f72f86af6c">
+    <Credential>updated</Credential>
+    <Institution>updated</Institution>
+  </EducationItem>
+  <EducationItem Guid="2325a655-6575-405e-8458-ebfdb4ca3968">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
+  <EducationItem Guid="72f47388-2d73-4500-baf5-ce35526093dd">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
+  <EducationItem Guid="5fb723d7-4a33-4918-ac5f-e822b073e145">
+    <Credential>updated</Credential>
+    <Institution>updated</Institution>
+  </EducationItem>
+  <EducationItem Guid="5bb82bdc-13de-4281-b695-da8bcc3a51a4">
     <Credential>testCred</Credential>
     <Institution>testInst</Institution>
   </EducationItem>

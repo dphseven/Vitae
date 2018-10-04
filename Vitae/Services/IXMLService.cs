@@ -15,7 +15,6 @@
         // General Info
         IGeneralInfoEntity GetGeneralInformation(Guid guid);
         Guid Insert(IGeneralInfoEntity entity);
-        IList<IGeneralInfoEntity> GetAllGeneralInfos();
         void DeleteGeneralInfo(Guid guid);
         void Update(Guid g, IGeneralInfoEntity t);
 

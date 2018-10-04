@@ -57,22 +57,24 @@ namespace VitaeUnitTests
         [TestMethod]
         public void GeneralInfoRepository_GetAll_Works() 
         {
-            var originalList = new List<IGeneralInfoEntity>();
+            IList<IGeneralInfoEntity> originalList = new List<IGeneralInfoEntity>();
             for (int i = 0; i < 49; i++)
             {
-                GeneralInfoEntity gie = new GeneralInfoEntity();
-                gie.FullName = "caramel";
+                GeneralInfoEntity gie = new GeneralInfoEntity
+                {
+                    FullName = "caramel"
+                };
                 originalList.Add(gie);
             }
             var mock = new Mock<IXMLService>();
-            mock.Setup(T => T.GetAllGeneralInfos()).Returns(originalList);
+            mock.Setup(T => T.GetGeneralInformation(Guid.Empty)).Returns(originalList.FirstOrDefault());
 
             var repos = new GeneralInfoRepository(mock.Object);
 
             var list = repos.GetAll();
 
             Assert.IsNotNull(list);
-            Assert.AreEqual(49, list.Count);
+            Assert.AreEqual(1, list.Count);
             Assert.IsTrue(list.All(T => T.FullName == "caramel"));
         }
 

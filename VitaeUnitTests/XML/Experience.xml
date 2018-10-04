@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Jobs>
-  <Job Employer="NorwalkAberdeen" StartDate="July 2013" EndDate="Present">
+  <Job Guid="" Employer="NorwalkAberdeen" StartDate="July 2013" EndDate="Present">
     <JobTitles>
       <JobTitle>Founder, Business Analyst/Product Owner Training Firm</JobTitle>
       <JobTitle>Founder, Business Analysis/Project Management Training Firm</JobTitle>
@@ -20,7 +20,7 @@
       <Detail>Designed and developed a proprietary CRM and Lead Management platform for institutional sales (.Net, C#, WPF). Designed and developed the NorwalkAberdeen website, including the development of custom widgets and integration with third party services (HTML/CSS/JS).</Detail>
     </Details>
   </Job>
-  <Job Employer="Citigroup" StartDate="March 2008" EndDate="July 2013">
+  <Job Guid="" Employer="Citigroup" StartDate="March 2008" EndDate="July 2013">
     <JobTitles>
       <JobTitle>Senior Vice President, Online Product Management</JobTitle>
       <JobTitle>Senior Vice President, Business Analysis Manager</JobTitle>
@@ -44,7 +44,7 @@
       <Detail>Held the FINRA Series 7, 9, 10, 24, and 66 securities licenses.</Detail>
     </Details>
   </Job>
-  <Job Employer="Morgan Stanley" StartDate="June 2002" EndDate="March 2008">
+  <Job Guid="" Employer="Morgan Stanley" StartDate="June 2002" EndDate="March 2008">
     <JobTitles>
       <JobTitle>Product Manager/Business Analyst</JobTitle>
       <JobTitle>Product Owner/Business Analyst</JobTitle>
@@ -63,6 +63,162 @@
       <Detail>Served as member of the Project Governance Standards Committee and the Canonical Services Oversight Board (SOA governance).</Detail>
       <Detail>Provided high-level concierge services to top clients, Branch Managers and Chairman’s Club Financial Advisors. Interfaced with FA Recruiting to drive competitor intelligence activities.</Detail>
       <Detail>Managed the firm-wide implementation of changes to the discretionary brokerage business model.</Detail>
+    </Details>
+  </Job>
+  <Job Employer="testEmp" StartDate="start1" EndDate="end1" Guid="a6006bce-a415-4599-bd16-3353c3c2ddb7">
+    <JobTitles>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+      <JobTitle>t3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+      <Detail>d3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="testEmp" StartDate="start1" EndDate="end1" Guid="b6d8513f-0740-4e6e-8e2e-ae0126d9e873">
+    <JobTitles>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+      <JobTitle>t3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+      <Detail>d3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="testEmp" StartDate="start1" EndDate="end1" Guid="d0f12b74-926a-4a40-9cbb-007b53e76ac3">
+    <JobTitles>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+      <JobTitle>t3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+      <Detail>d3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="testEmp" StartDate="start1" EndDate="end1" Guid="e9ba057a-0ad5-48b5-84c6-17028f8b9c8a">
+    <JobTitles>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+      <JobTitle>t3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+      <Detail>d3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="testEmp" StartDate="start1" EndDate="end1" Guid="551dde36-6f61-466f-871b-e04a98f4f276">
+    <JobTitles>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+      <JobTitle>t3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+      <Detail>d3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="testEmp" StartDate="start1" EndDate="end1" Guid="1869e1d8-b5c4-4e1f-a160-c6576cb40b74">
+    <JobTitles>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+      <JobTitle>t3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+      <Detail>d3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="testEmp" StartDate="start1" EndDate="end1" Guid="9881b173-16a4-48cd-b033-75ad69938663">
+    <JobTitles>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+      <JobTitle>t3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+      <Detail>d3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="upd" StartDate="upd" EndDate="upd" Guid="d954ae64-d883-4719-8245-aec929eff311">
+    <JobTitles>
+      <JobTitle>t2</JobTitle>
+      <JobTitle>t3</JobTitle>
+      <JobTitle>updt1</JobTitle>
+      <JobTitle>updt2</JobTitle>
+      <JobTitle>updt3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d2</Detail>
+      <Detail>d3</Detail>
+      <Detail>updd1</Detail>
+      <Detail>updd2</Detail>
+      <Detail>updd3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="upd" StartDate="upd" EndDate="upd" Guid="f8a4f6b2-a115-439a-bce1-0d370ede9c95">
+    <JobTitles>
+      <JobTitle>t2</JobTitle>
+      <JobTitle>t3</JobTitle>
+      <JobTitle>updt1</JobTitle>
+      <JobTitle>updt2</JobTitle>
+      <JobTitle>updt3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d2</Detail>
+      <Detail>d3</Detail>
+      <Detail>updd1</Detail>
+      <Detail>updd2</Detail>
+      <Detail>updd3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="upd" StartDate="upd" EndDate="upd" Guid="596a0f69-5d98-4b6b-88e2-18a579b83ae7">
+    <JobTitles>
+      <JobTitle>t2</JobTitle>
+      <JobTitle>t3</JobTitle>
+      <JobTitle>updt1</JobTitle>
+      <JobTitle>updt2</JobTitle>
+      <JobTitle>updt3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d2</Detail>
+      <Detail>d3</Detail>
+      <Detail>updd1</Detail>
+      <Detail>updd2</Detail>
+      <Detail>updd3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="upd" StartDate="upd" EndDate="upd" Guid="7db7d908-795b-4647-89d4-cc66b0fb8d5b">
+    <JobTitles>
+      <JobTitle>updt1</JobTitle>
+      <JobTitle>updt2</JobTitle>
+      <JobTitle>updt3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>updd1</Detail>
+      <Detail>updd2</Detail>
+      <Detail>updd3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="upd" StartDate="upd" EndDate="upd" Guid="50311da7-788f-4c5b-aae0-6008e9aa9c44">
+    <JobTitles>
+      <JobTitle>updt1</JobTitle>
+      <JobTitle>updt2</JobTitle>
+      <JobTitle>updt3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>updd1</Detail>
+      <Detail>updd2</Detail>
+      <Detail>updd3</Detail>
     </Details>
   </Job>
 </Jobs>
