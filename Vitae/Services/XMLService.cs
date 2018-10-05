@@ -107,7 +107,7 @@
             doc.Save(generalInfoFilePath);
         }
 
-        // EDUCATION -- DONE
+        // EDUCATION
 
         public IList<IEducationEntity> GetAllEducations() 
         {
@@ -200,7 +200,7 @@
             doc.Save(educationFilePath);
         }
 
-        // PUBLICATIONS -- DONE
+        // PUBLICATIONS
 
         public IList<IPublicationEntity> GetPublications() 
         {
@@ -265,7 +265,7 @@
             doc.Save(publicationsFilePath);
         }
 
-        // EXPERTISE -- DONE
+        // EXPERTISE
 
         public IList<IExpertiseEntity> GetExpertise() 
         {
