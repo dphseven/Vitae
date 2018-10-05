@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Windows.Media;
 
-    public class ResumeCreationService
+    public class ResumeCreationServiceXXX
     {
         private WdColor headerColor;
 
