@@ -12,11 +12,11 @@
 
     public class XMLService : IXMLService
     {
-        string generalInfoFilePath;
-        string experienceFilePath;
-        string expertiseFilePath;
-        string educationFilePath;
-        string publicationsFilePath;
+        private readonly string generalInfoFilePath;
+        private readonly string experienceFilePath;
+        private readonly string expertiseFilePath;
+        private readonly string educationFilePath;
+        private readonly string publicationsFilePath;
 
         public XMLService() 
         {
@@ -186,7 +186,15 @@
 
         public void Update(Guid g, IGeneralInfoEntity t) 
         {
-            throw new NotImplementedException();
+            var doc = XDocument.Load(generalInfoFilePath);
+
+            doc.Root.Element("FullName").Value = t.FullName;
+            doc.Root.Element("AddLine1").Value = t.Add1;
+            doc.Root.Element("AddLine2").Value = t.Add2;
+            doc.Root.Element("Email").Value = t.Email;
+            doc.Root.Element("Phone").Value = t.Phone;
+
+            doc.Save(generalInfoFilePath);
         }
 
         // EDUCATION
@@ -331,13 +339,13 @@
             {
                 List<IExpertiseEntity> list = new List<IExpertiseEntity>();
 
-                XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load(expertiseFilePath);
-                foreach (XmlNode item in xmlDoc.SelectNodes("//Expertise/ExpertiseItem"))
+                var doc = XDocument.Load(expertiseFilePath);
+
+                foreach (var item in doc.Root.Elements("ExpertiseItem"))
                 {
                     IExpertiseEntity ee = ioc.Get<IExpertiseEntity>();
-                    ee.Category = item.Attributes["Category"].InnerText;
-                    ee.Expertise = item.Attributes["Expertise"].InnerText;
+                    ee.Category = (item.Attribute("Category") == null) ? "" : item.Attribute("Category").Value;
+                    ee.Expertise = (item.Attribute("Expertise") == null) ? "" : item.Attribute("Expertise").Value;
                     list.Add(ee);
                 }
 
@@ -347,17 +355,45 @@
 
         public Guid Insert(IExpertiseEntity entity) 
         {
-            throw new NotImplementedException();
+            var g = Guid.NewGuid();
+
+            var doc = XDocument.Load(expertiseFilePath);
+
+            doc.Root.Add(
+                new XElement("ExpertiseItem", new XAttribute("Guid", g.ToString()),
+                                              new XElement("Category", entity.Category),
+                                              new XElement("Expertise", entity.Expertise)));
+
+            doc.Save(expertiseFilePath);
+
+            return g;
         }
 
         public IExpertiseEntity GetExpertiseItem(Guid guid) 
         {
-            throw new NotImplementedException();
+            var doc = XDocument.Load(expertiseFilePath);
+
+            var item = doc.Root.Elements("ExpertiseItem").FirstOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
+
+            if (item == null) throw new ArgumentException("guid not found.");
+
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var ee = ioc.Get<IExpertiseEntity>();
+                ee.Category = item.Element("Category").Value;
+                ee.Expertise = item.Element("Expertise").Value;
+                return ee;
+            }
         }
 
-        public void DeleteExpertise(Guid g) 
+        public void DeleteExpertise(Guid g)
         {
-            throw new NotImplementedException();
+            var doc = XDocument.Load(expertiseFilePath);
+
+            var element = doc.Root.Elements("ExpertiseItem").SingleOrDefault(T => T.Attribute("Guid").Value == g.ToString());
+            if (element != null) element.Remove();
+
+            doc.Save(expertiseFilePath);
         }
 
         public void Update(Guid guid, IExpertiseEntity entity) 

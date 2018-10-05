@@ -221,4 +221,16 @@
       <Detail>updd3</Detail>
     </Details>
   </Job>
+  <Job Employer="upd" StartDate="upd" EndDate="upd" Guid="42300eeb-41d2-40f8-923b-5ebf52bea9c0">
+    <JobTitles>
+      <JobTitle>updt1</JobTitle>
+      <JobTitle>updt2</JobTitle>
+      <JobTitle>updt3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>updd1</Detail>
+      <Detail>updd2</Detail>
+      <Detail>updd3</Detail>
+    </Details>
+  </Job>
 </Jobs>
