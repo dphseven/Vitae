@@ -233,4 +233,104 @@
       <Detail>updd3</Detail>
     </Details>
   </Job>
+  <Job Employer="upd" StartDate="upd" EndDate="upd" Guid="244c3d83-0f4b-4cbd-93ed-34fc119e6f6b">
+    <JobTitles>
+      <JobTitle>updt1</JobTitle>
+      <JobTitle>updt2</JobTitle>
+      <JobTitle>updt3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>updd1</Detail>
+      <Detail>updd2</Detail>
+      <Detail>updd3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="upd" StartDate="upd" EndDate="upd" Guid="412dc469-9a93-49ce-bc15-52b1d82541f2">
+    <JobTitles>
+      <JobTitle>updt1</JobTitle>
+      <JobTitle>updt2</JobTitle>
+      <JobTitle>updt3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>updd1</Detail>
+      <Detail>updd2</Detail>
+      <Detail>updd3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="emp" StartDate="sd" EndDate="ed" Guid="a8ca86a0-dea5-45d1-9143-b5b65fb34a5f">
+    <JobTitles>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+      <JobTitle>t3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+      <Detail>d3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="emp" StartDate="sd" EndDate="ed" Guid="000fc57c-87b7-4c0a-82a1-2a07e71e3ff5">
+    <JobTitles>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+      <JobTitle>t3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+      <Detail>d3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="" StartDate="" EndDate="" Guid="1df7ba94-41d9-4007-8991-d6e3e850c20f">
+    <JobTitles />
+    <Details />
+  </Job>
+  <Job Employer="e" StartDate="s" EndDate="e" Guid="fe7e9d0a-dfcf-4135-964f-6921af0486fc">
+    <JobTitles>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+      <JobTitle>t3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+      <Detail>d3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="upd" StartDate="upd" EndDate="upd" Guid="9646f035-dca2-41de-b3fe-d422566a8bea">
+    <JobTitles>
+      <JobTitle>updt1</JobTitle>
+      <JobTitle>updt2</JobTitle>
+      <JobTitle>updt3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>updd1</Detail>
+      <Detail>updd2</Detail>
+      <Detail>updd3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="emp" StartDate="sd" EndDate="ed" Guid="9dcb96c0-c301-4fbe-8059-005390842bbd">
+    <JobTitles>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+      <JobTitle>t3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+      <Detail>d3</Detail>
+    </Details>
+  </Job>
+  <Job Employer="e" StartDate="s" EndDate="e" Guid="3c8c01d5-7b47-41a3-a15a-c33cde92132e">
+    <JobTitles>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+      <JobTitle>t3</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+      <Detail>d3</Detail>
+    </Details>
+  </Job>
 </Jobs>

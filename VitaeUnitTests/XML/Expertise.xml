@@ -56,4 +56,36 @@
     <Category />
     <Expertise />
   </ExpertiseItem>
+  <ExpertiseItem Guid="4c29c9ce-98d9-41b9-8d95-9aacb5f931b1">
+    <Category>testCat</Category>
+    <Expertise>testExp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="f8d05cb9-43b8-41e4-887d-a878938b4829">
+    <Category>testCat</Category>
+    <Expertise>testExp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="4816849e-5b75-49c3-9e06-e554dfe473de">
+    <Category>cat</Category>
+    <Expertise>exp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="e314ba1b-daa5-4895-8eb3-df418a7a9e99">
+    <Category>testCat</Category>
+    <Expertise>testExp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="ea501cdd-4070-4483-9604-046c235dd233">
+    <Category>testCat</Category>
+    <Expertise>testExp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="5578c3ba-b64e-4567-af7c-0492fb3a354b">
+    <Category>cat</Category>
+    <Expertise>exp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="62eeaa9c-0490-4776-aac9-79fc7de585e4">
+    <Category>testCat</Category>
+    <Expertise>testExp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="3987b8d4-6482-4d1d-b2de-7d267c98d737">
+    <Category>testCat</Category>
+    <Expertise>testExp</Expertise>
+  </ExpertiseItem>
 </ExpertiseItems>

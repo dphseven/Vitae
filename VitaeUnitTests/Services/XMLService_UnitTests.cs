@@ -21,15 +21,15 @@ namespace VitaeUnitTests
         }
 
         [TestMethod()]
-        public void XMLService_Works() 
+        public void XMLService_XMLService_Works() 
         {
             Assert.IsTrue(xs is IXMLService);
         }
 
-        // General Info -- DONE
+        // General Info
 
         [TestMethod()]
-        public void DeleteGeneralInfo_Works() 
+        public void XMLService_DeleteGeneralInfo_Works() 
         {
             xs.DeleteGeneralInfo(Guid.Empty);
             var newGI = xs.GetGeneralInformation(Guid.Empty);
@@ -43,8 +43,18 @@ namespace VitaeUnitTests
         }
 
         [TestMethod()]
-        public void GetGeneralInformation_Works() 
+        public void XMLService_GetGeneralInformation_Works() 
         {
+            var gie = new GeneralInfoEntity
+            {
+                Add1 = "a",
+                Add2 = "a",
+                FullName = "a",
+                Phone = "a",
+                Email = "a"
+            };
+            xs.Update(Guid.Empty, gie);
+
             var gi = xs.GetGeneralInformation(Guid.Empty);
 
             Assert.IsNotNull(gi);
@@ -56,7 +66,7 @@ namespace VitaeUnitTests
         }
 
         [TestMethod()]
-        public void Insert_GeneralInfoEntity_Works() 
+        public void XMLService_Insert_GeneralInfoEntity_Works() 
         {
             var initialGI = new GeneralInfoEntity
             {
@@ -80,7 +90,7 @@ namespace VitaeUnitTests
         }
 
         [TestMethod()]
-        public void Update_GeneralInfoEntity_Works() 
+        public void XMLService_Update_GeneralInfoEntity_Works() 
         {
             var gie1 = new GeneralInfoEntity 
             {
@@ -115,7 +125,7 @@ namespace VitaeUnitTests
         // Expertise
 
         [TestMethod()]
-        public void DeleteExpertise_Works() 
+        public void XMLService_DeleteExpertise_Works() 
         {
             var num1EE = xs.GetExpertise().Count;
             var ee = new ExpertiseEntity();
@@ -129,19 +139,32 @@ namespace VitaeUnitTests
         }
 
         [TestMethod()]
-        public void GetExpertise_Works() 
+        public void XMLService_GetExpertise_Works() 
         {
-            Assert.Inconclusive();
+            var list = xs.GetExpertise();
+
+            Assert.IsNotNull(list);
+            Assert.IsTrue(list.Count > 0);
         }
 
         [TestMethod()]
-        public void GetExpertiseItem_Works() 
+        public void XMLService_GetExpertiseItem_Works() 
         {
-            Assert.Inconclusive();
+            var ee = new ExpertiseEntity
+            {
+                Category = "cat",
+                Expertise = "exp"
+            };
+            var id = xs.Insert(ee);
+            var item = xs.GetExpertiseItem(id);
+
+            Assert.IsNotNull(item);
+            Assert.AreEqual("cat", item.Category);
+            Assert.AreEqual("exp", item.Expertise);
         }
 
         [TestMethod()]
-        public void Insert_ExpertiseEntity_Works() 
+        public void XMLService_Insert_ExpertiseEntity_Works() 
         {
             IExpertiseEntity ee = new ExpertiseEntity
             {
@@ -159,15 +182,32 @@ namespace VitaeUnitTests
         }
 
         [TestMethod()]
-        public void Update_ExpertiseEntity_Works() 
+        public void XMLService_Update_ExpertiseEntity_Works() 
         {
-            Assert.Inconclusive();
+            var ee = new ExpertiseEntity
+            {
+                Category = "testCat",
+                Expertise = "testExp"
+            };
+            var g = xs.Insert(ee);
+
+            var updatedEE = new ExpertiseEntity
+            {
+                Category = "testCat",
+                Expertise = "testExp"
+            };
+            xs.Update(g, updatedEE);
+
+            var final = xs.GetExpertiseItem(g);
+
+            Assert.AreEqual("testCat", final.Category);
+            Assert.AreEqual("testExp", final.Expertise);
         }
 
         // Experience
 
         [TestMethod()]
-        public void GetJobTitles_Works() 
+        public void XMLService_GetJobTitles_Works() 
         {
             var titles = xs.GetJobTitles();
 
@@ -176,7 +216,7 @@ namespace VitaeUnitTests
         }
 
         [TestMethod()]
-        public void GetExperienceDetails_Works() 
+        public void XMLService_GetExperienceDetails_Works() 
         {
             var details = xs.GetExperienceDetails();
 
@@ -185,7 +225,7 @@ namespace VitaeUnitTests
         }
 
         [TestMethod()]
-        public void GetExperienceDetailsForEmployer_Works() 
+        public void XMLService_GetExperienceDetailsForEmployer_Works() 
         {
             var details = xs.GetExperienceDetailsForEmployer("Morgan Stanley");
 
@@ -194,7 +234,7 @@ namespace VitaeUnitTests
         }
 
         [TestMethod()]
-        public void GetAllJobs_Works() 
+        public void XMLService_GetAllJobs_Works() 
         {
             var jobs = xs.GetAllJobs();
 
@@ -207,7 +247,7 @@ namespace VitaeUnitTests
         }
 
         [TestMethod()]
-        public void Update_ExperienceEntity_Works() 
+        public void XMLService_Update_ExperienceEntity_Works() 
         {
             var ee1 = new ExperienceEntity
             {
@@ -244,33 +284,76 @@ namespace VitaeUnitTests
         }
 
         [TestMethod()]
-        public void GetExperience_Works() 
+        public void XMLService_GetExperience_Works() 
         {
-            Assert.Inconclusive();
+            var ee = new ExperienceEntity
+            {
+                Employer = "emp",
+                StartDate = "sd",
+                EndDate = "ed",
+                Titles = new List<string> { "t1", "t2", "t3" },
+                Details = new List<string> { "d1", "d2", "d3" }
+            };
+            var g = xs.Insert(ee);
+
+            var newItem = xs.GetExperience(g);
+
+            Assert.IsNotNull(newItem);
+            Assert.AreEqual("emp", newItem.Employer);
+            Assert.AreEqual("sd", newItem.StartDate);
+            Assert.AreEqual("ed", newItem.EndDate);
+            Assert.AreEqual("t2", newItem.Titles[1]);
+            Assert.AreEqual("d3", newItem.Details[2]);
         }
 
         [TestMethod()]
-        public void GetAllExperiences_Works() 
+        public void XMLService_GetAllExperiences_Works() 
         {
-            Assert.Inconclusive();
+            var list = xs.GetAllExperiences();
+
+            Assert.IsNotNull(list);
+            Assert.IsTrue(list.Count > 0);
         }
 
         [TestMethod()]
-        public void DeleteExperience_Works() 
+        public void XMLService_DeleteExperience_Works() 
         {
-            Assert.Inconclusive();
+            var ee1 = new ExperienceEntity();
+            var id = xs.Insert(ee1);
+
+            var count = xs.GetAllExperiences().Count;
+
+            xs.DeleteExperience(id);
+
+            Assert.AreEqual(count - 1, xs.GetAllExperiences().Count);
         }
 
         [TestMethod()]
-        public void Insert_ExperienceEntity_Works() 
+        public void XMLService_Insert_ExperienceEntity_Works() 
         {
-            Assert.Inconclusive();
+            var ee = new ExperienceEntity
+            {
+                Employer = "e",
+                StartDate = "s",
+                EndDate = "e",
+                Titles = new List<string> { "t1", "t2", "t3" },
+                Details = new List<string> { "d1", "d2", "d3" }
+            };
+            var id = xs.Insert(ee);
+            var reloaded = xs.GetExperience(id);
+
+            Assert.IsNotNull(reloaded);
+            Assert.AreEqual("e", reloaded.Employer);
+            Assert.AreEqual("s", reloaded.StartDate);
+            Assert.AreEqual("e", reloaded.EndDate);
+            Assert.AreEqual("t1", reloaded.Titles[0]);
+            Assert.AreEqual("d2", reloaded.Details[1]);
         }
 
         // Education
 
         [TestMethod()]
-        public void Update_EducationEntity_Works() 
+        public void XMLService_Update_EducationEntity_Works() 
         {
             IEducationEntity ee = new EducationEntity
             {
@@ -293,7 +376,7 @@ namespace VitaeUnitTests
         }
 
         [TestMethod()]
-        public void GetAllEducations_Works() 
+        public void XMLService_GetAllEducations_Works() 
         {
             var list = xs.GetAllEducations();
 
@@ -304,7 +387,7 @@ namespace VitaeUnitTests
         }
 
         [TestMethod()]
-        public void GetEducation_Works() 
+        public void XMLService_GetEducation_Works() 
         {
             var tbInserted = new EducationEntity
             {
@@ -321,7 +404,7 @@ namespace VitaeUnitTests
         }
 
         [TestMethod()]
-        public void Insert_EducationEntity_Works() 
+        public void XMLService_Insert_EducationEntity_Works() 
         {
             var newEdEnt = new EducationEntity
             {
@@ -342,7 +425,7 @@ namespace VitaeUnitTests
         }
 
         [TestMethod()]
-        public void Delete_Education_Works() 
+        public void XMLService_Delete_Education_Works() 
         {
             var edInsert = new EducationEntity();
             var g = xs.Insert(edInsert);
@@ -358,36 +441,66 @@ namespace VitaeUnitTests
         // Publications
 
         [TestMethod()]
-        public void GetPublications_Works() 
+        public void XMLService_GetPublications_Works() 
         {
             var list = xs.GetPublications();
 
             Assert.IsNotNull(list);
             Assert.IsTrue(list.Count > 0);
         }
-        
+
         [TestMethod()]
-        public void GetPublication_Works() 
+        public void XMLService_GetPublication_Works() 
         {
-            Assert.Inconclusive();
+            PublicationEntity pe = new PublicationEntity
+            {
+                Publication = "testPub",
+            };
+            var g = xs.Insert(pe);
+            var pub = xs.GetPublication(g);
+
+            Assert.IsNotNull(pub);
+            Assert.AreEqual("testPub", pub.Publication);
         }
 
         [TestMethod()]
-        public void DeletePublication_Works() 
+        public void XMLService_DeletePublication_Works() 
         {
-            Assert.Inconclusive();
+            var count1 = xs.GetPublications().Count;
+            var pe = new PublicationEntity { Publication = "someTestPub" };
+            var id = xs.Insert(pe);
+            var count2 = xs.GetPublications().Count;
+            Assert.AreEqual(count1 + 1, count2);
+
+            xs.DeletePublication(id);
+            var count3 = xs.GetPublications().Count;
+            Assert.AreEqual(count1, count3);
         }
 
         [TestMethod()]
-        public void Update_PublicationEntity_Works() 
+        public void XMLService_Update_PublicationEntity_Works() 
         {
-            Assert.Inconclusive();
+            var pe = new PublicationEntity { Publication = "pub" };
+            var id = xs.Insert(pe);
+            pe = null;
+
+            pe = new PublicationEntity { Publication = "updatedPub" };
+            xs.Update(id, pe);
+
+            var newItem = xs.GetPublication(id);
+            Assert.IsNotNull(newItem);
+            Assert.AreEqual("updatedPub", newItem.Publication);
         }
 
         [TestMethod()]
-        public void Insert_PublicationEntity_Works() 
+        public void XMLService_Insert_PublicationEntity_Works() 
         {
-            Assert.Inconclusive();
+            var pe = new PublicationEntity { Publication = "anotherTestPub" };
+
+            var id = xs.Insert(pe);
+
+            Assert.IsNotNull(id);
+            Assert.AreNotEqual(Guid.Empty, id);
         }
 
     }

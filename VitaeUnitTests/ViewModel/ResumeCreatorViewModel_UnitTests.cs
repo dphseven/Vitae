@@ -125,7 +125,6 @@ namespace VitaeUnitTests
                 vm.SelectedOutExpertise = expertiseItem2;
                 vm.AddExpertiseCommand.Execute(null);
 
-                Assert.AreNotEqual(expertiseItem1.ToString(), expertiseItem2.ToString());
                 Assert.IsTrue(vm.InExpertises.Contains(expertiseItem2));
                 Assert.AreEqual(1, vm.InExpertises.IndexOf(expertiseItem2));
                 Assert.IsNull(vm.SelectedOutExpertise);

@@ -197,7 +197,7 @@
             doc.Save(generalInfoFilePath);
         }
 
-        // EDUCATION
+        // EDUCATION -- DONE
 
         public IList<IEducationEntity> GetAllEducations() 
         {
@@ -290,7 +290,7 @@
             doc.Save(educationFilePath);
         }
 
-        // PUBLICATIONS
+        // PUBLICATIONS -- DONE
 
         public IList<IPublicationEntity> GetPublications() 
         {
@@ -313,25 +313,49 @@
 
         public Guid Insert(IPublicationEntity pe) 
         {
-            throw new NotImplementedException();
+            var doc = XDocument.Load(publicationsFilePath);
+            var g = Guid.NewGuid();
+            var element = new XElement("Publication",
+                              new XAttribute("Guid", g.ToString()),
+                              pe.Publication);
+            doc.Root.Add(element);
+            doc.Save(publicationsFilePath);
+            return g;
         }
 
         public IPublicationEntity GetPublication(Guid guid) 
         {
-            throw new NotImplementedException();
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var ent = ioc.Get<IPublicationEntity>();
+                var doc = XDocument.Load(publicationsFilePath);
+                var element = doc.Root.Elements("Publication")
+                    .SingleOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
+                if (element == null) return null;
+                ent.Publication = element.Value;
+                return ent;
+            }            
         }
 
         public void DeletePublication(Guid guid) 
         {
-            throw new NotImplementedException();
+            var doc = XDocument.Load(publicationsFilePath);
+            var element = doc.Root.Elements("Publication")
+                             .Where(T => T.Attribute("Guid").Value == guid.ToString());
+            element.Remove();
+            doc.Save(publicationsFilePath);
         }
 
         public void Update(Guid guid, IPublicationEntity pub) 
         {
-            throw new NotImplementedException();
+            var doc = XDocument.Load(publicationsFilePath);
+            var element = doc.Root.Elements("Publication")
+                             .FirstOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
+            if (element != null) element.Value = pub.Publication;
+            doc.Save(publicationsFilePath);
         }
 
-        // EXPERTISE
+        // EXPERTISE -- DONE
 
         public IList<IExpertiseEntity> GetExpertise() 
         {
@@ -398,7 +422,15 @@
 
         public void Update(Guid guid, IExpertiseEntity entity) 
         {
-            throw new NotImplementedException();
+            var doc = XDocument.Load(expertiseFilePath);
+
+            var element = doc.Root.Elements("ExpertiseItem")
+                .SingleOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
+
+            element.Element("Category").Value = entity.Category;
+            element.Element("Expertise").Value = entity.Expertise;
+
+            doc.Save(expertiseFilePath);
         }
 
         // EXPERIENCE
@@ -491,7 +523,14 @@
 
         public void DeleteExperience(Guid g) 
         {
-            throw new NotImplementedException();
+            var doc = XDocument.Load(experienceFilePath);
+
+            var element = doc.Root.Elements("Job")
+                .SingleOrDefault(T => T.Attribute("Guid").Value == g.ToString());
+
+            element.Remove();
+
+            doc.Save(experienceFilePath);
         }
 
         public void Update(Guid guid, IExperienceEntity entity) 

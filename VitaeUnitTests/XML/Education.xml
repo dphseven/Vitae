@@ -48,4 +48,40 @@
     <Credential>testCred</Credential>
     <Institution>testInst</Institution>
   </EducationItem>
+  <EducationItem Guid="45ccabc4-75a4-4922-a1d9-4764c47d7785">
+    <Credential>updated</Credential>
+    <Institution>updated</Institution>
+  </EducationItem>
+  <EducationItem Guid="6f6429d5-7704-454c-9160-11c5cfd90326">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
+  <EducationItem Guid="0e9979be-2f07-4006-92c4-283ca78cce52">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
+  <EducationItem Guid="1aab62e5-c612-4dc4-b206-ad92e6815a99">
+    <Credential>updated</Credential>
+    <Institution>updated</Institution>
+  </EducationItem>
+  <EducationItem Guid="2d6195e2-1cb4-419c-8f0f-2e040c31339e">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
+  <EducationItem Guid="3380920d-f5f0-4d82-80d3-cada4028dfe2">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
+  <EducationItem Guid="10514f5a-d7e4-4700-860d-dbc7b8258e4b">
+    <Credential>updated</Credential>
+    <Institution>updated</Institution>
+  </EducationItem>
+  <EducationItem Guid="412487b0-cf41-477f-a4ce-709377e81ca6">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
+  <EducationItem Guid="3ad7accd-abe4-4881-82c7-8add75b3e2fb">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
 </EducationItems>

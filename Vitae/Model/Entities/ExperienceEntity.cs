@@ -12,6 +12,9 @@
 
         public ExperienceEntity()
         {
+            Employer = string.Empty;
+            StartDate = string.Empty;
+            EndDate = string.Empty;
             Titles = new List<string>();
             Details = new List<string>();
         }

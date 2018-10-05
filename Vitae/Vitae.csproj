@@ -59,7 +59,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>VitaeSNK.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Vitae_SNKlt.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -69,10 +69,10 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <ManifestCertificateThumbprint>4E0EC66191029A6E85F5B58C82CC864E6EB9E09E</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>ADC12D8778965EE6CE0206AE09F4ACEBF3C667BE</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Vitae_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Vitae_SNKlt.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
@@ -222,8 +222,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="VitaeSNK.pfx" />
-    <None Include="Vitae_TemporaryKey.pfx" />
+    <None Include="Vitae_SNKlt.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
