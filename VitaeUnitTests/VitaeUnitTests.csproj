@@ -80,17 +80,17 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Services\XMLService_UnitTests.cs" />
-    <Compile Include="UnitTests\Model\ExperienceRepository_UnitTests.cs" />
-    <Compile Include="UnitTests\Model\ExpertiseRepository_UnitTests.cs" />
-    <Compile Include="UnitTests\Model\GeneralInfoRepository_UnitTests.cs" />
-    <Compile Include="UnitTests\Services\KeywordService_UnitTests.cs" />
-    <Compile Include="UnitTests\Model\PublicationsRepository_UnitTests.cs" />
-    <Compile Include="UnitTests\Model\Repository_UnitTests.cs" />
-    <Compile Include="UnitTests\ViewModel\ResumeCreatorViewModel_UnitTests.cs" />
-    <Compile Include="UnitTests\Model\ResumeDataObject_UnitTests.cs" />
+    <Compile Include="Model\ExperienceRepository_UnitTests.cs" />
+    <Compile Include="Model\ExpertiseRepository_UnitTests.cs" />
+    <Compile Include="Model\GeneralInfoRepository_UnitTests.cs" />
+    <Compile Include="Services\KeywordService_UnitTests.cs" />
+    <Compile Include="Model\PublicationsRepository_UnitTests.cs" />
+    <Compile Include="Model\Repository_UnitTests.cs" />
+    <Compile Include="ViewModel\ResumeCreatorViewModel_UnitTests.cs" />
+    <Compile Include="Model\ResumeDataObject_UnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTests\Model\ResumeFormatObject_UnitTests.cs" />
-    <Compile Include="UnitTests\Model\ResumeStructureObject_UnitTests.cs" />
+    <Compile Include="Model\ResumeFormatObject_UnitTests.cs" />
+    <Compile Include="Model\ResumeStructureObject_UnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Vitae\Vitae.csproj">

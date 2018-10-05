@@ -36,4 +36,16 @@
     <Credential>testCred</Credential>
     <Institution>testInst</Institution>
   </EducationItem>
+  <EducationItem Guid="4c757ee2-f13e-4ebb-8129-d4efa14af564">
+    <Credential>updated</Credential>
+    <Institution>updated</Institution>
+  </EducationItem>
+  <EducationItem Guid="6c9df78a-b103-4f0a-8dd2-f716fb4c12db">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
+  <EducationItem Guid="2883c5c5-26c1-4306-9d49-8f48faf48c7a">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
 </EducationItems>

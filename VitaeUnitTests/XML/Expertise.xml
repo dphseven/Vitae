@@ -1,43 +1,59 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Expertise>
-  <ExpertiseItem Category="Business Analysis" Expertise="Thought Leader in Field" />
-  <ExpertiseItem Category="Business Analysis" Expertise="Project-Level Analysis" />
-  <ExpertiseItem Category="Business Analysis" Expertise="Business Process Management" />
-  <ExpertiseItem Category="Business Analysis" Expertise="Business Architecture" />
-  <ExpertiseItem Category="Business Analysis" Expertise="Enterprise Analysis" />
-  <ExpertiseItem Category="Business Analysis" Expertise="Agile Product Ownership" />
-  <ExpertiseItem Category="Business Analysis" Expertise="BA Leadership" />
-  <ExpertiseItem Category="Business Analysis" Expertise="Center of Excellence (COE) Development" />
-  <ExpertiseItem Category="Product Development" Expertise="Agile Product Development" />
-  <ExpertiseItem Category="Product Development" Expertise="Traditional/Gated Product Development" />
-  <ExpertiseItem Category="Product Development" Expertise="Business Analysis" />
-  <ExpertiseItem Category="Product Development" Expertise="Design Thinking" />
-  <ExpertiseItem Category="Product Development" Expertise="Customer Development" />
-  <ExpertiseItem Category="Product Development" Expertise="Product Strategy" />
-  <ExpertiseItem Category="Product Development" Expertise="Road Map Development" />
-  <ExpertiseItem Category="Project Management" Expertise="Full Lifecycle; Business and Technology" />
-  <ExpertiseItem Category="Project Management" Expertise="Traditional/Iterative/Agile" />
-  <ExpertiseItem Category="Project Management" Expertise="Schedule Management" />
-  <ExpertiseItem Category="Project Management" Expertise="Risk and Issue Management" />
-  <ExpertiseItem Category="Project Management" Expertise="Finance and PMO" />
-  <ExpertiseItem Category="Project Management" Expertise="Stakeholder Management" />
-  <ExpertiseItem Category="Project Management" Expertise="Communications Planning and Management" />
-  <ExpertiseItem Category="Project Management" Expertise="Matrixed Environments" />
-  <ExpertiseItem Category="Project Management" Expertise="Management by Influence" />
-  <ExpertiseItem Category="Project Management" Expertise="Servant Leadership" />
-  <ExpertiseItem Category="Financial Services" Expertise="Wealth Management" />
-  <ExpertiseItem Category="Financial Services" Expertise="Private Banking" />
-  <ExpertiseItem Category="Financial Services" Expertise="Banking" />
-  <ExpertiseItem Category="Financial Services" Expertise="Financial Planning" />
-  <ExpertiseItem Category="Financial Services" Expertise="Asset Allocation" />
-  <ExpertiseItem Category="Financial Services" Expertise="Investment Management" />
-  <ExpertiseItem Category="Financial Services" Expertise="Fixed Income" />
-  <ExpertiseItem Category="Financial Services" Expertise="Equities" />
-  <ExpertiseItem Category="Financial Services" Expertise="Alternative Investments" />
-  <ExpertiseItem Category="Financial Services" Expertise="Structured Products" />
-  <ExpertiseItem Category="Financial Services" Expertise="Listed and OTC Derivatives" />
-  <ExpertiseItem Category="Financial Services" Expertise="Former Financial Advisor and Supervisory Principal" />
-  <ExpertiseItem Category="Digital/Online/Mobile" Expertise="Award-winning products" />
-  <ExpertiseItem Category="Digital/Online/Mobile" Expertise="Introduced the first private banking iPad app" />
-  <ExpertiseItem Category="Digital/Online/Mobile" Expertise="Client and front office digital experiences" />
-</Expertise>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ExpertiseItems>
+  <ExpertiseItem Guid="a42ca26c-c4d5-420d-8ce4-a87e9aba2045">
+    <Category>testCat</Category>
+    <Expertise>testExp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="511f9bf9-7d4c-4f57-9bd2-d39925df458f">
+    <Category>testCat</Category>
+    <Expertise>testExp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="7bb30b29-e7f5-4aa3-a6d1-7536fc8d91e3">
+    <Category>testCat</Category>
+    <Expertise>testExp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="77d44c42-74c7-465a-a3c8-ac26d4286d9d">
+    <Category>testCat</Category>
+    <Expertise>testExp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="27d5470c-5713-452e-9fe3-289a9e23c922">
+    <Category>testCat</Category>
+    <Expertise>testExp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="784f0fb5-35ee-4274-afab-90b71c8da14e">
+    <Category />
+    <Expertise />
+  </ExpertiseItem>
+  <ExpertiseItem Guid="312bcc6a-8fc7-46e1-bef7-e239136d0c64">
+    <Category />
+    <Expertise />
+  </ExpertiseItem>
+  <ExpertiseItem Guid="27f850c2-66da-4e6b-bf28-4842bccad639">
+    <Category>testCat</Category>
+    <Expertise>testExp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="fc826e57-960b-40fa-a28a-6a8fe91b90b8">
+    <Category />
+    <Expertise />
+  </ExpertiseItem>
+  <ExpertiseItem Guid="e70aa3ec-5d0d-43df-9960-1c6819c4a779">
+    <Category />
+    <Expertise />
+  </ExpertiseItem>
+  <ExpertiseItem Guid="2e9c0b81-2743-420c-8979-46dc52ef5eb9">
+    <Category />
+    <Expertise />
+  </ExpertiseItem>
+  <ExpertiseItem Guid="952b972e-5f75-46e9-9141-4d2e8ac6a8d9">
+    <Category />
+    <Expertise />
+  </ExpertiseItem>
+  <ExpertiseItem Guid="16434529-0acb-45a7-8b3d-2fb29d8b7555">
+    <Category />
+    <Expertise />
+  </ExpertiseItem>
+  <ExpertiseItem Guid="aa84fec4-fd3c-4a51-9e97-20d14652ffa2">
+    <Category />
+    <Expertise />
+  </ExpertiseItem>
+</ExpertiseItems>
