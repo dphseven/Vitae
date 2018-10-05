@@ -16,4 +16,10 @@
   <Publication Guid="eea2de32-f314-464b-a086-03fe5808f774">testPub</Publication>
   <Publication Guid="bbf3aa5d-8876-49e2-8607-7111a13da30d">updatedPub</Publication>
   <Publication Guid="ab5214e0-fa1c-403b-b6c2-d5ad2a706916">anotherTestPub</Publication>
+  <Publication Guid="cfcc9576-bf2a-4279-ba75-3ca13bbaaa01">testPub</Publication>
+  <Publication Guid="0b3193b8-3e61-411b-a10f-eb86f47898d0">updatedPub</Publication>
+  <Publication Guid="09d489df-243a-479f-b659-5b5d406d5b0a">anotherTestPub</Publication>
+  <Publication Guid="4eac1054-ea83-44bc-9114-e27604df3a4b">testPub</Publication>
+  <Publication Guid="0cbca2f3-9a4e-41b2-9c3f-50d7e93c0d08">updatedPub</Publication>
+  <Publication Guid="4784adeb-0cfe-4bed-96fb-7b15f9cb2d7d">anotherTestPub</Publication>
 </Publications>

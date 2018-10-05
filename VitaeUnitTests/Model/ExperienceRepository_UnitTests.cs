@@ -97,5 +97,48 @@ namespace VitaeUnitTests
 
             Assert.IsTrue(true);
         }
+
+        [TestMethod()]
+        public void GetAllExperienceItems_Works() 
+        {
+            var list = new List<IExperienceEntity>();
+            for (int i = 0; i < 34; i++)
+            {
+                list.Add(new ExperienceEntity { Details = new List<string> { "asdf", "sdf" } });
+            }
+            var mock = new Mock<IXMLService>();
+            mock.Setup(T => T.GetAllExperiences()).Returns(list);
+            var repos = new ExperienceRepository(mock.Object);
+
+            var newList = repos.GetAllExperienceItems();
+
+            Assert.IsNotNull(newList);
+            Assert.AreEqual(34 * 2, newList.Count);
+        }
+
+        [TestMethod()]
+        public void GetExperienceDetailsForEmployer_Works()
+        {
+            var employer = Guid.NewGuid().ToString();
+
+            var experienceEntity = new ExperienceEntity
+            {
+                Employer = employer,
+                Details = new List<string> { "1", "2", "3", "4", "5" }
+            };
+
+            var mock = new Mock<IXMLService>();
+            mock.Setup(T => T.GetAllExperiences()).Returns(
+                new List<IExperienceEntity> { experienceEntity });
+
+            var repos = new ExperienceRepository(mock.Object);
+
+            var list = repos.GetExperienceDetailsForEmployer(employer);
+
+            Assert.IsNotNull(list);
+            Assert.AreEqual(5, list.Count);
+            Assert.AreEqual(employer, list[2].Employer);
+            Assert.AreEqual("3", list[2].ExperienceDetail);
+        }
     }
 }

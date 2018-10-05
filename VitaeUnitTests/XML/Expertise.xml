@@ -88,4 +88,28 @@
     <Category>testCat</Category>
     <Expertise>testExp</Expertise>
   </ExpertiseItem>
+  <ExpertiseItem Guid="c5c33cb6-7949-4b1a-9488-1ccff05a3579">
+    <Category>cat</Category>
+    <Expertise>exp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="c9184f8c-4a63-47cf-8848-aba9e1f690ff">
+    <Category>testCat</Category>
+    <Expertise>testExp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="92de8540-357e-44ab-aef1-d6cdeb93e672">
+    <Category>testCat</Category>
+    <Expertise>testExp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="10574b17-d776-459b-8b2a-623f1ea8cd4b">
+    <Category>cat</Category>
+    <Expertise>exp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="5a61ae41-d894-48bb-b546-5c7e43f5625b">
+    <Category>testCat</Category>
+    <Expertise>testExp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="2eda2a41-ff0b-4c9e-81a0-776fe57694d9">
+    <Category>testCat</Category>
+    <Expertise>testExp</Expertise>
+  </ExpertiseItem>
 </ExpertiseItems>

@@ -1,8 +1,10 @@
 ﻿namespace Vitae.Model
 {
+    using Ninject;
     using Services;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class ExperienceRepository : IExperienceRepository
     {
@@ -53,7 +55,23 @@
         {
             try
             {
-                return xs.GetExperienceDetails();
+                using (var ioc = new VitaeNinjectKernel())
+                {
+                    var list = new List<IExperienceItem>();
+
+                    foreach (var job in xs.GetAllExperiences())
+                    {
+                        foreach (var detail in job.Details)
+                        {
+                            var item = ioc.Get<IExperienceItem>();
+                            item.Employer = job.Employer;
+                            item.ExperienceDetail = detail;
+                            list.Add(item);
+                        }
+                    }
+
+                    return list;
+                }
             }
             catch (Exception)
             {
@@ -83,6 +101,11 @@
             {
                 throw;
             }
+        }
+
+        public IList<IExperienceItem> GetExperienceDetailsForEmployer(string Employer) 
+        {
+            return GetAllExperienceItems().Where(T => T.Employer == Employer).ToList();
         }
     }
 }

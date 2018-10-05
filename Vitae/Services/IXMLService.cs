@@ -4,14 +4,8 @@
     using System.Collections.Generic;
     using Vitae.Model;
 
-    public interface IXMLService
+    public interface IXMLService 
     {
-        // Misc/Legacy
-        IList<IJobTitle> GetJobTitles();
-        IList<IExperienceItem> GetExperienceDetails();
-        IList<IExperienceItem> GetExperienceDetailsForEmployer(string Employer);
-        IList<IExperienceEntity> GetAllJobs();
-
         // General Info
         IGeneralInfoEntity GetGeneralInformation(Guid guid);
         Guid Insert(IGeneralInfoEntity entity);
@@ -42,9 +36,8 @@
         // Experience
         Guid Insert(IExperienceEntity entity);
         IExperienceEntity GetExperience(Guid guid);
-        IList<IExperienceEntity> GetAllExperiences();
         void DeleteExperience(Guid g);
         void Update(Guid guid, IExperienceEntity entity);
-        
+        IList<IExperienceEntity> GetAllExperiences();
     }
 }

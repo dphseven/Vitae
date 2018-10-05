@@ -207,46 +207,6 @@ namespace VitaeUnitTests
         // Experience
 
         [TestMethod()]
-        public void XMLService_GetJobTitles_Works() 
-        {
-            var titles = xs.GetJobTitles();
-
-            Assert.IsNotNull(titles);
-            Assert.IsTrue(titles.Count > 0);
-        }
-
-        [TestMethod()]
-        public void XMLService_GetExperienceDetails_Works() 
-        {
-            var details = xs.GetExperienceDetails();
-
-            Assert.IsNotNull(details);
-            Assert.IsTrue(details.Count > 0);
-        }
-
-        [TestMethod()]
-        public void XMLService_GetExperienceDetailsForEmployer_Works() 
-        {
-            var details = xs.GetExperienceDetailsForEmployer("Morgan Stanley");
-
-            Assert.IsNotNull(details);
-            Assert.IsTrue(details.Count > 0);
-        }
-
-        [TestMethod()]
-        public void XMLService_GetAllJobs_Works() 
-        {
-            var jobs = xs.GetAllJobs();
-
-            Assert.IsNotNull(jobs);
-            Assert.IsTrue(jobs.Count > 0);
-            Assert.IsNotNull(jobs[0].Details);
-            Assert.IsTrue(jobs[0].Details.Count > 0);
-            Assert.IsNotNull(jobs[0].Titles);
-            Assert.IsTrue(jobs[0].Titles.Count > 0);
-        }
-
-        [TestMethod()]
         public void XMLService_Update_ExperienceEntity_Works() 
         {
             var ee1 = new ExperienceEntity
