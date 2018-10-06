@@ -8,9 +8,9 @@
 
     public class ExperienceRepository : IExperienceRepository
     {
-        IXMLService xs;
+        IExperienceXMLService xs;
 
-        public ExperienceRepository(IXMLService xmlService) 
+        public ExperienceRepository(IExperienceXMLService xmlService) 
         {
             xs = xmlService;
         }
@@ -31,7 +31,7 @@
         {
             try
             {
-                return xs.GetExperience(guid);
+                return xs.Get(guid);
             }
             catch (Exception)
             {
@@ -43,7 +43,7 @@
         {
             try
             {
-                return xs.GetAllExperiences();
+                return xs.GetAll();
             }
             catch (Exception)
             {
@@ -59,7 +59,7 @@
                 {
                     var list = new List<IExperienceItem>();
 
-                    foreach (var job in xs.GetAllExperiences())
+                    foreach (var job in xs.GetAll())
                     {
                         foreach (var detail in job.Details)
                         {
@@ -83,7 +83,7 @@
         {
             try
             {
-                xs.DeleteExperience(g);
+                xs.Delete(g);
             }
             catch (Exception)
             {

@@ -6,9 +6,9 @@ namespace Vitae.Model
 {
     public class EducationRepository : IEducationRepository
     {
-        private IXMLService xs;
+        private IEducationXMLService xs;
 
-        public EducationRepository(IXMLService xmlService) 
+        public EducationRepository(IEducationXMLService xmlService) 
         {
             if (xmlService == null) throw new ArgumentNullException("xmlService");
             else xs = xmlService;
@@ -28,14 +28,14 @@ namespace Vitae.Model
 
         public IList<IEducationEntity> GetAll() 
         {
-            return xs.GetAllEducations();
+            return xs.GetAll();
         }
 
         public IEducationEntity Get(Guid guid) 
         {
             try
             {
-                return xs.GetEducation(guid);
+                return xs.Get(guid);
             }
             catch (Exception) 
             {

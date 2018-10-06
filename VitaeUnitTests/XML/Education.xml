@@ -108,4 +108,40 @@
     <Credential>testCred</Credential>
     <Institution>testInst</Institution>
   </EducationItem>
+  <EducationItem Guid="15578ab8-f3fd-4b7c-ba6a-ecbe7e7b0707">
+    <Credential>updated</Credential>
+    <Institution>updated</Institution>
+  </EducationItem>
+  <EducationItem Guid="80b7bc8c-a3d5-4acd-83c5-55f35233425a">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
+  <EducationItem Guid="c30aa405-a166-4e85-93cb-cc575111e34b">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
+  <EducationItem Guid="9b0fb755-0bb9-4a59-9b21-0303555812ef">
+    <Credential>updated</Credential>
+    <Institution>updated</Institution>
+  </EducationItem>
+  <EducationItem Guid="1a1b0e45-ffaf-455b-8a2a-22bd893c9546">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
+  <EducationItem Guid="5931258b-d220-409e-bcaa-b8dc0802d012">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
+  <EducationItem Guid="a3587763-a2e3-4f27-9e80-23f953d7a442">
+    <Credential>updated</Credential>
+    <Institution>updated</Institution>
+  </EducationItem>
+  <EducationItem Guid="54d4b370-4caf-4a29-8461-30175eed84e4">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
+  <EducationItem Guid="a55f023a-6601-430f-a198-3390a6817a68">
+    <Credential>testCred</Credential>
+    <Institution>testInst</Institution>
+  </EducationItem>
 </EducationItems>

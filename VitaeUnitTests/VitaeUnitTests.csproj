@@ -80,7 +80,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Services\XMLService_UnitTests.cs" />
+    <Compile Include="Services\PublicationsXMLService_UnitTests.cs" />
     <Compile Include="Model\ExperienceRepository_UnitTests.cs" />
     <Compile Include="Model\ExpertiseRepository_UnitTests.cs" />
     <Compile Include="Model\GeneralInfoRepository_UnitTests.cs" />

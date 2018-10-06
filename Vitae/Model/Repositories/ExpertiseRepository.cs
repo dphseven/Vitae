@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vitae.Services;
 
 namespace Vitae.Model
 {
     public class ExpertiseRepository : IExpertiseRepository
     {
-        IXMLService xs;
+        IExpertiseXMLService xs;
 
-        public ExpertiseRepository(IXMLService xmlService) 
+        public ExpertiseRepository(IExpertiseXMLService xmlService) 
         {
             xs = xmlService;
         }
@@ -32,7 +29,7 @@ namespace Vitae.Model
         {
             try
             {
-                return xs.GetExpertiseItem(guid);
+                return xs.Get(guid);
             }
             catch (Exception)
             {
@@ -44,7 +41,7 @@ namespace Vitae.Model
         {
             try
             {
-                return xs.GetExpertise();
+                return xs.GetAll();
             }
             catch (Exception)
             {
@@ -56,7 +53,7 @@ namespace Vitae.Model
         {
             try
             {
-                xs.DeleteExpertise(g);
+                xs.Delete(g);
             }
             catch (Exception)
             {

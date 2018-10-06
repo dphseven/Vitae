@@ -9,9 +9,9 @@ namespace Vitae.Model
 {
     public class GeneralInfoRepository : IGeneralInfoRepository
     {
-        private IXMLService xs;
+        private IGeneralInfoXMLService xs;
 
-        public GeneralInfoRepository(IXMLService xmlService) 
+        public GeneralInfoRepository(IGeneralInfoXMLService xmlService) 
         {
             xs = xmlService;
         }
@@ -32,7 +32,7 @@ namespace Vitae.Model
         {
             try
             {
-                return xs.GetGeneralInformation(guid);
+                return xs.Get(guid);
             }
             catch (Exception)
             {
@@ -44,10 +44,7 @@ namespace Vitae.Model
         {
             try
             {
-                return new List<IGeneralInfoEntity>
-                {
-                    xs.GetGeneralInformation(Guid.Empty)
-                };
+                return xs.GetAll();
             }
             catch (Exception)
             {
@@ -59,7 +56,7 @@ namespace Vitae.Model
         {
             try
             {
-                xs.DeleteGeneralInfo(g);
+                xs.Delete(g);
             }
             catch (Exception)
             {

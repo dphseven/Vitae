@@ -41,10 +41,21 @@
 
             Bind<IExperienceItem>().To<ExperienceItem>();
             Bind<IJobTitle>().To<JobTitle>();
+
             Bind<IKeywordService>().To<KeywordService>();
             Bind<ILoggingService>().To<LoggingService>();
             Bind<IResumeCreationService>().To<ResumeCreationService>();
-            Bind<IXMLService>().To<XMLService>();
+
+            Bind(typeof(IXMLService<IPublicationEntity>)).To(typeof(PublicationsXMLService));
+            Bind<IPublicationsXMLService>().To<PublicationsXMLService>();
+            Bind(typeof(IXMLService<IGeneralInfoEntity>)).To(typeof(GeneralInfoXMLService));
+            Bind<IGeneralInfoXMLService>().To<GeneralInfoXMLService>();
+            Bind(typeof(IXMLService<IExperienceEntity>)).To(typeof(ExperienceXMLService));
+            Bind<IExperienceXMLService>().To<ExperienceXMLService>();
+            Bind(typeof(IXMLService<IEducationEntity>)).To(typeof(EducationXMLService));
+            Bind<IEducationXMLService>().To<EducationXMLService>();
+            Bind(typeof(IXMLService<IExpertiseEntity>)).To(typeof(ExpertiseXMLService));
+            Bind<IExpertiseXMLService>().To<ExpertiseXMLService>();
 
             // VIEWMODEL
 

@@ -14,7 +14,7 @@ namespace VitaeUnitTests
         [TestMethod]
         public void ExpertiseRepository_ImplementsTheRightInterfaces() 
         {
-            var mock = new Mock<IXMLService>();
+            var mock = new Mock<IExpertiseXMLService>();
             var repos = new ExpertiseRepository(mock.Object);
 
             Assert.IsTrue(repos is IExpertiseRepository);
@@ -28,7 +28,7 @@ namespace VitaeUnitTests
             exp.Category = "testCat";
             exp.Expertise = "testExp";
 
-            var mock = new Mock<IXMLService>();
+            var mock = new Mock<IExpertiseXMLService>();
             mock.Setup(T => T.Insert(exp));
             var repos = new ExpertiseRepository(mock.Object);
 
@@ -45,8 +45,8 @@ namespace VitaeUnitTests
             entity.Category = "testCat";
             entity.Expertise = "testExp";
 
-            var mock = new Mock<IXMLService>();
-            mock.Setup(T => T.GetExpertiseItem(guid)).Returns(entity);
+            var mock = new Mock<IExpertiseXMLService>();
+            mock.Setup(T => T.Get(guid)).Returns(entity);
 
             var repos = new ExpertiseRepository(mock.Object);
 
@@ -68,8 +68,8 @@ namespace VitaeUnitTests
                 ee.Expertise = "testExp";
                 listCreated.Add(ee);
             }
-            var mock = new Mock<IXMLService>();
-            mock.Setup(T => T.GetExpertise()).Returns(listCreated);
+            var mock = new Mock<IExpertiseXMLService>();
+            mock.Setup(T => T.GetAll()).Returns(listCreated);
             var repos = new ExpertiseRepository(mock.Object);
 
             var list = repos.GetAll();
@@ -84,8 +84,8 @@ namespace VitaeUnitTests
         public void ExpertiseRepository_Remove_Works() 
         {
             var guid = Guid.NewGuid();
-            var mock = new Mock<IXMLService>();
-            mock.Setup(T => T.DeleteExpertise(guid));
+            var mock = new Mock<IExpertiseXMLService>();
+            mock.Setup(T => T.Delete(guid));
             var repos = new ExpertiseRepository(mock.Object);
 
             repos.Remove(guid);
@@ -98,7 +98,7 @@ namespace VitaeUnitTests
         {
             Guid guid = Guid.NewGuid();
             var entity = new ExpertiseEntity();
-            var mock = new Mock<IXMLService>();
+            var mock = new Mock<IExpertiseXMLService>();
             mock.Setup(T => T.Update(guid, entity));
             var repos = new ExpertiseRepository(mock.Object);
 

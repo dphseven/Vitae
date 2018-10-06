@@ -6,9 +6,9 @@ namespace Vitae.Model
 {
     public class PublicationsRepository : IPublicationsRepository 
     {
-        IXMLService xs;
+        IXMLService<IPublicationEntity> xs;
 
-        public PublicationsRepository(IXMLService xmlService) 
+        public PublicationsRepository(IXMLService<IPublicationEntity> xmlService) 
         {
             xs = xmlService;
         }
@@ -29,7 +29,7 @@ namespace Vitae.Model
         {
             try
             {
-                return xs.GetPublication(guid); 
+                return xs.Get(guid); 
             }
             catch (Exception)
             {
@@ -41,7 +41,7 @@ namespace Vitae.Model
         {
             try
             {
-                return xs.GetPublications();
+                return xs.GetAll();
             }
             catch (Exception)
             {
@@ -53,7 +53,7 @@ namespace Vitae.Model
         {
             try
             {
-                xs.DeletePublication(g);
+                xs.Delete(g);
             }
             catch (Exception)
             {
@@ -61,7 +61,7 @@ namespace Vitae.Model
             }
         }
 
-        public void Update(Guid g, IPublicationEntity t)
+        public void Update(Guid g, IPublicationEntity t) 
         {
             try
             {

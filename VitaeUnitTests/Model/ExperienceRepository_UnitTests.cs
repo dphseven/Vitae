@@ -14,7 +14,7 @@ namespace VitaeUnitTests
         [TestMethod]
         public void ExperienceRepository_ImplementsTheRightInterfaces() 
         {
-            var mock = new Mock<IXMLService>();
+            var mock = new Mock<IExperienceXMLService>();
             var repos = new ExperienceRepository(mock.Object);
 
             Assert.IsTrue(repos is IExperienceRepository);
@@ -26,7 +26,7 @@ namespace VitaeUnitTests
         {
             var entity = new ExperienceEntity();
             var guid = Guid.NewGuid();
-            var mock = new Mock<IXMLService>();
+            var mock = new Mock<IExperienceXMLService>();
             mock.Setup(T => T.Insert(entity)).Returns(guid);
             var repos = new ExperienceRepository(mock.Object);
 
@@ -42,8 +42,8 @@ namespace VitaeUnitTests
             var original = new ExperienceEntity();
             original.Employer = "test";
             var guid = Guid.NewGuid();
-            var mock = new Mock<IXMLService>();
-            mock.Setup(T => T.GetExperience(guid)).Returns(original);
+            var mock = new Mock<IExperienceXMLService>();
+            mock.Setup(T => T.Get(guid)).Returns(original);
             var repos = new ExperienceRepository(mock.Object);
 
             var itemReturned = repos.Get(guid);
@@ -62,8 +62,8 @@ namespace VitaeUnitTests
                 item.Employer = "test";
                 originalList.Add(item);
             }
-            var mock = new Mock<IXMLService>();
-            mock.Setup(T => T.GetAllExperiences()).Returns(originalList);
+            var mock = new Mock<IExperienceXMLService>();
+            mock.Setup(T => T.GetAll()).Returns(originalList);
             var repos = new ExperienceRepository(mock.Object);
 
             var list = repos.GetAll();
@@ -77,7 +77,7 @@ namespace VitaeUnitTests
         public void ExperienceRepository_Remove_Works() 
         {
             Guid guid = Guid.NewGuid();
-            var mock = new Mock<IXMLService>();
+            var mock = new Mock<IExperienceXMLService>();
             var repos = new ExperienceRepository(mock.Object);
 
             repos.Remove(guid);
@@ -90,7 +90,7 @@ namespace VitaeUnitTests
         {
             var guid = Guid.NewGuid();
             ExperienceEntity entity = new ExperienceEntity();
-            var mock = new Mock<IXMLService>();
+            var mock = new Mock<IExperienceXMLService>();
             var repos = new ExperienceRepository(mock.Object);
 
             repos.Update(guid, entity);
@@ -106,8 +106,8 @@ namespace VitaeUnitTests
             {
                 list.Add(new ExperienceEntity { Details = new List<string> { "asdf", "sdf" } });
             }
-            var mock = new Mock<IXMLService>();
-            mock.Setup(T => T.GetAllExperiences()).Returns(list);
+            var mock = new Mock<IExperienceXMLService>();
+            mock.Setup(T => T.GetAll()).Returns(list);
             var repos = new ExperienceRepository(mock.Object);
 
             var newList = repos.GetAllExperienceItems();
@@ -127,8 +127,8 @@ namespace VitaeUnitTests
                 Details = new List<string> { "1", "2", "3", "4", "5" }
             };
 
-            var mock = new Mock<IXMLService>();
-            mock.Setup(T => T.GetAllExperiences()).Returns(
+            var mock = new Mock<IExperienceXMLService>();
+            mock.Setup(T => T.GetAll()).Returns(
                 new List<IExperienceEntity> { experienceEntity });
 
             var repos = new ExperienceRepository(mock.Object);

@@ -14,7 +14,7 @@ namespace VitaeUnitTests
         [TestMethod]
         public void PublicationsRepository_ImplementsInterfaces() 
         {
-            var repos = new PublicationsRepository(new XMLService());
+            var repos = new PublicationsRepository(new PublicationsXMLService());
 
             Assert.IsTrue(repos is IPublicationsRepository);
             Assert.IsTrue(repos is IRepository<IPublicationEntity>);
@@ -26,7 +26,7 @@ namespace VitaeUnitTests
             var pub = new PublicationEntity();
             pub.Publication = "test";
             Guid g = Guid.NewGuid();
-            var mockXmlService = new Mock<IXMLService>();
+            var mockXmlService = new Mock<IPublicationsXMLService>();
             mockXmlService.Setup(T => T.Insert(pub)).Returns(g);
             var repos = new PublicationsRepository(mockXmlService.Object);
 
@@ -41,8 +41,8 @@ namespace VitaeUnitTests
             Guid guid = Guid.NewGuid();
             var pub = new PublicationEntity();
             pub.Publication = "test";
-            var mockXmlService = new Mock<IXMLService>();
-            mockXmlService.Setup(T => T.GetPublication(guid)).Returns(pub);
+            var mockXmlService = new Mock<IPublicationsXMLService>();
+            mockXmlService.Setup(T => T.Get(guid)).Returns(pub);
             var repos = new PublicationsRepository(mockXmlService.Object);
 
             var returnedPub = repos.Get(guid);
@@ -61,8 +61,8 @@ namespace VitaeUnitTests
                 pe.Publication = "test";
                 listOfPublications.Add(pe);
             }
-            var mockXmlService = new Mock<IXMLService>();
-            mockXmlService.Setup(T => T.GetPublications()).Returns(listOfPublications);
+            var mockXmlService = new Mock<IPublicationsXMLService>();
+            mockXmlService.Setup(T => T.GetAll()).Returns(listOfPublications);
             var repos = new PublicationsRepository(mockXmlService.Object);
 
             var returnedList = repos.GetAll();
@@ -76,8 +76,8 @@ namespace VitaeUnitTests
         public void PublicationsRepository_Remove_Works() 
         {
             var guid = Guid.NewGuid();
-            var mockXml = new Mock<IXMLService>();
-            mockXml.Setup(T => T.DeletePublication(guid));
+            var mockXml = new Mock<IPublicationsXMLService>();
+            mockXml.Setup(T => T.Delete(guid));
             var repos = new PublicationsRepository(mockXml.Object);
 
             repos.Remove(guid);
@@ -91,7 +91,7 @@ namespace VitaeUnitTests
             var guid = Guid.NewGuid();
             var pub = new PublicationEntity();
             pub.Publication = "test";
-            var mock = new Mock<IXMLService>();
+            var mock = new Mock<IPublicationsXMLService>();
             mock.Setup(T => T.Update(guid, pub));
             var repos = new PublicationsRepository(mock.Object);
 

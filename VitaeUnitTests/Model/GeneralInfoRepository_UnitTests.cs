@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Vitae.Model;
@@ -15,7 +14,7 @@ namespace VitaeUnitTests
         [TestMethod]
         public void GeneralInfoRepository_ImplementsTheRightInterfaces() 
         {
-            var mock = new Mock<IXMLService>();
+            var mock = new Mock<IGeneralInfoXMLService>();
             var repos = new GeneralInfoRepository(mock.Object);
 
             Assert.IsTrue(repos is IGeneralInfoRepository);
@@ -28,7 +27,7 @@ namespace VitaeUnitTests
             var originalGuid = Guid.NewGuid();
             var entity = new GeneralInfoEntity();
             entity.FullName = "test";
-            var mock = new Mock<IXMLService>();
+            var mock = new Mock<IGeneralInfoXMLService>();
             mock.Setup(T => T.Insert(entity)).Returns(originalGuid);
             var repos = new GeneralInfoRepository(mock.Object);
 
@@ -44,8 +43,8 @@ namespace VitaeUnitTests
             Guid guid = Guid.NewGuid();
             var originalItem = new GeneralInfoEntity();
             originalItem.FullName = "test";
-            var mock = new Mock<IXMLService>();
-            mock.Setup(T => T.GetGeneralInformation(guid)).Returns(originalItem);
+            var mock = new Mock<IGeneralInfoXMLService>();
+            mock.Setup(T => T.Get(guid)).Returns(originalItem);
             var repos = new GeneralInfoRepository(mock.Object);
 
             var item = repos.Get(guid);
@@ -57,17 +56,12 @@ namespace VitaeUnitTests
         [TestMethod]
         public void GeneralInfoRepository_GetAll_Works() 
         {
-            IList<IGeneralInfoEntity> originalList = new List<IGeneralInfoEntity>();
-            for (int i = 0; i < 49; i++)
+            GeneralInfoEntity gie = new GeneralInfoEntity
             {
-                GeneralInfoEntity gie = new GeneralInfoEntity
-                {
-                    FullName = "caramel"
-                };
-                originalList.Add(gie);
-            }
-            var mock = new Mock<IXMLService>();
-            mock.Setup(T => T.GetGeneralInformation(Guid.Empty)).Returns(originalList.FirstOrDefault());
+                FullName = "caramel"
+            };
+            var mock = new Mock<IGeneralInfoXMLService>();
+            mock.Setup(T => T.GetAll()).Returns(new List<IGeneralInfoEntity> { gie });
 
             var repos = new GeneralInfoRepository(mock.Object);
 
@@ -83,8 +77,8 @@ namespace VitaeUnitTests
         {
             var guid = Guid.NewGuid();
 
-            var mock = new Mock<IXMLService>();
-            mock.Setup(T => T.DeleteGeneralInfo(guid));
+            var mock = new Mock<IGeneralInfoXMLService>();
+            mock.Setup(T => T.Delete(guid));
             var repos = new GeneralInfoRepository(mock.Object);
 
             repos.Remove(guid);
@@ -93,12 +87,12 @@ namespace VitaeUnitTests
         }
 
         [TestMethod]
-        public void GeneralInfoRepository_Update_Works()
+        public void GeneralInfoRepository_Update_Works() 
         {
             var guid = Guid.NewGuid();
             var gie = new GeneralInfoEntity();
             gie.FullName = "test";
-            var mock = new Mock<IXMLService>();
+            var mock = new Mock<IGeneralInfoXMLService>();
             mock.Setup(T => T.Update(guid, gie));
             var repos = new GeneralInfoRepository(mock.Object);
 

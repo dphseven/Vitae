@@ -29,8 +29,8 @@ namespace VitaeUnitTests
                 ee.Institution = "test institution";
                 listToReturn.Add(ee);
             }
-            var mockXml = new Mock<IXMLService>();
-            mockXml.Setup(T => T.GetAllEducations()).Returns(listToReturn);
+            var mockXml = new Mock<IEducationXMLService>();
+            mockXml.Setup(T => T.GetAll()).Returns(listToReturn);
             var repos = new EducationRepository(mockXml.Object);
 
             var list = repos.GetAll();
@@ -46,7 +46,7 @@ namespace VitaeUnitTests
             EducationEntity ee = new EducationEntity();
             ee.Credential = "test credential";
             ee.Institution = "test institution";
-            var mockXml = new Mock<IXMLService>();
+            var mockXml = new Mock<IEducationXMLService>();
             mockXml.Setup(T => T.Insert(ee));
             var repos = new EducationRepository(mockXml.Object);
             
@@ -62,7 +62,7 @@ namespace VitaeUnitTests
             EducationEntity ee = new EducationEntity();
             ee.Credential = null; // bad!
             ee.Institution = "test institution";
-            var mockXml = new Mock<IXMLService>();
+            var mockXml = new Mock<IEducationXMLService>();
             mockXml.Setup(T => T.Insert(ee)).Throws<ArgumentException>();
             var repos = new EducationRepository(mockXml.Object);
 
@@ -77,7 +77,7 @@ namespace VitaeUnitTests
             EducationEntity ee = new EducationEntity();
             ee.Credential = "test";
             ee.Institution = null; // bad!
-            var mockXml = new Mock<IXMLService>();
+            var mockXml = new Mock<IEducationXMLService>();
             mockXml.Setup(T => T.Insert(ee)).Throws<ArgumentException>();
             var repos = new EducationRepository(mockXml.Object);
 
@@ -90,7 +90,7 @@ namespace VitaeUnitTests
         public void EducationRepository_Add_Exception3() 
         {
             EducationEntity ee = null; // bad!
-            var mockXml = new Mock<IXMLService>();
+            var mockXml = new Mock<IEducationXMLService>();
             mockXml.Setup(T => T.Insert(ee)).Throws<ArgumentNullException>();
             var repos = new EducationRepository(mockXml.Object);
 
@@ -102,7 +102,7 @@ namespace VitaeUnitTests
         [TestMethod]
         public void EducationRepository_Remove_Works() 
         {
-            var mockXml = new Mock<IXMLService>();
+            var mockXml = new Mock<IEducationXMLService>();
             mockXml.Setup(T => T.Delete(guidToDelete));
             var repos = new EducationRepository(mockXml.Object);
 
@@ -114,7 +114,7 @@ namespace VitaeUnitTests
         [TestMethod] [ExpectedException(typeof(ArgumentNullException))]
         public void EducationRepository_Remove_Exception1() 
         {
-            var mockXml = new Mock<IXMLService>();
+            var mockXml = new Mock<IEducationXMLService>();
             mockXml.Setup(T => T.Delete(guidToDelete)).Throws(new ArgumentNullException());
             var repos = new EducationRepository(mockXml.Object);
 
@@ -126,7 +126,7 @@ namespace VitaeUnitTests
         [TestMethod] [ExpectedException(typeof(ArgumentNullException))]
         public void EducationRepository_Remove_Exception2() 
         {
-            var mockXml = new Mock<IXMLService>();
+            var mockXml = new Mock<IEducationXMLService>();
             mockXml.Setup(T => T.Delete(guidToDelete)).Throws(new ArgumentNullException());
             var repos = new EducationRepository(mockXml.Object);
 
@@ -140,7 +140,7 @@ namespace VitaeUnitTests
         {
             Guid g = Guid.NewGuid();
             IEducationEntity newEE = new EducationEntity { Credential = "new", Institution = "new" };
-            var mockXml = new Mock<IXMLService>();
+            var mockXml = new Mock<IEducationXMLService>();
             mockXml.Setup(T => T.Update(g, newEE));
             var repos = new EducationRepository(mockXml.Object);
 
@@ -154,7 +154,7 @@ namespace VitaeUnitTests
         {
             Guid g = Guid.NewGuid();
             IEducationEntity newEE = null; // bad!
-            var mockXml = new Mock<IXMLService>();
+            var mockXml = new Mock<IEducationXMLService>();
             mockXml.Setup(T => T.Update(g, newEE)).Throws(new ArgumentNullException());
             var repos = new EducationRepository(mockXml.Object);
 
@@ -166,8 +166,8 @@ namespace VitaeUnitTests
         {
             Guid g = Guid.NewGuid();
             IEducationEntity ee = new EducationEntity { Credential = "c", Institution = "i" };
-            var mockXml = new Mock<IXMLService>();
-            mockXml.Setup(T => T.GetEducation(g)).Returns(ee);
+            var mockXml = new Mock<IEducationXMLService>();
+            mockXml.Setup(T => T.Get(g)).Returns(ee);
             var repos = new EducationRepository(mockXml.Object);
 
             var edItem = repos.Get(g);
