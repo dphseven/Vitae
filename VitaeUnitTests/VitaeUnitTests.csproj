@@ -80,13 +80,17 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Services\EducationXMLService_UnitTests.cs" />
+    <Compile Include="Services\ExperienceXMLService_UnitTests.cs" />
+    <Compile Include="Services\ExpertiseXMLService_UnitTests.cs" />
+    <Compile Include="Services\GeneralInfoXMLService_UnitTests.cs" />
     <Compile Include="Services\PublicationsXMLService_UnitTests.cs" />
     <Compile Include="Model\ExperienceRepository_UnitTests.cs" />
     <Compile Include="Model\ExpertiseRepository_UnitTests.cs" />
     <Compile Include="Model\GeneralInfoRepository_UnitTests.cs" />
     <Compile Include="Services\KeywordService_UnitTests.cs" />
     <Compile Include="Model\PublicationsRepository_UnitTests.cs" />
-    <Compile Include="Model\Repository_UnitTests.cs" />
+    <Compile Include="Model\EducationRepository_UnitTests.cs" />
     <Compile Include="ViewModel\ResumeCreatorViewModel_UnitTests.cs" />
     <Compile Include="Model\ResumeDataObject_UnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

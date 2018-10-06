@@ -179,6 +179,8 @@
     <Compile Include="ViewModel\IKeywordToolViewModel.cs" />
     <Compile Include="ViewModel\IResumeCreatorViewModel.cs" />
     <Compile Include="ViewModel\ResumeCreatorViewModel.cs" />
+    <Compile Include="ViewModel\IContainerViewModel.cs" />
+    <Compile Include="View\ContainerViewModel.cs" />
     <Compile Include="View\KeywordToolView.xaml.cs">
       <DependentUpon>KeywordToolView.xaml</DependentUpon>
     </Compile>

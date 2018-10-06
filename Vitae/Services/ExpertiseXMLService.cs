@@ -35,8 +35,12 @@
                 foreach (var item in doc.Root.Elements("ExpertiseItem"))
                 {
                     IExpertiseEntity ee = ioc.Get<IExpertiseEntity>();
-                    ee.Category = (item.Attribute("Category") == null) ? "" : item.Attribute("Category").Value;
-                    ee.Expertise = (item.Attribute("Expertise") == null) ? "" : item.Attribute("Expertise").Value;
+                    if (item.Element("Category") != null)
+                        ee.Category = item.Element("Category").Value;
+                    else ee.Category = "";
+                    if (item.Element("Expertise") != null)
+                        ee.Expertise = item.Element("Expertise").Value;
+                    else ee.Expertise = "";
                     list.Add(ee);
                 }
 
