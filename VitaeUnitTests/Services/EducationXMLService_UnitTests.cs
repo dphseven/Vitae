@@ -1,50 +1,101 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Vitae.Services;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Vitae.Model;
 
 namespace Vitae.Services_UnitTests
 {
     [TestClass()]
     public class EducationXMLService_UnitTests
     {
+        EducationXMLService xs = new EducationXMLService();
+
         [TestMethod()]
-        public void EducationXMLService_Works()
+        public void EducationXMLService_EducationXMLService_Works() 
         {
-            Assert.Fail();
+            Assert.IsNotNull(xs);
+            Assert.IsTrue(xs is IEducationXMLService);
+            Assert.IsTrue(xs is IXMLService<IEducationEntity>);
         }
 
         [TestMethod()]
-        public void Delete_Works()
+        public void EducationXMLService_Delete_Works() 
         {
-            Assert.Fail();
+            var id = xs.Insert(new EducationEntity
+            {
+                Credential = "cred",
+                Institution = "inst"
+            });
+
+            xs.Delete(id);
+
+            Assert.IsNull(xs.Get(id));
         }
 
         [TestMethod()]
-        public void Get_Works()
+        public void EducationXMLService_Get_Works() 
         {
-            Assert.Fail();
+            var id = xs.Insert(new EducationEntity
+            {
+                Credential = "cred",
+                Institution = "inst"
+            });
+
+            var ent = xs.Get(id);
+
+            Assert.IsNotNull(ent);
+            Assert.AreEqual("cred", ent.Credential);
+            Assert.AreEqual("inst", ent.Institution);
         }
 
         [TestMethod()]
-        public void GetAll_Works()
+        public void EducationXMLService_GetAll_Works() 
         {
-            Assert.Fail();
+            var list = xs.GetAll();
+
+            Assert.IsNotNull(list);
+            Assert.IsTrue(list.Count > 0);
+            Assert.IsTrue(list.Any(T => !string.IsNullOrWhiteSpace(T.Credential)));
+            Assert.IsTrue(list.Any(T => !string.IsNullOrWhiteSpace(T.Institution)));
         }
 
         [TestMethod()]
-        public void Insert_Works()
+        public void EducationXMLService_Insert_Works() 
         {
-            Assert.Fail();
+            var id = xs.Insert(new EducationEntity
+            {
+                Credential = "cred",
+                Institution = "inst"
+            });
+
+            var ent = xs.Get(id);
+
+            Assert.IsNotNull(ent);
+            Assert.AreEqual("cred", ent.Credential);
+            Assert.AreEqual("inst", ent.Institution);
         }
 
         [TestMethod()]
-        public void Update_Works()
+        public void EducationXMLService_Update_Works() 
         {
-            Assert.Fail();
+            var id = xs.Insert(new EducationEntity
+            {
+                Credential = "cred",
+                Institution = "inst"
+            });
+
+            var ent = new EducationEntity
+            {
+                Credential = "uCred",
+                Institution = "uInst"
+            };
+
+            xs.Update(id, ent);
+
+            var final = xs.Get(id);
+
+            Assert.AreEqual("uCred", final.Credential);
+            Assert.AreEqual("uInst", final.Institution);
         }
     }
 }

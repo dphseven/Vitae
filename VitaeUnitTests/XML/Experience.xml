@@ -477,4 +477,88 @@
       <Detail>d3</Detail>
     </Details>
   </Job>
+  <Job Employer="updEmp" StartDate="Wednesday" EndDate="Thursday" Guid="3c0960e9-ffc3-492f-890a-30e152b2c704">
+    <JobTitles>
+      <JobTitle>t3</JobTitle>
+      <JobTitle>t4</JobTitle>
+      <JobTitle>t5</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d3</Detail>
+      <Detail>d4</Detail>
+      <Detail>d5</Detail>
+    </Details>
+  </Job>
+  <Job Employer="updEmp" StartDate="Wednesday" EndDate="Thursday" Guid="4857b956-9e78-4519-8564-d8f5d8bd2188">
+    <JobTitles>
+      <JobTitle>t3</JobTitle>
+      <JobTitle>t4</JobTitle>
+      <JobTitle>t5</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d3</Detail>
+      <Detail>d4</Detail>
+      <Detail>d5</Detail>
+    </Details>
+  </Job>
+  <Job Employer="someEmp" StartDate="Monday" EndDate="Tuesday" Guid="ceb9c096-5be6-4fc5-8f8e-4f42ae940e40">
+    <JobTitles>
+      <JobTitle>t0</JobTitle>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d0</Detail>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+    </Details>
+  </Job>
+  <Job Employer="someEmp" StartDate="Monday" EndDate="Tuesday" Guid="580ce978-deb9-44a3-9d2a-809f7344c2d2">
+    <JobTitles>
+      <JobTitle>t0</JobTitle>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d0</Detail>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+    </Details>
+  </Job>
+  <Job Employer="someEmp" StartDate="Monday" EndDate="Tuesday" Guid="0e23041b-b688-475e-8719-92971f8ab60c">
+    <JobTitles>
+      <JobTitle>t0</JobTitle>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d0</Detail>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+    </Details>
+  </Job>
+  <Job Employer="someEmp" StartDate="Monday" EndDate="Tuesday" Guid="07422ba7-0843-46bf-a856-3adf11a03d0b">
+    <JobTitles>
+      <JobTitle>t0</JobTitle>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d0</Detail>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+    </Details>
+  </Job>
+  <Job Employer="updEmp" StartDate="Wednesday" EndDate="Thursday" Guid="09e64ad1-d43d-4abb-a4b7-d3497541cd89">
+    <JobTitles>
+      <JobTitle>t3</JobTitle>
+      <JobTitle>t4</JobTitle>
+      <JobTitle>t5</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d3</Detail>
+      <Detail>d4</Detail>
+      <Detail>d5</Detail>
+    </Details>
+  </Job>
 </Jobs>

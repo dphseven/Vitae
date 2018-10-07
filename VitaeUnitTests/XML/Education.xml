@@ -144,4 +144,28 @@
     <Credential>testCred</Credential>
     <Institution>testInst</Institution>
   </EducationItem>
+  <EducationItem Guid="f24f8226-e990-4ed1-b893-ac825b046b4b">
+    <Credential>cred</Credential>
+    <Institution>inst</Institution>
+  </EducationItem>
+  <EducationItem Guid="0d193f8f-9c0e-4bf2-ac3e-f41c8ec68218">
+    <Credential>cred</Credential>
+    <Institution>inst</Institution>
+  </EducationItem>
+  <EducationItem Guid="92d31d6d-f27b-4e2a-9621-691bf33e96e0">
+    <Credential>uCred</Credential>
+    <Institution>uInst</Institution>
+  </EducationItem>
+  <EducationItem Guid="994b0d66-0ac6-4c71-80bf-122be0e383c6">
+    <Credential>cred</Credential>
+    <Institution>inst</Institution>
+  </EducationItem>
+  <EducationItem Guid="0440f19a-de2d-4c8d-9eb6-10b9941e65dd">
+    <Credential>cred</Credential>
+    <Institution>inst</Institution>
+  </EducationItem>
+  <EducationItem Guid="7e27db94-b325-4f76-8950-172f35ae60a2">
+    <Credential>uCred</Credential>
+    <Institution>uInst</Institution>
+  </EducationItem>
 </EducationItems>

@@ -39,23 +39,11 @@
         {
             var doc = XDocument.Load(experienceFilePath);
 
-            var eeXml = doc.Root.Elements("Job").SingleOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
+            var eeXml = doc.Root.Elements("Job")
+                .SingleOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
 
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var ee = ioc.Get<IExperienceEntity>();
-                ee.Employer = eeXml.Attribute("Employer").Value;
-                ee.StartDate = eeXml.Attribute("StartDate").Value;
-                ee.EndDate = eeXml.Attribute("EndDate").Value;
-
-                foreach (var title in eeXml.Element("JobTitles").Elements("JobTitle"))
-                    ee.Titles.Add(title.Value);
-
-                foreach (var detail in eeXml.Element("Details").Elements("Detail"))
-                    ee.Details.Add(detail.Value);
-
-                return ee;
-            }
+            if (eeXml == null) return null;
+            else return convertToObject(eeXml);
         }
 
         public IList<IExperienceEntity> GetAll() 
@@ -68,24 +56,7 @@
                 var jobElements = xDoc.Root.Elements("Job");
                 foreach (var job in jobElements)
                 {
-                    var entity = ioc.Get<IExperienceEntity>();
-                    entity.Employer = job.Attribute("Employer").Value;
-                    entity.StartDate = job.Attribute("StartDate").Value;
-                    entity.EndDate = job.Attribute("EndDate").Value;
-
-                    var titleElements = job.Element("JobTitles").Elements("JobTitle");
-                    foreach (var title in titleElements)
-                    {
-                        entity.Titles.Add(title.Value);
-                    }
-
-                    var detailElements = job.Element("Details").Elements("Detail");
-                    foreach (var detail in detailElements)
-                    {
-                        entity.Details.Add(detail.Value);
-                    }
-
-                    list.Add(entity);
+                    list.Add(convertToObject(job));
                 }
 
                 return list;
@@ -94,28 +65,11 @@
 
         public Guid Insert(IExperienceEntity entity) 
         {
-            var guid = Guid.NewGuid();
-
             var doc = XDocument.Load(experienceFilePath);
 
-            var el = new XElement("Job");
-            el.Add(new XAttribute("Employer", entity.Employer));
-            el.Add(new XAttribute("StartDate", entity.StartDate));
-            el.Add(new XAttribute("EndDate", entity.EndDate));
-            el.Add(new XAttribute("Guid", guid.ToString()));
-            el.Add(new XElement("JobTitles"));
-            foreach (var title in entity.Titles)
-            {
-                el.Element("JobTitles").Add(new XElement("JobTitle", title));
-            }
-            el.Add(new XElement("Details"));
-            foreach (var detail in entity.Details)
-            {
-                el.Element("Details").Add(new XElement("Detail", detail));
-            }
-
+            var guid = Guid.NewGuid();
+            var el = convertToXml(guid, entity);
             doc.Root.Add(el);
-
             doc.Save(experienceFilePath);
 
             return guid;
@@ -125,25 +79,59 @@
         {
             var doc = XDocument.Load(experienceFilePath);
 
-            int testCount = doc.Root.Elements("Job").Where(T => T.Attribute("Guid").Value.Contains(guid.ToString())).Count();
-
-            if (testCount == 0) throw new ArgumentException("guid not found.");
-
             var job = doc.Root.Elements("Job").FirstOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
-
-            job.SetAttributeValue("Employer", entity.Employer);
-            job.SetAttributeValue("StartDate", entity.StartDate);
-            job.SetAttributeValue("EndDate", entity.EndDate);
-
-            job.Element("JobTitles").Elements("JobTitle").Remove();
-            foreach (var newTitle in entity.Titles)
-                job.Element("JobTitles").Add(new XElement("JobTitle", newTitle));
-
-            job.Element("Details").Elements("Detail").Remove();
-            foreach (var newDetail in entity.Details)
-                job.Element("Details").Add(new XElement("Detail", newDetail));
+            if (job == null) throw new ArgumentException("guid not found.");
+            job.ReplaceWith(convertToXml(guid, entity));
 
             doc.Save(experienceFilePath);
+        }
+
+        private IExperienceEntity convertToObject(XElement el) 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var ee = ioc.Get<IExperienceEntity>();
+                if (el.Attribute("Employer") != null)
+                    ee.Employer = el.Attribute("Employer").Value;
+                else ee.Employer = string.Empty;
+                if (el.Attribute("StartDate") != null)
+                    ee.StartDate = el.Attribute("StartDate").Value;
+                else ee.StartDate = string.Empty;
+                if (el.Attribute("EndDate") != null)
+                    ee.EndDate = el.Attribute("EndDate").Value;
+                else ee.EndDate = string.Empty;
+
+                foreach (var title in el.Element("JobTitles").Elements("JobTitle"))
+                    ee.Titles.Add(title.Value);
+
+                foreach (var detail in el.Element("Details").Elements("Detail"))
+                    ee.Details.Add(detail.Value);
+
+                return ee;
+            }
+        }
+
+        private XElement convertToXml(Guid guid, IExperienceEntity entity) 
+        {
+            var el = new XElement("Job");
+            el.Add(new XAttribute("Employer", entity.Employer));
+            el.Add(new XAttribute("StartDate", entity.StartDate));
+            el.Add(new XAttribute("EndDate", entity.EndDate));
+            el.Add(new XAttribute("Guid", guid.ToString()));
+
+            el.Add(new XElement("JobTitles"));
+            foreach (var title in entity.Titles)
+            {
+                el.Element("JobTitles").Add(new XElement("JobTitle", title));
+            }
+
+            el.Add(new XElement("Details"));
+            foreach (var detail in entity.Details)
+            {
+                el.Element("Details").Add(new XElement("Detail", detail));
+            }
+
+            return el;
         }
     }
 }

@@ -1,50 +1,122 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Vitae.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Vitae.Model;
 
 namespace Vitae.Services_UnitTests
 {
     [TestClass()]
     public class GeneralInfoXMLService_UnitTests
     {
+        GeneralInfoXMLService xs = new GeneralInfoXMLService();
+
         [TestMethod()]
-        public void GeneralInfoXMLService_Works()
+        public void GeneralInfoXMLService_Works() 
         {
-            Assert.Fail();
+            Assert.IsTrue(xs is IGeneralInfoXMLService);
+            Assert.IsTrue(xs is IXMLService<IGeneralInfoEntity>);
         }
 
         [TestMethod()]
-        public void Delete_Works()
+        public void Delete_Works() 
         {
-            Assert.Fail();
+            var id = xs.Insert(new GeneralInfoEntity
+            {
+                FullName = "fn",
+                Add1 = "a1",
+                Add2 = "a2",
+                Phone = "p",
+                Email = "e"
+            });
+            xs.Delete(id);
+
+            var entity = xs.Get(id);
+
+            Assert.IsNotNull(entity);
+            Assert.AreEqual(string.Empty, entity.FullName);
+            Assert.AreEqual(string.Empty, entity.Add1);
+            Assert.AreEqual(string.Empty, entity.Add2);
+            Assert.AreEqual(string.Empty, entity.Email);
+            Assert.AreEqual(string.Empty, entity.Phone);
         }
 
         [TestMethod()]
-        public void Get_Works()
+        public void Get_Works() 
         {
-            Assert.Fail();
+            var id = xs.Insert(new GeneralInfoEntity
+            {
+                FullName = "fn",
+                Add1 = "a1",
+                Add2 = "a2",
+                Phone = "p",
+                Email = "e"
+            });
+
+            var gie = xs.Get(id);
+
+            Assert.AreEqual("fn", gie.FullName);
+            Assert.AreEqual("a1", gie.Add1);
+            Assert.AreEqual("a2", gie.Add2);
+            Assert.AreEqual("e", gie.Email);
+            Assert.AreEqual("p", gie.Phone);
         }
 
         [TestMethod()]
-        public void GetAll_Works()
+        public void GetAll_Works() 
         {
-            Assert.Fail();
+            var list = xs.GetAll();
+
+            Assert.IsNotNull(list);
+            Assert.AreEqual(1, list.Count);
         }
 
         [TestMethod()]
-        public void Insert_Works()
+        public void Insert_Works() 
         {
-            Assert.Fail();
+            var id = xs.Insert(new GeneralInfoEntity
+            {
+                FullName = "fn",
+                Add1 = "a1",
+                Add2 = "a2",
+                Phone = "p",
+                Email = "e"
+            });
+            var gie = xs.Get(id);
+
+            Assert.AreEqual(1, xs.GetAll().Count);
+            Assert.AreEqual("fn", gie.FullName);
+            Assert.AreEqual("a1", gie.Add1);
+            Assert.AreEqual("a2", gie.Add2);
+            Assert.AreEqual("e", gie.Email);
+            Assert.AreEqual("p", gie.Phone);
         }
 
         [TestMethod()]
-        public void Update_Works()
+        public void Update_Works() 
         {
-            Assert.Fail();
+            var id = xs.Insert(new GeneralInfoEntity
+            {
+                FullName = "",
+                Add1 = "",
+                Add2 = "",
+                Phone = "",
+                Email = ""
+            });
+
+            xs.Update(id, new GeneralInfoEntity
+            {
+                FullName = "1",
+                Add1 = "2",
+                Add2 = "3",
+                Phone = "4",
+                Email = "5"
+            });
+            var gie = xs.Get(id);
+
+            Assert.AreEqual(gie.FullName, "1");
+            Assert.AreEqual(gie.Add1, "2");
+            Assert.AreEqual(gie.Add2, "3");
+            Assert.AreEqual(gie.Phone, "4");
+            Assert.AreEqual(gie.Email, "5");
         }
     }
 }
