@@ -738,9 +738,18 @@
 
     public class JobTitleSelectionObject : INotifyPropertyChanged
     {
+        private string company;
         private string selectedJobTitle;
 
-        public string Company { get; set; }
+        public string Company 
+        {
+            get { return company; }
+            set
+            {
+                company = value;
+                notifyPropertyChanged();
+            }
+        }
         public ObservableCollection<string> JobTitles { get; set; }
         public string SelectedJobTitle 
         {
@@ -748,7 +757,7 @@
             set
             {
                 selectedJobTitle = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedJobTitle"));
+                notifyPropertyChanged();
             }
         }
 
@@ -757,6 +766,11 @@
         public JobTitleSelectionObject() 
         {
             JobTitles = new ObservableCollection<string>();
+        }
+
+        private void notifyPropertyChanged([CallerMemberName] string propertyName = "") 
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 
