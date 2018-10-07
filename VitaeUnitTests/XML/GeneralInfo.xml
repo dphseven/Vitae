@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<GeneralInfo Guid="155c0574-76ca-4114-8fe7-dbd65e6d1d32">
+<GeneralInfo>
   <FullName>1</FullName>
-  <Phone>4</Phone>
-  <Email>5</Email>
   <AddLine1>2</AddLine1>
   <AddLine2>3</AddLine2>
+  <Email>5</Email>
+  <Phone>4</Phone>
 </GeneralInfo>

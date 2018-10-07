@@ -24,20 +24,15 @@
             }
         }
 
-        public void Delete(Guid g) 
+        public void Delete(Guid guid) 
         {
             using (var ioc = new VitaeNinjectKernel())
             {
                 XDocument doc = new XDocument();
                 doc = XDocument.Load(generalInfoFilePath);
+                var el = getXElement(doc, guid);
 
-                if (doc.Root.Attribute("Guid") != null)
-                    doc.Root.Attribute("Guid").Value = "";
-                doc.Root.Element("FullName").Value = "";
-                doc.Root.Element("AddLine1").Value = "";
-                doc.Root.Element("AddLine2").Value = "";
-                doc.Root.Element("Phone").Value = "";
-                doc.Root.Element("Email").Value = "";
+                el.ReplaceWith(convertToXml(guid, ioc.Get<IGeneralInfoEntity>()));
 
                 doc.Save(generalInfoFilePath);
             }
@@ -45,61 +40,59 @@
 
         public IGeneralInfoEntity Get(Guid guid) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var gie = ioc.Get<IGeneralInfoEntity>();
-
-                XDocument xDoc = XDocument.Load(generalInfoFilePath);
-                gie.FullName = xDoc.Root.Element("FullName").Value;
-                gie.Add1 = xDoc.Root.Element("AddLine1").Value;
-                gie.Add2 = xDoc.Root.Element("AddLine2").Value;
-                gie.Email = xDoc.Root.Element("Email").Value;
-                gie.Phone = xDoc.Root.Element("Phone").Value;
-
-                return gie;
-            }
+            var doc = XDocument.Load(generalInfoFilePath);
+            return convertToObject(getXElement(doc, guid));
         }
 
         public IList<IGeneralInfoEntity> GetAll() 
         {
-            return new List<IGeneralInfoEntity> { Get(Guid.Empty) };
+            return new List<IGeneralInfoEntity> { Get(Guid.NewGuid()) };
         }
 
         public Guid Insert(IGeneralInfoEntity entity) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                XDocument doc = new XDocument();
-                doc = XDocument.Load(generalInfoFilePath);
-                var guid = Guid.NewGuid();
-
-                var ele = doc.Root;
-                if (ele.Attribute("Guid") != null) ele.Attribute("Guid").Value = guid.ToString();
-                else ele.Add(new XAttribute("Guid", guid.ToString()));
-
-                ele.Element("FullName").Value = entity.FullName;
-                ele.Element("AddLine1").Value = entity.Add1;
-                ele.Element("AddLine2").Value = entity.Add2;
-                ele.Element("Phone").Value = entity.Phone;
-                ele.Element("Email").Value = entity.Email;
-
-                doc.Save(generalInfoFilePath);
-
-                return guid;
-            }
+            var guid = Guid.NewGuid();
+            Update(guid, entity);
+            return guid;
         }
 
         public void Update(Guid guid, IGeneralInfoEntity entity) 
         {
             var doc = XDocument.Load(generalInfoFilePath);
 
-            doc.Root.Element("FullName").Value = entity.FullName;
-            doc.Root.Element("AddLine1").Value = entity.Add1;
-            doc.Root.Element("AddLine2").Value = entity.Add2;
-            doc.Root.Element("Email").Value = entity.Email;
-            doc.Root.Element("Phone").Value = entity.Phone;
+            var ele = getXElement(doc, guid);
+            ele.ReplaceWith(convertToXml(guid, entity));
 
             doc.Save(generalInfoFilePath);
+        }
+
+        private XElement getXElement(XDocument doc, Guid guid) 
+        {
+            return doc.Root;
+        }
+
+        private IGeneralInfoEntity convertToObject(XElement element) 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var entity = ioc.Get<IGeneralInfoEntity>();
+                entity.FullName = element.Element("FullName").Value;
+                entity.Add1 = element.Element("AddLine1").Value;
+                entity.Add2 = element.Element("AddLine2").Value;
+                entity.Email = element.Element("Email").Value;
+                entity.Phone = element.Element("Phone").Value;
+                return entity;
+            }
+        }
+
+        private XElement convertToXml(Guid guid, IGeneralInfoEntity entity) 
+        {
+            return new XElement("GeneralInfo",
+                new XElement("FullName", entity.FullName),
+                new XElement("AddLine1", entity.Add1),
+                new XElement("AddLine2", entity.Add2),
+                new XElement("Email", entity.Email),
+                new XElement("Phone", entity.Phone));
         }
     }
 }

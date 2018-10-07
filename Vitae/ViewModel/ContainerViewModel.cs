@@ -1,24 +1,11 @@
-﻿namespace Vitae.View
+﻿namespace Vitae.ViewModel
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
-    using Vitae.ViewModel;
 
     public class ContainerViewModel : IContainerViewModel
     {
-        private string statusBarMessage;
-
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public string StatusBarMessage 
-        {
-            get { return statusBarMessage; }
-            set
-            {
-                statusBarMessage = value;
-                notifyPropertyChanged();
-            }
-        }
 
         public ContainerViewModel() 
         {

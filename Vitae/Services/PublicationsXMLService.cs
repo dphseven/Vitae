@@ -1,4 +1,4 @@
-﻿namespace Vitae.Services
+﻿ namespace Vitae.Services
 {
     using Ninject;
     using System;
@@ -6,7 +6,6 @@
     using System.Deployment.Application;
     using System.IO;
     using System.Linq;
-    using System.Xml;
     using System.Xml.Linq;
     using Vitae.Model;
 
@@ -36,45 +35,29 @@
 
         public IPublicationEntity Get(Guid guid) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var ent = ioc.Get<IPublicationEntity>();
-                var doc = XDocument.Load(filePath);
-                var element = doc.Root.Elements("Publication")
-                    .SingleOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
-                if (element == null) return null;
-                ent.Publication = element.Value;
-                return ent;
-            }
+            var doc = XDocument.Load(filePath);
+            var element = getXElement(doc, guid);
+            if (element == null) return null;
+            return convertToObject(element);
         }
 
         public IList<IPublicationEntity> GetAll() 
         {
-            using (var ioc = new VitaeNinjectKernel())
+            var list = new List<IPublicationEntity>();
+            var doc = XDocument.Load(filePath);
+            foreach (var element in doc.Root.Elements("Publication"))
             {
-                var list = new List<IPublicationEntity>();
-
-                XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load(filePath);
-                foreach (XmlNode item in xmlDoc.SelectNodes("//Publications/Publication"))
-                {
-                    IPublicationEntity pub = ioc.Get<IPublicationEntity>();
-                    pub.Publication = item.InnerText;
-                    list.Add(pub);
-                }
-
-                return list;
+                list.Add(convertToObject(element));
             }
+
+            return list;
         }
 
         public Guid Insert(IPublicationEntity entity) 
         {
             var doc = XDocument.Load(filePath);
             var g = Guid.NewGuid();
-            var element = new XElement("Publication",
-                              new XAttribute("Guid", g.ToString()),
-                              entity.Publication);
-            doc.Root.Add(element);
+            doc.Root.Add(convertToXml(g, entity));
             doc.Save(filePath);
             return g;
         }
@@ -82,11 +65,33 @@
         public void Update(Guid guid, IPublicationEntity entity) 
         {
             var doc = XDocument.Load(filePath);
-            var element = doc.Root.Elements("Publication")
-                             .SingleOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
+            var element = getXElement(doc, guid);
             if (element == null) throw new ArgumentException("guid not found.");
-            element.Value = entity.Publication;
+            element.ReplaceWith(convertToXml(guid, entity));
             doc.Save(filePath);
+        }
+
+        private XElement getXElement(XDocument doc, Guid guid) 
+        {
+            return doc.Root.Elements("Publication")
+                    .SingleOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
+        }
+
+        private IPublicationEntity convertToObject(XElement element) 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var pe = ioc.Get<IPublicationEntity>();
+                pe.Publication = element.Value;
+                return pe;
+            }
+        }
+
+        private XElement convertToXml(Guid guid, IPublicationEntity entity) 
+        {
+            return new XElement("Publication",
+                new XAttribute("Guid", guid.ToString()),
+                entity.Publication);
         }
     }
 }
