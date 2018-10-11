@@ -5,9 +5,6 @@
     using System.Windows.Controls;
     using Vitae.ViewModel;
 
-    /// <summary>
-    /// Interaction logic for VitaeContainer.xaml
-    /// </summary>
     public partial class VitaeContainer : Window
     {
         private IContainerViewModel vm;

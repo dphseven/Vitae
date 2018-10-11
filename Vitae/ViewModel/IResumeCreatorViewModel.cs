@@ -8,6 +8,8 @@ namespace Vitae.ViewModel
 {
     public interface IResumeCreatorViewModel
     {
+        
+
         string FullName { get; set; }
         string AddLine1 { get; set; }
         string AddLine2 { get; set; }
@@ -68,6 +70,7 @@ namespace Vitae.ViewModel
 
         void ExportResumeToWord(string filePathAndName);
         void ExportResumeToPdf(string filePathAndName);
+        void SortOutExpertises();
         void UpdateExperienceLists();
     }
 }

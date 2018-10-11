@@ -59,9 +59,10 @@
 
             // VIEWMODEL
 
+            Bind<IContainerViewModel>().To<ContainerViewModel>();
             Bind<IKeywordToolViewModel>().To<KeywordToolViewModel>();
-            Bind<IResumeCreatorViewModel>().To<ResumeCreatorViewModel>()
-                .WithConstructorArgument("giGuid", Guid.Empty);
+            Bind<IResumeCreatorViewModel>().To<ResumeCreatorViewModel>();
+            Bind<IExpertiseManagementViewModel>().To<ExpertiseManagementViewModel>();
         }
     }
 }

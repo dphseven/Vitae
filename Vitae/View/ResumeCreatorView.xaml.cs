@@ -2,12 +2,15 @@
 {
     using Microsoft.Win32;
     using Ninject;
+    using Ninject.Parameters;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
     using ViewModel;
+    using Vitae.Model;
 
     public partial class ResumeCreatorView : UserControl
     {
@@ -18,7 +21,7 @@
         {
             using (var ioc = new VitaeNinjectKernel())
             {
-                this.DataContext = vm = ioc.Get<IResumeCreatorViewModel>();
+                DataContext = vm = ioc.Get<IResumeCreatorViewModel>();
                 InitializeComponent();
 
                 DocViewRTB.Document = vm.ResumePreview;
@@ -31,6 +34,8 @@
                 listOfExpanders.Add(hPublications);
             }
         }
+
+        // Event handlers
 
         private void PublicationBox_MouseDoubleClick(object sender, MouseButtonEventArgs e) 
         {
@@ -62,7 +67,7 @@
             if (vm.RemoveExpertiseCommand.CanExecute(null)) vm.RemoveExpertiseCommand.Execute(null);
         }
 
-        private void ComboBox_Selected(object sender, RoutedEventArgs e) 
+        private void UpdateExperienceLists(object sender, RoutedEventArgs e) 
         {
             vm.UpdateExperienceLists();
         }
@@ -102,6 +107,63 @@
         {
             if (vm.AddExperienceCommand.CanExecute(null)) vm.AddExperienceCommand.Execute(null);
         }
-        
+
+        // Following are all in progress
+
+        private void AddExpertiseButton_Click(object sender, RoutedEventArgs e) 
+        {
+            using (var ioc = new VitaeNinjectKernel()) 
+            {
+                var exRepos = new ConstructorArgument("repository", ioc.Get<IExpertiseRepository>());
+                var exEntity = new ConstructorArgument("entity", (object)null);
+                var emVM = ioc.Get<IExpertiseManagementViewModel>(exRepos, exEntity);
+
+                var emView = new ExpertiseManagementView(emVM);
+                emView.IsVisibleChanged += sortOutExperiences;
+
+                ucHost.Content = emView;
+                ucHost.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void EditExpertiseButton_Click(object sender, RoutedEventArgs e) 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var emVM = ioc.Get<IExpertiseManagementViewModel>();
+                emVM.InjectExpertiseEntity(vm.SelectedOutExpertise);
+                var emView = new ExpertiseManagementView(emVM);
+
+                emView.IsVisibleChanged += sortOutExperiences;
+
+                ucHost.Content = emView;
+                ucHost.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void sortOutExperiences(object sender, DependencyPropertyChangedEventArgs e) 
+        {
+            if (ucHost.Content is UserControl)
+            {
+                var uc = (UserControl)ucHost.Content;
+                if (!uc.IsVisible) vm.SortOutExpertises();
+            }            
+        }
+
+        private void AddJobTitleButton_Click(object sender, RoutedEventArgs e) 
+        {
+            throw new NotImplementedException();
+        }
+
+        private void EditJobTitleButton_Click(object sender, RoutedEventArgs e) 
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DeleteJobTitleButton_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

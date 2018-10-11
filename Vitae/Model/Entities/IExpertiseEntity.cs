@@ -1,6 +1,8 @@
 ﻿namespace Vitae.Model
 {
-    public interface IExpertiseEntity
+    using System;
+
+    public interface IExpertiseEntity : IEntity
     {
         string Category { get; set; }
         string Expertise { get; set; }

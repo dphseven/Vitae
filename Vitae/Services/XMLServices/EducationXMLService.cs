@@ -105,8 +105,17 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var ee = ioc.Get<IEducationEntity>();
+
+                if (el.Attribute("Guid") != null)
+                {
+                    if (Guid.TryParse(el.Attribute("Guid").Value, out Guid output))
+                        ee.ID = output;
+                    else ee.ID = Guid.NewGuid();
+                }
+
                 ee.Credential = el.Element("Credential").Value;
                 ee.Institution = el.Element("Institution").Value;
+
                 return ee;
             }
         }

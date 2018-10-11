@@ -91,6 +91,7 @@
     <Compile Include="Services\KeywordService_UnitTests.cs" />
     <Compile Include="Model\PublicationsRepository_UnitTests.cs" />
     <Compile Include="Model\EducationRepository_UnitTests.cs" />
+    <Compile Include="ZZZ --- Jobs\XMLTransformationJobs.cs" />
     <Compile Include="ViewModel\ResumeCreatorViewModel_UnitTests.cs" />
     <Compile Include="Model\ResumeDataObject_UnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

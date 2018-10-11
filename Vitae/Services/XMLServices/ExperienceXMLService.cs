@@ -91,6 +91,14 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var ee = ioc.Get<IExperienceEntity>();
+
+                if (el.Attribute("Guid") != null)
+                {
+                    if (Guid.TryParse(el.Attribute("Guid").Value, out Guid output))
+                        ee.ID = output;
+                    else ee.ID = Guid.NewGuid();
+                }
+
                 if (el.Attribute("Employer") != null)
                     ee.Employer = el.Attribute("Employer").Value;
                 else ee.Employer = string.Empty;
@@ -114,10 +122,10 @@
         private XElement convertToXml(Guid guid, IExperienceEntity entity) 
         {
             var el = new XElement("Job");
+            el.Add(new XAttribute("Guid", guid.ToString()));
             el.Add(new XAttribute("Employer", entity.Employer));
             el.Add(new XAttribute("StartDate", entity.StartDate));
             el.Add(new XAttribute("EndDate", entity.EndDate));
-            el.Add(new XAttribute("Guid", guid.ToString()));
 
             el.Add(new XElement("JobTitles"));
             foreach (var title in entity.Titles)

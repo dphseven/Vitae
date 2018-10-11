@@ -1,6 +1,8 @@
 ﻿namespace Vitae.Model
 {
-    public interface IGeneralInfoEntity
+    using System;
+
+    public interface IGeneralInfoEntity : IEntity
     {
         string FullName { get; set; }
         string Add1 { get; set; }

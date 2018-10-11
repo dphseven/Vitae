@@ -25,9 +25,10 @@
 
         public void Delete(Guid guid) 
         {
+
             var doc = XDocument.Load(filePath);
             var element = doc.Root.Elements("Publication")
-                             .SingleOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
+                             .FirstOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
             if (element == null) throw new ArgumentException("guid not found.");
             element.Remove();
             doc.Save(filePath);
@@ -74,7 +75,7 @@
         private XElement getXElement(XDocument doc, Guid guid) 
         {
             return doc.Root.Elements("Publication")
-                    .SingleOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
+                    .FirstOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
         }
 
         private IPublicationEntity convertToObject(XElement element) 
@@ -82,7 +83,14 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var pe = ioc.Get<IPublicationEntity>();
+
+                Guid output = Guid.Empty;
+                if (Guid.TryParse(element.Attribute("Guid").Value, out output))
+                    pe.ID = output;
+                else pe.ID = Guid.NewGuid();
+
                 pe.Publication = element.Value;
+
                 return pe;
             }
         }

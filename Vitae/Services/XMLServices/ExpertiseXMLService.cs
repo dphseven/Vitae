@@ -92,8 +92,14 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var ee = ioc.Get<IExpertiseEntity>();
+
+                if (Guid.TryParse(element.Attribute("Guid").Value, out Guid output))
+                    ee.ID = output;
+                else ee.ID = Guid.NewGuid();
+
                 ee.Category = element.Element("Category").Value;
                 ee.Expertise = element.Element("Expertise").Value;
+
                 return ee;
             }
         }

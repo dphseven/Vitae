@@ -60,7 +60,7 @@ namespace Vitae.Services_UnitTests
         [TestMethod()]
         public void ExpertiseXMLService_Delete_Works() 
         {
-            var id = xs.Insert(new ExpertiseEntity { });
+            var id = xs.Insert(new ExpertiseEntity());
             var initialCount = xs.GetAll().Count();
 
             xs.Delete(id);

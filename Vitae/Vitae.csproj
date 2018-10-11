@@ -93,6 +93,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -102,17 +104,23 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\FloatingPanel.xaml.cs">
+      <DependentUpon>FloatingPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Model\Entities\GeneralInfoEntity.cs" />
+    <Compile Include="Model\Entities\IEntity.cs" />
     <Compile Include="Model\Entities\IGeneralInfoEntity.cs" />
     <Compile Include="Model\Repositories\ExperienceRepository.cs" />
     <Compile Include="Model\Repositories\ExpertiseRepository.cs" />
@@ -181,6 +189,12 @@
     <Compile Include="ViewModel\ResumeCreatorViewModel.cs" />
     <Compile Include="ViewModel\IContainerViewModel.cs" />
     <Compile Include="ViewModel\ContainerViewModel.cs" />
+    <Compile Include="ViewModel\UIState.cs" />
+    <Compile Include="View\Converters\UiStateToVisibilityConverters.cs" />
+    <Compile Include="View\ExpertiseManagementView.xaml.cs">
+      <DependentUpon>ExpertiseManagementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\IExpertiseManagementViewModel.cs" />
     <Compile Include="View\KeywordToolView.xaml.cs">
       <DependentUpon>KeywordToolView.xaml</DependentUpon>
     </Compile>
@@ -191,6 +205,14 @@
       <DependentUpon>VitaeContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\VitaeNinjectKernel.cs" />
+    <Page Include="View\FloatingPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ExpertiseManagementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\KeywordToolView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -234,6 +256,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Compile Include="ViewModel\ExpertiseManagementViewModel.cs" />
     <None Include="Vitae_SNKlt.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -276,30 +299,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icon3_nYk_icon.ico" />
-    <Content Include="XML\GeneralInfo.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="XML\Expertise.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="XML\Experience.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="XML\Publications.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="XML\Education.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -313,7 +312,24 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="XML\Education.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="XML\Experience.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="XML\Expertise.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="XML\GeneralInfo.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="XML\Publications.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

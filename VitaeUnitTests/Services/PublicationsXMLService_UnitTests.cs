@@ -36,7 +36,7 @@ namespace VitaeUnitTests
         {
             // Deleting one that doesn't exist throws argumentexception
 
-            serv.Delete(Guid.Empty);
+            serv.Delete(Guid.NewGuid());
         }
 
         [TestMethod()]
@@ -51,7 +51,7 @@ namespace VitaeUnitTests
 
             // Getting one that doesn't exist returns null
 
-            var ent2 = serv.Get(Guid.Empty);
+            var ent2 = serv.Get(Guid.NewGuid());
             Assert.IsNull(ent2);
         }
 
@@ -107,7 +107,7 @@ namespace VitaeUnitTests
         public void PublicationsXMLService_Update_Exception1() 
         {
             // Updating one that doesn't exist throws argumentexception
-            serv.Update(Guid.Empty, new PublicationEntity { Publication = "updated" });
+            serv.Update(Guid.NewGuid(), new PublicationEntity { Publication = "updated" });
         }
     }
 }

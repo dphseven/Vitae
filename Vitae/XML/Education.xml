@@ -1,11 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-
+﻿<?xml version="1.0" encoding="utf-8"?>
 <EducationItems>
-  <EducationItem>
+  <EducationItem Guid="a17cced4-629f-4143-980e-03ed65dddfc4">
     <Credential>Certificate, Business Project Management</Credential>
     <Institution>New York University</Institution>
   </EducationItem>
-  <EducationItem>
+  <EducationItem Guid="e4aca54f-7e9c-4b78-83e8-c45b32e32394">
     <Credential>BS, Business Management</Credential>
     <Institution>Western Governors University</Institution>
   </EducationItem>

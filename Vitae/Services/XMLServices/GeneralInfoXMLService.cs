@@ -14,14 +14,12 @@
 
         public GeneralInfoXMLService() 
         {
-            {
-                string prefix = string.Empty;
+            string prefix = string.Empty;
 
-                if (ApplicationDeployment.IsNetworkDeployed) prefix = ApplicationDeployment.CurrentDeployment.DataDirectory;
-                else prefix = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            if (ApplicationDeployment.IsNetworkDeployed) prefix = ApplicationDeployment.CurrentDeployment.DataDirectory;
+            else prefix = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
 
-                generalInfoFilePath = prefix + @"\XML\GeneralInfo.xml";
-            }
+            generalInfoFilePath = prefix + @"\XML\GeneralInfo.xml";
         }
 
         public void Delete(Guid guid) 
@@ -76,11 +74,18 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var entity = ioc.Get<IGeneralInfoEntity>();
+
+                Guid output = Guid.Empty;
+                if (Guid.TryParse(element.Attribute("Guid").Value, out output))
+                    entity.ID = output;
+                else entity.ID = Guid.NewGuid();
+
                 entity.FullName = element.Element("FullName").Value;
                 entity.Add1 = element.Element("AddLine1").Value;
                 entity.Add2 = element.Element("AddLine2").Value;
                 entity.Email = element.Element("Email").Value;
                 entity.Phone = element.Element("Phone").Value;
+
                 return entity;
             }
         }
@@ -88,6 +93,7 @@
         private XElement convertToXml(Guid guid, IGeneralInfoEntity entity) 
         {
             return new XElement("GeneralInfo",
+                new XAttribute("Guid", entity.ID),
                 new XElement("FullName", entity.FullName),
                 new XElement("AddLine1", entity.Add1),
                 new XElement("AddLine2", entity.Add2),

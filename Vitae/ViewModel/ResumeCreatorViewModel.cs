@@ -15,6 +15,7 @@
 
     public class ResumeCreatorViewModel : INotifyPropertyChanged, IResumeCreatorViewModel
     {
+        // Dependencies
         private IResumeCreationService rcs;
         private IGeneralInfoRepository giRepos;
         private IExperienceRepository experienceRepos;
@@ -128,7 +129,7 @@
         public ObservableCollection<IEducationEntity> InEducations { get; set; }
         public ObservableCollection<IEducationEntity> OutEducations { get; set; }
         private IEducationEntity selectedOutEducation;
-        public IEducationEntity SelectedOutEducation 
+        public IEducationEntity SelectedOutEducation
         {
             get { return selectedOutEducation; }
             set
@@ -138,7 +139,7 @@
             }
         }
         private IEducationEntity selectedInEducation;
-        public IEducationEntity SelectedInEducation 
+        public IEducationEntity SelectedInEducation
         {
             get { return selectedInEducation; }
             set
@@ -153,7 +154,7 @@
         public ObservableCollection<IPublicationEntity> InPublications { get; set; }
         public ObservableCollection<IPublicationEntity> OutPublications { get; set; }
         private IPublicationEntity selectedOutPublication;
-        public IPublicationEntity SelectedOutPublication 
+        public IPublicationEntity SelectedOutPublication
         {
             get { return selectedOutPublication; }
             set
@@ -163,7 +164,7 @@
             }
         }
         private IPublicationEntity selectedInPublication;
-        public IPublicationEntity SelectedInPublication 
+        public IPublicationEntity SelectedInPublication
         {
             get { return selectedInPublication; }
             set
@@ -185,27 +186,110 @@
             }
         }
 
+        // Expertise Form Properties
+        private Guid formExpertiseID;
+        public Guid FormExpertiseID 
+        {
+            get { return formExpertiseID; }
+            set
+            {
+                formExpertiseID = value;
+                notifyPropertyChanged();
+            }
+        }
+        private string formExpertiseCategory;
+        public string FormExpertiseCategory 
+        {
+            get { return formExpertiseCategory; }
+            set
+            {
+                formExpertiseCategory = value;
+                notifyPropertyChanged();
+            }
+        }
+        private string formExpertiseExpertise;
+        public string FormExpertiseExpertise 
+        {
+            get { return formExpertiseExpertise; }
+            set
+            {
+                formExpertiseExpertise = value;
+                notifyPropertyChanged();
+            }
+        }
+
+        // Job Title Form Properties
+        private Guid formJobTitleID;
+        public Guid FormJobTitleID 
+        {
+            get { return formJobTitleID; }
+            set
+            {
+                formJobTitleID = value;
+                notifyPropertyChanged();
+            }
+        }
+        private string formJobTitleJobTitle;
+        public string FormJobTitleJobTitle
+        {
+            get { return formJobTitleJobTitle; }
+            set
+            {
+                formJobTitleJobTitle = value;
+                notifyPropertyChanged();
+            }
+        }
+        private string formJobTitleEmployer;
+        public string FormJobTitleEmployer
+        {
+            get { return formJobTitleEmployer; }
+            set
+            {
+                formJobTitleEmployer = value;
+                notifyPropertyChanged();
+            }
+        }
+
+        // Events
         public event PropertyChangedEventHandler PropertyChanged;
+
+        // Commands
 
         public ICommand AddExpertiseCommand { get; set; }
         public ICommand RemoveExpertiseCommand { get; set; }
         public ICommand MoveExpertiseUpCommand { get; set; }
         public ICommand MoveExpertiseDownCommand { get; set; }
-
         public ICommand AddExperienceCommand { get; set; }
         public ICommand RemoveExperienceCommand { get; set; }
         public ICommand MoveExperienceUpCommand { get; set; }
         public ICommand MoveExperienceDownCommand { get; set; }
-
         public ICommand AddEducationCommand { get; set; }
         public ICommand RemoveEducationCommand { get; set; }
         public ICommand MoveEducationUpCommand { get; set; }
         public ICommand MoveEducationDownCommand { get; set; }
-
         public ICommand AddPublicationCommand { get; set; }
         public ICommand RemovePublicationCommand { get; set; }
         public ICommand MovePublicationUpCommand { get; set; }
         public ICommand MovePublicationDownCommand { get; set; }
+
+        public ICommand FormAddExpertiseOKButtonCmd { get; set; }
+        public ICommand FormAddExpertiseCancelButtonCmd { get; set; }
+        public ICommand EditExpertiseCmd { get; set; }
+        public ICommand FormEditExpertiseOKButtonCmd { get; set; }
+        public ICommand FormEditExpertiseCancelButtonCmd { get; set; }
+        public ICommand DeleteExpertiseCmd { get; set; }
+
+        public ICommand AddJobTitleButtonCmd { get; set; }
+        public ICommand FormAddJobTitleOKButtonCmd { get; set; }
+        public ICommand FormAddJobTitleCancelButtonCmd { get; set; }
+
+        public ICommand EditJobTitleButtonCmd { get; set; }
+        public ICommand FormEditJobTitleOKButtonCmd { get; set; }
+        public ICommand FormEditJobTitleCancelButtonCmd { get; set; }
+
+        public ICommand DeleteJobTitleButtonCmd { get; set; }
+        public ICommand FormDeleteJobTitleOKButtonCmd { get; set; }
+        public ICommand FormDeleteJobTitleCancelButtonCmd { get; set; }
 
         /*************************
         **************************
@@ -214,9 +298,8 @@
         *************************/
 
         public ResumeCreatorViewModel(
-            IResumeCreationService rcs, 
+            IResumeCreationService rcs,
             ILoggingService ls,
-            Guid giGuid,
             IGeneralInfoRepository giRepository,
             IExperienceRepository experienceRepository,
             IExpertiseRepository expertiseRepository,
@@ -235,8 +318,7 @@
                 this.ls = ls;
 
                 setUpRelayCommands();
-                
-                var gie = giRepos.Get(giGuid);
+                var gie = giRepos.Get(Guid.Empty);
                 FullName = gie.FullName;
                 Email = gie.Email;
                 Phone = gie.Phone;
@@ -312,7 +394,7 @@
                     rso.AddSection(ioc.Get<IExperienceSection>());
                     rso.AddSection(ioc.Get<IEducationSection>());
                     rso.AddSection(ioc.Get<IPublicationsSection>());
-                    
+
                     rcs.CreateResumeAsWordFile(rdo, rfo, rso, filePathAndName);
                 }
             }
@@ -320,6 +402,17 @@
             {
                 ls.Log(e, "Exception");
             }
+        }
+
+        public void SortOutExpertises() 
+        {
+            OutExpertises = new ObservableCollection<IExpertiseEntity>(
+                expertiseRepos.GetAll().OrderBy(T => T.Expertise).OrderBy(T => T.Category));
+            foreach (var item in InExpertises)
+            {
+                if (OutExpertises.Contains(item)) OutExpertises.Remove(item);
+            }
+            notifyPropertyChanged(nameof(OutExpertises));
         }
 
         public void UpdateExperienceLists() 
@@ -592,6 +685,77 @@
             }
         }
 
+        private void addExpertiseToRepository() 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var entity = ioc.Get<IExpertiseEntity>();
+                entity.Category = FormExpertiseCategory;
+                entity.Expertise = FormExpertiseExpertise;
+
+                FormExpertiseID = expertiseRepos.Add(entity);
+
+                OutExpertises.Add(entity);
+                SortOutExpertises();
+            }
+        }
+        private void editExpertiseInRepository() 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var entity = SelectedOutExpertise;
+                entity.Category = FormExpertiseCategory;
+                entity.Expertise = FormExpertiseExpertise;
+                entity.ID = FormExpertiseID;
+
+                expertiseRepos.Update(entity.ID, entity);
+
+                SortOutExpertises();
+            }
+        }
+        private void deleteExpertiseFromRepository() 
+        {
+            expertiseRepos.Remove(SelectedOutExpertise.ID);
+            SortOutExpertises();
+        }
+
+        private void addJobTitleToRepository() 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var job = experienceRepos.GetAll().FirstOrDefault(T => T.Employer == FormJobTitleEmployer);
+                if (job == null)
+                {
+                    var experience = ioc.Get<IExperienceEntity>();
+                    experience.Employer = FormJobTitleEmployer;
+                    experience.Titles.Add(FormJobTitleJobTitle);
+                    FormJobTitleID = experienceRepos.Add(experience);
+                }
+                else
+                {
+                    job.Titles.Add(FormJobTitleJobTitle);
+                    experienceRepos.Update(job.ID, job);
+                }
+
+                AllEmployers.Add(experienceRepos.Get(job.ID).Employer);
+                loadJobTitleSectionObjects();
+
+                FormJobTitleEmployer = string.Empty;
+                FormJobTitleJobTitle = string.Empty;
+                FormJobTitleID = Guid.Empty;
+
+                notifyPropertyChanged(nameof(AllEmployers));
+            }
+        }
+        private void editJobTitleInRepository() 
+        {
+            
+        }
+        private void deleteJobTitleFromRepository() 
+        {
+
+        }
+
         private IResumeDataObject createRdo() 
         {
             using (var ioc = new VitaeNinjectKernel())
@@ -616,7 +780,7 @@
                     ee.Employer = allJobs[i].Employer;
                     ee.StartDate = allJobs[i].StartDate;
                     ee.EndDate = allJobs[i].EndDate;
-                    if (AllJTSOs != null) ee.Titles.Add(AllJTSOs.SingleOrDefault(T => T.Company == allJobs[i].Employer)?.SelectedJobTitle);
+                    if (AllJTSOs != null) ee.Titles.Add(AllJTSOs.FirstOrDefault(T => T.Company == allJobs[i].Employer).SelectedJobTitle);
                     if (AllInExperiences != null && AllInExperiences.Count > 0)
                         (ee.Details as List<string>).AddRange(AllInExperiences.Where(T => T.Employer == ee.Employer).Select(T => T.ExperienceDetail));
                     rdo.ExperienceEntities.Add(ee);
@@ -700,21 +864,19 @@
             AddExpertiseCommand = new RelayCommand(T => addExpertise(), T => SelectedOutExpertise != null);
             RemoveExpertiseCommand = new RelayCommand(T => removeExpertise(), T => SelectedInExpertise != null);
             MoveExpertiseUpCommand = new RelayCommand(
-                T => moveExpertiseUp(), 
+                T => moveExpertiseUp(),
                 T => SelectedInExpertise != null && InExpertises.IndexOf(SelectedInExpertise) > 0);
             MoveExpertiseDownCommand = new RelayCommand(
-                T => moveExpertiseDown(), 
+                T => moveExpertiseDown(),
                 T => SelectedInExpertise != null && InExpertises.IndexOf(SelectedInExpertise) < InExpertises.Count - 1);
-
             AddExperienceCommand = new RelayCommand(T => addExperienceItem(), T => SelectedOutExperience != null);
             RemoveExperienceCommand = new RelayCommand(T => removeExperienceItem(), T => SelectedInExperience != null);
             MoveExperienceUpCommand = new RelayCommand(
-                T => moveExperienceItemUp(), 
+                T => moveExperienceItemUp(),
                 T => SelectedInExperience != null && InExperiences.IndexOf(SelectedInExperience) > 0);
             MoveExperienceDownCommand = new RelayCommand(
                 T => moveExperienceItemDown(),
                 T => SelectedInExperience != null && InExperiences.IndexOf(SelectedInExperience) < InExperiences.Count - 1);
-
             AddEducationCommand = new RelayCommand(T => addEducation(), T => SelectedOutEducation != null);
             RemoveEducationCommand = new RelayCommand(T => removeEducation(), T => SelectedInEducation != null);
             MoveEducationUpCommand = new RelayCommand(
@@ -723,7 +885,6 @@
             MoveEducationDownCommand = new RelayCommand(
                 T => moveEducationDown(),
                 T => SelectedInEducation != null && InEducations.IndexOf(SelectedInEducation) < InEducations.Count - 1);
-
             AddPublicationCommand = new RelayCommand(T => addPublication(), T => SelectedOutPublication != null);
             RemovePublicationCommand = new RelayCommand(T => removePublication(), T => SelectedInPublication != null);
             MovePublicationUpCommand = new RelayCommand(
@@ -732,8 +893,46 @@
             MovePublicationDownCommand = new RelayCommand(
                 T => movePublicationDown(),
                 T => SelectedInPublication != null && InPublications.IndexOf(SelectedInPublication) < InPublications.Count - 1);
-        }
 
+            FormAddExpertiseOKButtonCmd = new RelayCommand(
+                T => addExpertiseToRepository(),
+                T => !string.IsNullOrWhiteSpace(FormExpertiseCategory) &&
+                     !string.IsNullOrWhiteSpace(FormExpertiseExpertise));
+            FormAddExpertiseCancelButtonCmd = new RelayCommand(
+                T => { },
+                T => true);
+            EditExpertiseCmd = new RelayCommand(
+                T => { },
+                T => SelectedOutExpertise != null);
+            // To be removed
+            FormEditExpertiseOKButtonCmd = new RelayCommand(
+                T => editExpertiseInRepository(),
+                T => !string.IsNullOrWhiteSpace(FormExpertiseCategory) &&
+                     !string.IsNullOrWhiteSpace(FormExpertiseExpertise));
+            // To be removed
+            FormEditExpertiseCancelButtonCmd = new RelayCommand(
+                T => 
+                {
+                    FormExpertiseCategory = string.Empty;
+                    FormExpertiseExpertise = string.Empty;
+                },
+                T => true);
+            DeleteExpertiseCmd = new RelayCommand(
+                T => deleteExpertiseFromRepository(),
+                T => SelectedOutExpertise != null);
+
+            FormAddJobTitleOKButtonCmd = new RelayCommand(
+                T => addJobTitleToRepository(),
+                T => !string.IsNullOrWhiteSpace(FormJobTitleEmployer) &&
+                     !string.IsNullOrWhiteSpace(FormJobTitleJobTitle));
+            FormAddJobTitleCancelButtonCmd = new RelayCommand(
+                T =>
+                {
+                    FormJobTitleEmployer = string.Empty;
+                    FormJobTitleJobTitle = string.Empty;
+                },
+                T => true);
+        }
     }
 
     public class JobTitleSelectionObject : INotifyPropertyChanged
@@ -773,5 +972,4 @@
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-
 }

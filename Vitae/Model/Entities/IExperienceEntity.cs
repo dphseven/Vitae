@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace Vitae.Model
+﻿namespace Vitae.Model
 {
-    public interface IExperienceEntity
+    using System;
+    using System.Collections.Generic;
+
+    public interface IExperienceEntity : IEntity
     {
         string Employer { get; set; }
         string StartDate { get; set; }

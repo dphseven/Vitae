@@ -1,170 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EducationItems>
-  <EducationItem Guid="">
+  <EducationItem Guid="a17cced4-629f-4143-980e-03ed65dddfc4">
     <Credential>Certificate, Business Project Management</Credential>
     <Institution>New York University</Institution>
   </EducationItem>
-  <EducationItem Guid="">
+  <EducationItem Guid="e4aca54f-7e9c-4b78-83e8-c45b32e32394">
     <Credential>BS, Business Management</Credential>
     <Institution>Western Governors University</Institution>
   </EducationItem>
-  <EducationItem Guid="daa7c0c4-346c-45fa-a2da-b111b928cca2">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="e9eb621f-460e-4da8-883c-562dfb7d46fc">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="f4042468-d66e-440f-93f1-95f72f86af6c">
-    <Credential>updated</Credential>
-    <Institution>updated</Institution>
-  </EducationItem>
-  <EducationItem Guid="2325a655-6575-405e-8458-ebfdb4ca3968">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="72f47388-2d73-4500-baf5-ce35526093dd">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="5fb723d7-4a33-4918-ac5f-e822b073e145">
-    <Credential>updated</Credential>
-    <Institution>updated</Institution>
-  </EducationItem>
-  <EducationItem Guid="5bb82bdc-13de-4281-b695-da8bcc3a51a4">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="4c757ee2-f13e-4ebb-8129-d4efa14af564">
-    <Credential>updated</Credential>
-    <Institution>updated</Institution>
-  </EducationItem>
-  <EducationItem Guid="6c9df78a-b103-4f0a-8dd2-f716fb4c12db">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="2883c5c5-26c1-4306-9d49-8f48faf48c7a">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="45ccabc4-75a4-4922-a1d9-4764c47d7785">
-    <Credential>updated</Credential>
-    <Institution>updated</Institution>
-  </EducationItem>
-  <EducationItem Guid="6f6429d5-7704-454c-9160-11c5cfd90326">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="0e9979be-2f07-4006-92c4-283ca78cce52">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="1aab62e5-c612-4dc4-b206-ad92e6815a99">
-    <Credential>updated</Credential>
-    <Institution>updated</Institution>
-  </EducationItem>
-  <EducationItem Guid="2d6195e2-1cb4-419c-8f0f-2e040c31339e">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="3380920d-f5f0-4d82-80d3-cada4028dfe2">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="10514f5a-d7e4-4700-860d-dbc7b8258e4b">
-    <Credential>updated</Credential>
-    <Institution>updated</Institution>
-  </EducationItem>
-  <EducationItem Guid="412487b0-cf41-477f-a4ce-709377e81ca6">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="3ad7accd-abe4-4881-82c7-8add75b3e2fb">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="79b8d44c-587e-469a-9087-c4259925d89f">
-    <Credential>updated</Credential>
-    <Institution>updated</Institution>
-  </EducationItem>
-  <EducationItem Guid="19ac4123-ae4d-4ec2-8886-c693057b600f">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="3cedb731-b5c6-4350-9159-bf1f7c02c369">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="70b76a68-ae62-4e4d-a76a-35f3879bf766">
-    <Credential>updated</Credential>
-    <Institution>updated</Institution>
-  </EducationItem>
-  <EducationItem Guid="0e0d73f3-5b98-48d0-ba3a-0a037cd215c7">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="06ee40b6-b85b-4656-9ad8-118894fe8c51">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="15578ab8-f3fd-4b7c-ba6a-ecbe7e7b0707">
-    <Credential>updated</Credential>
-    <Institution>updated</Institution>
-  </EducationItem>
-  <EducationItem Guid="80b7bc8c-a3d5-4acd-83c5-55f35233425a">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="c30aa405-a166-4e85-93cb-cc575111e34b">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="9b0fb755-0bb9-4a59-9b21-0303555812ef">
-    <Credential>updated</Credential>
-    <Institution>updated</Institution>
-  </EducationItem>
-  <EducationItem Guid="1a1b0e45-ffaf-455b-8a2a-22bd893c9546">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="5931258b-d220-409e-bcaa-b8dc0802d012">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="a3587763-a2e3-4f27-9e80-23f953d7a442">
-    <Credential>updated</Credential>
-    <Institution>updated</Institution>
-  </EducationItem>
-  <EducationItem Guid="54d4b370-4caf-4a29-8461-30175eed84e4">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="a55f023a-6601-430f-a198-3390a6817a68">
-    <Credential>testCred</Credential>
-    <Institution>testInst</Institution>
-  </EducationItem>
-  <EducationItem Guid="f24f8226-e990-4ed1-b893-ac825b046b4b">
+  <EducationItem Guid="6324e746-20b5-4c81-9fd3-621d18414b6e">
     <Credential>cred</Credential>
     <Institution>inst</Institution>
   </EducationItem>
-  <EducationItem Guid="0d193f8f-9c0e-4bf2-ac3e-f41c8ec68218">
+  <EducationItem Guid="551c45cf-34ef-42f4-88c0-396e8e7e11e0">
     <Credential>cred</Credential>
     <Institution>inst</Institution>
   </EducationItem>
-  <EducationItem Guid="92d31d6d-f27b-4e2a-9621-691bf33e96e0">
+  <EducationItem Guid="5edd7e75-4cbd-4980-9a8e-afd9e02f4092">
     <Credential>uCred</Credential>
     <Institution>uInst</Institution>
   </EducationItem>
-  <EducationItem Guid="994b0d66-0ac6-4c71-80bf-122be0e383c6">
-    <Credential>cred</Credential>
-    <Institution>inst</Institution>
-  </EducationItem>
-  <EducationItem Guid="0440f19a-de2d-4c8d-9eb6-10b9941e65dd">
-    <Credential>cred</Credential>
-    <Institution>inst</Institution>
-  </EducationItem>
-  <EducationItem Guid="7e27db94-b325-4f76-8950-172f35ae60a2">
-    <Credential>uCred</Credential>
-    <Institution>uInst</Institution>
-  </EducationItem>Vitae.Model.EducationEntity<EducationItem Guid="a8169af5-2d1e-4e02-8adb-1ead60493e0f"><Credential>cred</Credential><Institution>inst</Institution></EducationItem><EducationItem Guid="577e9c1b-0fd7-45f1-8886-755ae50ccade"><Credential>cred</Credential><Institution>inst</Institution></EducationItem>Vitae.Model.EducationEntity<EducationItem Guid="a882d9f0-c5fc-42f2-a390-420d2843ce75"><Credential>uCred</Credential><Institution>uInst</Institution></EducationItem><EducationItem Guid="dbd2cad3-5477-4b26-b103-d8e277ced3c3"><Credential>cred</Credential><Institution>inst</Institution></EducationItem><EducationItem Guid="51a1f418-fa80-4760-b8d4-eeeb7f0a153a"><Credential>cred</Credential><Institution>inst</Institution></EducationItem><EducationItem Guid="9e1898b4-48f0-410f-b2a6-e5bc378b9790"><Credential>uCred</Credential><Institution>uInst</Institution></EducationItem><EducationItem Guid="2b0849b3-f183-4af3-934e-4481a480a3c9"><Credential>cred</Credential><Institution>inst</Institution></EducationItem><EducationItem Guid="5d95612a-e8f7-4462-a136-4eee330cad66"><Credential>cred</Credential><Institution>inst</Institution></EducationItem><EducationItem Guid="3d63fd65-98b8-4775-9a61-83a6c37ece20"><Credential>uCred</Credential><Institution>uInst</Institution></EducationItem></EducationItems>
+</EducationItems>

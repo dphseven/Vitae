@@ -25,12 +25,14 @@ namespace VitaeUnitTests
         [TestMethod]
         public void ResumeCreatorViewModel_Constructor_Works() 
         {
-            var gie = new GeneralInfoEntity();
-            gie.FullName = "fn";
-            gie.Add1 = "add1";
-            gie.Add2 = "add2";
-            gie.Phone = "phone";
-            gie.Email = "email";
+            var gie = new GeneralInfoEntity
+            {
+                FullName = "fn",
+                Add1 = "add1",
+                Add2 = "add2",
+                Phone = "phone",
+                Email = "email"
+            };
             mockGiRepos.Setup(T => T.Get(Guid.Empty)).Returns(gie);
 
             var expertiseList = new List<IExpertiseEntity>();
@@ -54,13 +56,12 @@ namespace VitaeUnitTests
             mockPubRepos.Setup(T => T.GetAll()).Returns(pubList);
 
             var vm = new ResumeCreatorViewModel(
-                mockRcs.Object, 
-                mockLog.Object, 
-                Guid.Empty, 
-                mockGiRepos.Object, 
-                mockExperienceRepos.Object, 
-                mockExpertiseRepos.Object, 
-                mockEdRepos.Object, 
+                mockRcs.Object,
+                mockLog.Object,
+                mockGiRepos.Object,
+                mockExperienceRepos.Object,
+                mockExpertiseRepos.Object,
+                mockEdRepos.Object,
                 mockPubRepos.Object);
 
             Assert.AreEqual("fn", vm.FullName);

@@ -1,7 +1,7 @@
 ﻿<UserControl x:Class="Vitae.View.ResumeCreatorView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d">
+        xmlns:view="clr-namespace:Vitae.View"  mc:Ignorable="d">
     <Grid Margin="0" MinWidth="640" >
 
         <Grid.ColumnDefinitions>
@@ -58,9 +58,27 @@
             </Expander>
 
             <!-- EXPERTISE AREA -->
-            <Expander Header="Expertise" Name="hExpertise" Expanded="closeAllOtherExpanders"
+            <Expander Name="hExpertise" Expanded="closeAllOtherExpanders"
                       Margin="0 20 20 0"
                       Grid.Column="0" Grid.Row="0" >
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Expertise" />
+                        <Button Name="AddExpertiseButton" Content="add"
+                                Template="{StaticResource LinkLabelButtonTemplate}"
+                                Click="AddExpertiseButton_Click"
+                                Margin="10 0 0 0"/>
+                        <Button Name="EditExpertiseButton" Content="edit" 
+                                Template="{StaticResource LinkLabelButtonTemplate}"
+                                Command="{Binding EditExpertiseCmd}"
+                                Click="EditExpertiseButton_Click"
+                                Margin="10 0 0 0" />
+                        <Button Name="DeleteExpertiseButton" Content="delete" 
+                                Template="{StaticResource LinkLabelButtonTemplate}"
+                                Command="{Binding DeleteExpertiseCmd}"
+                                Margin="10 0 0 0" />
+                    </StackPanel>
+                </Expander.Header>
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -95,9 +113,26 @@
             </Expander>
 
             <!-- JOB TITLES AREA -->
-            <Expander Header="Job Titles" Name="hJobTitles" Expanded="closeAllOtherExpanders"
+            <Expander Name="hJobTitles" Expanded="closeAllOtherExpanders"
                       Margin="0 20 20 0"
                       Grid.Column="0" Grid.Row="0">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Job Titles" />
+                        <Button Name="AddJobTitleButton" Content="add"
+                                Template="{StaticResource LinkLabelButtonTemplate}"
+                                Click="AddJobTitleButton_Click"
+                                Margin="10 0 0 0"/>
+                        <Button Name="EditJobTitleButton" Content="edit" 
+                                Template="{StaticResource LinkLabelButtonTemplate}"
+                                Command="{Binding EditJobTitleCmd}"
+                                Margin="10 0 0 0" />
+                        <Button Name="DeleteJobTitleButton" Content="delete" 
+                                Template="{StaticResource LinkLabelButtonTemplate}"
+                                Command="{Binding DeleteJobTitleCmd}"
+                                Margin="10 0 0 0" />
+                    </StackPanel>
+                </Expander.Header>
                 <Grid Margin="10">
                     <ItemsControl ItemsSource="{Binding AllJTSOs}" >
                         <ItemsControl.ItemTemplate>
@@ -120,9 +155,25 @@
             </Expander>
 
             <!-- EXPERIENCE AREA -->
-            <Expander Header="Experience" Name="hExperience" Expanded="closeAllOtherExpanders"
+            <Expander Name="hExperience" Expanded="closeAllOtherExpanders"
                       Margin="0 20 20 0"
                       Grid.Column="0" Grid.Row="0" >
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Experience" />
+                        <Button Name="AddExperienceButton" Content="add"
+                                Template="{StaticResource LinkLabelButtonTemplate}"
+                                Margin="10 0 0 0"/>
+                        <Button Name="EditExperienceButton" Content="edit" 
+                                Template="{StaticResource LinkLabelButtonTemplate}"
+                                Command="{Binding EditExperienceCmd}"
+                                Margin="10 0 0 0" />
+                        <Button Name="DeleteExperienceButton" Content="delete" 
+                                Template="{StaticResource LinkLabelButtonTemplate}"
+                                Command="{Binding DeleteExperienceCmd}"
+                                Margin="10 0 0 0" />
+                    </StackPanel>
+                </Expander.Header>
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -134,7 +185,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <ComboBox ItemsSource="{Binding AllEmployers}" SelectedValue="{Binding SelectedEmployer}"
-                              SelectionChanged="ComboBox_Selected"
+                              SelectionChanged="UpdateExperienceLists"
                               Margin="3"
                               Grid.Column="0" Grid.Row="0" />
                     <ListBox Name="ExperienceBox" MouseDoubleClick="ExperienceBox_MouseDoubleClick"
@@ -167,9 +218,25 @@
             </Expander>
 
             <!-- EDUCATION AREA -->
-            <Expander Header="Education" Name="hEducation" Expanded="closeAllOtherExpanders"
+            <Expander Name="hEducation" Expanded="closeAllOtherExpanders"
                       Margin="0 20 20 0"
                       Grid.Column="0" Grid.Row="0" >
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Education" />
+                        <Button Name="AddEducationButton" Content="add"
+                                Template="{StaticResource LinkLabelButtonTemplate}"
+                                Margin="10 0 0 0"/>
+                        <Button Name="EditEducationButton" Content="edit" 
+                                Template="{StaticResource LinkLabelButtonTemplate}"
+                                Command="{Binding EditEducationCmd}"
+                                Margin="10 0 0 0" />
+                        <Button Name="DeleteEducationButton" Content="delete" 
+                                Template="{StaticResource LinkLabelButtonTemplate}"
+                                Command="{Binding DeleteEducationCmd}"
+                                Margin="10 0 0 0" />
+                    </StackPanel>
+                </Expander.Header>
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -206,9 +273,25 @@
             </Expander>
 
             <!-- PUBLICATIONS AREA -->
-            <Expander Header="Publications" Name="hPublications" Expanded="closeAllOtherExpanders"
+            <Expander Name="hPublications" Expanded="closeAllOtherExpanders"
                       Margin="0 20 20 0"
                       Grid.Column="0" Grid.Row="0">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Publication" />
+                        <Button Name="AddPublicationButton" Content="add"
+                                Template="{StaticResource LinkLabelButtonTemplate}"
+                                Margin="10 0 0 0"/>
+                        <Button Name="EditPublicationButton" Content="edit" 
+                                Template="{StaticResource LinkLabelButtonTemplate}"
+                                Command="{Binding EditPublicationCmd}"
+                                Margin="10 0 0 0" />
+                        <Button Name="DeletePublicationButton" Content="delete" 
+                                Template="{StaticResource LinkLabelButtonTemplate}"
+                                Command="{Binding DeletePublicationCmd}"
+                                Margin="10 0 0 0" />
+                    </StackPanel>
+                </Expander.Header>
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -280,8 +363,11 @@
                     Height="30" Width="100" HorizontalAlignment="Right" Margin="10 10 0 10" />
             
         </StackPanel>
-        
 
+        <!-- INTERSTITIAL FORM USERCONTROLS -->
+
+        <UserControl x:Name="ucHost" Visibility="Collapsed"
+                     Grid.ColumnSpan="2" Grid.RowSpan="2" />
 
     </Grid>
 </UserControl>

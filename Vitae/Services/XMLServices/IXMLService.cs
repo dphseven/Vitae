@@ -2,8 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using Vitae.Model;
 
-    public interface IXMLService<T> 
+    public interface IXMLService<T> where T : IEntity
     {
         T Get(Guid guid);
         IList<T> GetAll();

@@ -17,7 +17,7 @@ namespace Vitae.Services_UnitTests
         }
 
         [TestMethod()]
-        public void Delete_Works() 
+        public void GeneralInfoXMLService_Delete_Works() 
         {
             var id = xs.Insert(new GeneralInfoEntity
             {
@@ -40,7 +40,7 @@ namespace Vitae.Services_UnitTests
         }
 
         [TestMethod()]
-        public void Get_Works() 
+        public void GeneralInfoXMLService_Get_Works() 
         {
             var id = xs.Insert(new GeneralInfoEntity
             {
@@ -61,7 +61,7 @@ namespace Vitae.Services_UnitTests
         }
 
         [TestMethod()]
-        public void GetAll_Works() 
+        public void GeneralInfoXMLService_GetAll_Works() 
         {
             var list = xs.GetAll();
 
@@ -70,7 +70,7 @@ namespace Vitae.Services_UnitTests
         }
 
         [TestMethod()]
-        public void Insert_Works() 
+        public void GeneralInfoXMLService_Insert_Works() 
         {
             var id = xs.Insert(new GeneralInfoEntity
             {
@@ -91,7 +91,7 @@ namespace Vitae.Services_UnitTests
         }
 
         [TestMethod()]
-        public void Update_Works() 
+        public void GeneralInfoXMLService_Update_Works() 
         {
             var id = xs.Insert(new GeneralInfoEntity
             {

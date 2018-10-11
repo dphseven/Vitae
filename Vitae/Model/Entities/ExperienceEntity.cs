@@ -1,9 +1,11 @@
 ﻿namespace Vitae.Model
 {
+    using System;
     using System.Collections.Generic;
 
     public class ExperienceEntity : IExperienceEntity
     {
+        public Guid ID { get; set; }
         public string Employer { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }

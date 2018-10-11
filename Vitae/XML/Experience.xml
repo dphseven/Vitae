@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Jobs>
-  <Job Guid="" Employer="NorwalkAberdeen" StartDate="July 2013" EndDate="Present">
+  <Job Employer="NorwalkAberdeen" StartDate="July 2013" EndDate="Present" Guid="c831583e-ddf7-4cfa-9bf0-0188985a3214">
     <JobTitles>
       <JobTitle>Founder, Business Analyst/Product Owner Training Firm</JobTitle>
       <JobTitle>Founder, Business Analysis/Project Management Training Firm</JobTitle>
@@ -20,7 +20,7 @@
       <Detail>Designed and developed a proprietary CRM and Lead Management platform for institutional sales (.Net, C#, WPF). Designed and developed the NorwalkAberdeen website, including the development of custom widgets and integration with third party services (HTML/CSS/JS).</Detail>
     </Details>
   </Job>
-  <Job Guid="" Employer="Citigroup" StartDate="March 2008" EndDate="July 2013">
+  <Job Employer="Citigroup" StartDate="March 2008" EndDate="July 2013" Guid="e54f3adf-959a-4995-84ec-b481a01c5828">
     <JobTitles>
       <JobTitle>Senior Vice President, Online Product Management</JobTitle>
       <JobTitle>Senior Vice President, Business Analysis Manager</JobTitle>
@@ -44,7 +44,7 @@
       <Detail>Held the FINRA Series 7, 9, 10, 24, and 66 securities licenses.</Detail>
     </Details>
   </Job>
-  <Job Guid="" Employer="Morgan Stanley" StartDate="June 2002" EndDate="March 2008">
+  <Job Employer="Morgan Stanley" StartDate="June 2002" EndDate="March 2008" Guid="bca4a4f4-3d3e-4fc7-83a2-77ceb215b784">
     <JobTitles>
       <JobTitle>Product Manager/Business Analyst</JobTitle>
       <JobTitle>Product Owner/Business Analyst</JobTitle>
@@ -52,6 +52,7 @@
       <JobTitle>Business Analyst/Product Manager</JobTitle>
       <JobTitle>Business Analyst/Product Owner</JobTitle>
       <JobTitle>Business Analyst/Project Manager</JobTitle>
+      <JobTitle>CEO</JobTitle>
     </JobTitles>
     <Details>
       <Detail>Performed dual Product Manager and Business Analyst roles in a broad variety of Financial Advisor Workstation and ClientServ projects. Delivered 33 (out of 33) projects on time and on budget.</Detail>
@@ -64,5 +65,19 @@
       <Detail>Provided high-level concierge services to top clients, Branch Managers and Chairman’s Club Financial Advisors. Interfaced with FA Recruiting to drive competitor intelligence activities.</Detail>
       <Detail>Managed the firm-wide implementation of changes to the discretionary brokerage business model.</Detail>
     </Details>
+  </Job>
+  <Job Employer="test" StartDate="" EndDate="" Guid="c0c464a7-d6d4-4d4f-9396-c9b919f7b2f2">
+    <JobTitles>
+      <JobTitle>test</JobTitle>
+      <JobTitle>1212</JobTitle>
+      <JobTitle>shouldWorkWell</JobTitle>
+    </JobTitles>
+    <Details />
+  </Job>
+  <Job Employer="test" StartDate="" EndDate="" Guid="ce8cff33-778a-47d6-826d-df4c551e8186">
+    <JobTitles>
+      <JobTitle>test title</JobTitle>
+    </JobTitles>
+    <Details />
   </Job>
 </Jobs>

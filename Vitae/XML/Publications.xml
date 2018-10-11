@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Publications>
-  <Publication>“Sprint Zero for Product Owners” (Front Row Agile, Sep 2017)</Publication>
-  <Publication>“What the V Model can Teach Agilists” (Front Row Agile, August 2017)</Publication>
-  <Publication>“Guide to Agile Business Analysis” (NorwalkAberdeen, January 2017)</Publication>
-  <Publication>“The New Business Analysis Ecosystem” (NorwalkAberdeen Insights, December 2016)</Publication>
-  <Publication>"Working with 'Crazy' Stakeholders" (Modern Analyst, June 2014)</Publication>
-  <Publication>“What Business Analysis Managers Seek in Candidates” (BA Times, March 2014)</Publication>
-  <Publication>“Unsuccessful Innovation: Why didn’t it Work?” (Connecting Group, September 2012)</Publication>
+  <Publication Guid="cd6c87b9-b675-416c-9809-b2bc2e26c34e">“Sprint Zero for Product Owners” (Front Row Agile, Sep 2017)</Publication>
+  <Publication Guid="e9820fed-8a5c-429f-b1f0-56f6d433072e">“What the V Model can Teach Agilists” (Front Row Agile, August 2017)</Publication>
+  <Publication Guid="6f7449a1-9087-462e-ab71-a3465fe7acec">“Guide to Agile Business Analysis” (NorwalkAberdeen, January 2017)</Publication>
+  <Publication Guid="8e99087e-b7e1-4802-9a5d-d6dc9dba7f36">“The New Business Analysis Ecosystem” (NorwalkAberdeen Insights, December 2016)</Publication>
+  <Publication Guid="fdc95b50-bfbb-44c6-8ba9-83ebc2f7837c">"Working with 'Crazy' Stakeholders" (Modern Analyst, June 2014)</Publication>
+  <Publication Guid="704fb129-e006-47fc-99d9-e83a0aa5b422">“What Business Analysis Managers Seek in Candidates” (BA Times, March 2014)</Publication>
+  <Publication Guid="1cee427c-dd8f-4cde-a2ce-c8a6a3a20e03">“Unsuccessful Innovation: Why didn’t it Work?” (Connecting Group, September 2012)</Publication>
 </Publications>

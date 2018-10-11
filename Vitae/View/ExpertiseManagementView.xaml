@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="Vitae.View.ExpertiseManagementView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Vitae.View" mc:Ignorable="d" >
+
+    <UserControl.Background>
+        <SolidColorBrush Color="Gray" Opacity=".70" />
+    </UserControl.Background>
+
+    <!-- INTERSTITIAL: ADD EXPERTISE FORM -->
+
+    <Border BorderBrush="CornflowerBlue" BorderThickness="2" 
+                    Margin="400 200 400 200" Background="White">
+        <Grid Background="White" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Content="Add Expertise" 
+                   Visibility="{Binding FormState, Converter={StaticResource ViewStateToVisibilityConverter}}"
+                   Style="{StaticResource InterstitialTitle}" 
+                   Grid.Row="0" Grid.Column="0" />
+            <Label Content="Edit Expertise" 
+                   Visibility="{Binding FormState, Converter={StaticResource EditStateToVisibilityConverter}}"
+                   Style="{StaticResource InterstitialTitle}"
+                   Grid.Row="0" Grid.Column="0" />
+
+            <Label Content="ID" 
+                   Grid.Row="1" Grid.Column="1" />
+            <Label Content="Category" 
+                   Grid.Row="2" Grid.Column="1" />
+            <Label Content="Expertise" 
+                   Grid.Row="3" Grid.Column="1" />
+
+            <Label Content="{Binding ID}" 
+                   Margin="3" Grid.Row="1" Grid.Column="2" />
+
+            <TextBox Text="{Binding Category}" 
+                     Margin="3" Grid.Row="2" Grid.Column="2" />
+
+            <TextBox Text="{Binding Expertise}" 
+                     Margin="3" Grid.Row="3" Grid.Column="2" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" 
+                        Grid.Row="4" Grid.Column="2" >
+                <Button Content="Add" 
+                        Command="{Binding AddButtonCmd}"
+                        Visibility="{Binding FormState, Converter={StaticResource ViewStateToVisibilityConverter}}"
+                        Click="AddButton_Click"
+                        Width="100" Height="30" Margin="3" />
+                <Button Content="Edit" 
+                        Command="{Binding EditButtonCmd}"
+                        Visibility="{Binding FormState, Converter={StaticResource EditStateToVisibilityConverter}}"
+                        Click="EditButton_Click"
+                        Width="100" Height="30" Margin="3" />
+                <Button Content="Cancel" 
+                        Command="{Binding CancelButtonCmd}" 
+                        Click="CancelButton_Click"
+                        Visibility="Visible"
+                        Width="100" Height="30" Margin="3" />
+            </StackPanel>
+
+        </Grid>
+    </Border>
+
+</UserControl>

@@ -1,6 +1,8 @@
 ﻿namespace Vitae.Model
 {
-    public interface IPublicationEntity
+    using System;
+
+    public interface IPublicationEntity : IEntity
     {
         string Publication { get; set; }
     }
