@@ -107,5 +107,60 @@
         {
             return GetAllExperienceItems().Where(T => T.Employer == Employer).ToList();
         }
+
+        public IList<IJobTitle> GetAllJobTitles() 
+        {
+            try
+            {
+                using (var ioc = new VitaeNinjectKernel())
+                {
+                    var list = new List<IJobTitle>();
+
+                    foreach (var job in xs.GetAll())
+                    {
+                        foreach (var title in job.Titles)
+                        {
+                            var item = ioc.Get<IJobTitle>();
+                            item.Employer = job.Employer;
+                            item.Title = title;
+                            list.Add(item);
+                        }
+                    }
+
+                    return list;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public IList<IJobTitle> GetJobTitlesForJob(Guid jobID) 
+        {
+            try
+            {
+                using (var ioc = new VitaeNinjectKernel())
+                {
+                    List<IJobTitle> list = new List<IJobTitle>();
+
+                    var job = GetAll().FirstOrDefault(T => T.ID.ToString() == jobID.ToString());
+
+                    foreach (var title in job.Titles)
+                    {
+                        var titleEntity = ioc.Get<IJobTitle>();
+                        titleEntity.Employer = job.Employer;
+                        titleEntity.Title = title;
+                        list.Add(titleEntity);
+                    }
+
+                    return list;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

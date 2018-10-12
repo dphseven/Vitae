@@ -78,6 +78,7 @@
 
         <view:ViewStateToVisibilityConverter x:Key="ViewStateToVisibilityConverter" />
         <view:EditStateToVisibilityConverter x:Key="EditStateToVisibilityConverter" />
+        <view:CreateStateToVisibilityConverter x:Key="CreateStateToVisibilityConverter" />
 
     </Application.Resources>
 

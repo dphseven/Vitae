@@ -62,6 +62,11 @@
             Bind<IContainerViewModel>().To<ContainerViewModel>();
             Bind<IKeywordToolViewModel>().To<KeywordToolViewModel>();
             Bind<IResumeCreatorViewModel>().To<ResumeCreatorViewModel>();
+            Bind<IAddJobTitleViewModel>().To<AddJobTitleViewModel>();
+            Bind<IEditJobTitleViewModel>().To<EditJobTitleViewModel>();
+            Bind<IDeleteJobTitleViewModel>().To<DeleteJobTitleViewModel>();
+
+            // TODO: Refactor
             Bind<IExpertiseManagementViewModel>().To<ExpertiseManagementViewModel>();
         }
     }

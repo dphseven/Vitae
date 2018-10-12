@@ -1,32 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Jobs>
-  <Job Employer="NorwalkAberdeen" StartDate="July 2013" EndDate="Present" Guid="c831583e-ddf7-4cfa-9bf0-0188985a3214">
+  <Job Guid="e54f3adf-959a-4995-84ec-b481a01c5828" Employer="Citigroup" StartDate="March 2008" EndDate="July 2013">
     <JobTitles>
-      <JobTitle>Founder, Business Analyst/Product Owner Training Firm</JobTitle>
-      <JobTitle>Founder, Business Analysis/Project Management Training Firm</JobTitle>
-      <JobTitle>Founder, Business Analysis Training Firm</JobTitle>
-      <JobTitle>Managing Director, Business Analysis Training</JobTitle>
-      <JobTitle>Managing Director, Business Analyst/Product Owner Training</JobTitle>
-    </JobTitles>
-    <Details>
-      <Detail>Founded a start-up specializing in business analyst/product owner training. Primary responsibilities are firm strategy, marketing, product development and delivery, sales, and client development.</Detail>
-      <Detail>Ideated, developed, and brought to maturity our on-demand course product line, consisting of a suite of six business analysis and product ownership courses. Over the course of five years, we have had more than 20,000 enrolled students across approximately 150 countries.</Detail>
-      <Detail>Ideated, developed, and am maturing our on-site class product line, consisting of a suite of four business analysis and product ownership courses.</Detail>
-      <Detail>Ran numerous proprietary on-site training classes in New York and Washington.</Detail>
-      <Detail>Developed and delivered CRM training for JPMorgan Private Bank in New York, Los Angeles, and Miami.</Detail>
-      <Detail>Led the efforts to develop a cross-selling partnership with Learning Tree, a $13 million technology training company.</Detail>
-      <Detail>Conducted in-depth webinars and online round tables on the topics of business analysis and Agile to drive lead capture.</Detail>
-      <Detail>Wrote 24 articles and white papers on the topic of agile product ownership and traditional business analysis.</Detail>
-      <Detail>Designed and developed a proprietary CRM and Lead Management platform for institutional sales (.Net, C#, WPF). Designed and developed the NorwalkAberdeen website, including the development of custom widgets and integration with third party services (HTML/CSS/JS).</Detail>
-    </Details>
-  </Job>
-  <Job Employer="Citigroup" StartDate="March 2008" EndDate="July 2013" Guid="e54f3adf-959a-4995-84ec-b481a01c5828">
-    <JobTitles>
-      <JobTitle>Senior Vice President, Online Product Management</JobTitle>
+      <JobTitle>Senior Vice President, Product Management</JobTitle>
       <JobTitle>Senior Vice President, Business Analysis Manager</JobTitle>
       <JobTitle>Senior Vice President, Program Director</JobTitle>
       <JobTitle>Senior Vice President, Project Director</JobTitle>
       <JobTitle>Lead Business Analyst</JobTitle>
+      <JobTitle>Chief Product Manager</JobTitle>
+      <JobTitle>test 0947</JobTitle>
     </JobTitles>
     <Details>
       <Detail>Oversaw new product development, business analysis, and program management globally for the private bank’s online channel, serving approximately 10,000 affluent clients and their family offices, investment managers, and other advisors in seven regulatory jurisdictions on five continents.</Detail>
@@ -66,18 +48,12 @@
       <Detail>Managed the firm-wide implementation of changes to the discretionary brokerage business model.</Detail>
     </Details>
   </Job>
-  <Job Employer="test" StartDate="" EndDate="" Guid="c0c464a7-d6d4-4d4f-9396-c9b919f7b2f2">
-    <JobTitles>
-      <JobTitle>test</JobTitle>
-      <JobTitle>1212</JobTitle>
-      <JobTitle>shouldWorkWell</JobTitle>
-    </JobTitles>
+  <Job Guid="c0c464a7-d6d4-4d4f-9396-c9b919f7b2f2" Employer="test" StartDate="" EndDate="">
+    <JobTitles />
     <Details />
   </Job>
-  <Job Employer="test" StartDate="" EndDate="" Guid="ce8cff33-778a-47d6-826d-df4c551e8186">
-    <JobTitles>
-      <JobTitle>test title</JobTitle>
-    </JobTitles>
+  <Job Guid="ce8cff33-778a-47d6-826d-df4c551e8186" Employer="test" StartDate="" EndDate="">
+    <JobTitles />
     <Details />
   </Job>
 </Jobs>

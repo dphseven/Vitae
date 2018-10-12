@@ -272,24 +272,12 @@
         public ICommand MovePublicationUpCommand { get; set; }
         public ICommand MovePublicationDownCommand { get; set; }
 
-        public ICommand FormAddExpertiseOKButtonCmd { get; set; }
-        public ICommand FormAddExpertiseCancelButtonCmd { get; set; }
         public ICommand EditExpertiseCmd { get; set; }
-        public ICommand FormEditExpertiseOKButtonCmd { get; set; }
-        public ICommand FormEditExpertiseCancelButtonCmd { get; set; }
         public ICommand DeleteExpertiseCmd { get; set; }
 
         public ICommand AddJobTitleButtonCmd { get; set; }
-        public ICommand FormAddJobTitleOKButtonCmd { get; set; }
-        public ICommand FormAddJobTitleCancelButtonCmd { get; set; }
-
         public ICommand EditJobTitleButtonCmd { get; set; }
-        public ICommand FormEditJobTitleOKButtonCmd { get; set; }
-        public ICommand FormEditJobTitleCancelButtonCmd { get; set; }
-
         public ICommand DeleteJobTitleButtonCmd { get; set; }
-        public ICommand FormDeleteJobTitleOKButtonCmd { get; set; }
-        public ICommand FormDeleteJobTitleCancelButtonCmd { get; set; }
 
         /*************************
         **************************
@@ -342,7 +330,7 @@
                 AllInExperiences = new ObservableCollection<IExperienceItem>();
 
                 AllJTSOs = new ObservableCollection<JobTitleSelectionObject>();
-                loadJobTitleSectionObjects();
+                LoadJobTitles();
 
                 updateDocumentPreview();
             }
@@ -402,6 +390,23 @@
             {
                 ls.Log(e, "Exception");
             }
+        }
+
+        public void LoadJobTitles() 
+        {
+            var listOfJobs = experienceRepos.GetAll();
+            var newList = new List<JobTitleSelectionObject>();
+
+            foreach (var job in listOfJobs)
+            {
+                var jtso = new JobTitleSelectionObject();
+                jtso.Company = job.Employer;
+                foreach (var item in job.Titles) jtso.JobTitles.Add(item);
+                jtso.PropertyChanged += Jtso_PropertyChanged;
+                newList.Add(jtso);
+            }
+            
+            AllJTSOs = new ObservableCollection<JobTitleSelectionObject>(newList);
         }
 
         public void SortOutExpertises() 
@@ -738,7 +743,7 @@
                 }
 
                 AllEmployers.Add(experienceRepos.Get(job.ID).Employer);
-                loadJobTitleSectionObjects();
+                LoadJobTitles();
 
                 FormJobTitleEmployer = string.Empty;
                 FormJobTitleJobTitle = string.Empty;
@@ -791,20 +796,6 @@
                 if (InPublications != null) foreach (IPublicationEntity item in InPublications) rdo.PublicationEntities.Add(item);
 
                 return rdo;
-            }
-        }
-
-        private void loadJobTitleSectionObjects() 
-        {
-            AllJTSOs.Clear();
-            var listOfJobs = experienceRepos.GetAll();
-            foreach (var job in listOfJobs)
-            {
-                JobTitleSelectionObject jtso = new JobTitleSelectionObject();
-                jtso.Company = job.Employer;
-                foreach (var item in job.Titles) jtso.JobTitles.Add(item);
-                AllJTSOs.Add(jtso);
-                jtso.PropertyChanged += Jtso_PropertyChanged;
             }
         }
 
@@ -894,44 +885,13 @@
                 T => movePublicationDown(),
                 T => SelectedInPublication != null && InPublications.IndexOf(SelectedInPublication) < InPublications.Count - 1);
 
-            FormAddExpertiseOKButtonCmd = new RelayCommand(
-                T => addExpertiseToRepository(),
-                T => !string.IsNullOrWhiteSpace(FormExpertiseCategory) &&
-                     !string.IsNullOrWhiteSpace(FormExpertiseExpertise));
-            FormAddExpertiseCancelButtonCmd = new RelayCommand(
-                T => { },
-                T => true);
+            // TODO: Remove following
             EditExpertiseCmd = new RelayCommand(
                 T => { },
                 T => SelectedOutExpertise != null);
-            // To be removed
-            FormEditExpertiseOKButtonCmd = new RelayCommand(
-                T => editExpertiseInRepository(),
-                T => !string.IsNullOrWhiteSpace(FormExpertiseCategory) &&
-                     !string.IsNullOrWhiteSpace(FormExpertiseExpertise));
-            // To be removed
-            FormEditExpertiseCancelButtonCmd = new RelayCommand(
-                T => 
-                {
-                    FormExpertiseCategory = string.Empty;
-                    FormExpertiseExpertise = string.Empty;
-                },
-                T => true);
             DeleteExpertiseCmd = new RelayCommand(
                 T => deleteExpertiseFromRepository(),
                 T => SelectedOutExpertise != null);
-
-            FormAddJobTitleOKButtonCmd = new RelayCommand(
-                T => addJobTitleToRepository(),
-                T => !string.IsNullOrWhiteSpace(FormJobTitleEmployer) &&
-                     !string.IsNullOrWhiteSpace(FormJobTitleJobTitle));
-            FormAddJobTitleCancelButtonCmd = new RelayCommand(
-                T =>
-                {
-                    FormJobTitleEmployer = string.Empty;
-                    FormJobTitleJobTitle = string.Empty;
-                },
-                T => true);
         }
     }
 

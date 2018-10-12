@@ -115,6 +115,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\AddJobTitleViewModel.cs" />
+    <Compile Include="ViewModel\DeleteJobTitleViewModel.cs" />
+    <Compile Include="ViewModel\EditJobTitleViewModel.cs" />
+    <Compile Include="ViewModel\IAddJobTitleViewModel.cs" />
+    <Compile Include="ViewModel\IDeleteJobTitleViewModel.cs" />
+    <Compile Include="ViewModel\IEditJobTitleViewModel.cs" />
+    <Compile Include="View\AddJobTitleView.xaml.cs">
+      <DependentUpon>AddJobTitleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DeleteJobTitleView.xaml.cs">
+      <DependentUpon>DeleteJobTitleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditJobTitleView.xaml.cs">
+      <DependentUpon>EditJobTitleView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FloatingPanel.xaml.cs">
       <DependentUpon>FloatingPanel.xaml</DependentUpon>
     </Compile>
@@ -205,6 +220,18 @@
       <DependentUpon>VitaeContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\VitaeNinjectKernel.cs" />
+    <Page Include="View\AddJobTitleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DeleteJobTitleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditJobTitleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\FloatingPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

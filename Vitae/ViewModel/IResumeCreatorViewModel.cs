@@ -70,7 +70,9 @@ namespace Vitae.ViewModel
 
         void ExportResumeToWord(string filePathAndName);
         void ExportResumeToPdf(string filePathAndName);
+        void LoadJobTitles();
         void SortOutExpertises();
         void UpdateExperienceLists();
+
     }
 }

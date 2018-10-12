@@ -43,4 +43,23 @@
             return null;
         }
     }
+
+    /// <summary>
+    /// Converter used with read-only controls... Labels, textblocks, etc.
+    /// </summary>
+    [ValueConversion(typeof(UIState), typeof(Visibility))]
+    public class CreateStateToVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            UIState state = (UIState)value;
+            if (state == UIState.Create) return Visibility.Visible;
+            else return Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
 }

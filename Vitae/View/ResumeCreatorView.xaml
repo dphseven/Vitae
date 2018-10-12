@@ -125,10 +125,12 @@
                                 Margin="10 0 0 0"/>
                         <Button Name="EditJobTitleButton" Content="edit" 
                                 Template="{StaticResource LinkLabelButtonTemplate}"
+                                Click="EditJobTitleButton_Click"
                                 Command="{Binding EditJobTitleCmd}"
                                 Margin="10 0 0 0" />
                         <Button Name="DeleteJobTitleButton" Content="delete" 
                                 Template="{StaticResource LinkLabelButtonTemplate}"
+                                Click="DeleteJobTitleButton_Click" 
                                 Command="{Binding DeleteJobTitleCmd}"
                                 Margin="10 0 0 0" />
                     </StackPanel>
