@@ -101,4 +101,40 @@
       <Detail>d5</Detail>
     </Details>
   </Job>
+  <Job Guid="da208402-debc-42a4-bfc5-6a4575070e78" Employer="someEmp" StartDate="Monday" EndDate="Tuesday">
+    <JobTitles>
+      <JobTitle>t0</JobTitle>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d0</Detail>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+    </Details>
+  </Job>
+  <Job Guid="290211e0-a977-4cd5-8f90-13f3c6050985" Employer="someEmp" StartDate="Monday" EndDate="Tuesday">
+    <JobTitles>
+      <JobTitle>t0</JobTitle>
+      <JobTitle>t1</JobTitle>
+      <JobTitle>t2</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d0</Detail>
+      <Detail>d1</Detail>
+      <Detail>d2</Detail>
+    </Details>
+  </Job>
+  <Job Guid="6c38fee4-53ba-46e5-a0b8-11bb799f8b82" Employer="updEmp" StartDate="Wednesday" EndDate="Thursday">
+    <JobTitles>
+      <JobTitle>t3</JobTitle>
+      <JobTitle>t4</JobTitle>
+      <JobTitle>t5</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>d3</Detail>
+      <Detail>d4</Detail>
+      <Detail>d5</Detail>
+    </Details>
+  </Job>
 </Jobs>

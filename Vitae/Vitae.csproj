@@ -118,6 +118,7 @@
     <Compile Include="ViewModel\AddJobTitleViewModel.cs" />
     <Compile Include="ViewModel\DeleteJobTitleViewModel.cs" />
     <Compile Include="ViewModel\EditJobTitleViewModel.cs" />
+    <Compile Include="ViewModel\IAddExpertiseViewModel.cs" />
     <Compile Include="ViewModel\IAddJobTitleViewModel.cs" />
     <Compile Include="ViewModel\IDeleteJobTitleViewModel.cs" />
     <Compile Include="ViewModel\IEditJobTitleViewModel.cs" />
@@ -284,6 +285,7 @@
     </None>
     <AppDesigner Include="Properties\" />
     <Compile Include="ViewModel\ExpertiseManagementViewModel.cs" />
+    <Compile Include="ViewModel\AddExpertiseViewModel.cs" />
     <None Include="Vitae_SNKlt.pfx" />
   </ItemGroup>
   <ItemGroup>
