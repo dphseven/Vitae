@@ -2,20 +2,24 @@
 {
     using Ninject;
     using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel;
+    using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Windows.Input;
     using Vitae.Model;
 
-    public class AddExpertiseViewModel : IAddExpertiseViewModel
+    public class EditExpertiseViewModel : IEditExpertiseViewModel
     {
         private IExpertiseRepository repos;
 
         private UIState formState;
         private IExpertiseEntity entity;
+        private List<IExpertiseEntity> allExpertiseEntities;
 
         public UIState FormState 
-         {
+        {
             get { return formState; }
             set
             {
@@ -36,7 +40,13 @@
                 notifyPropertyChanged();
             }
         }
-        public string Category 
+        public ObservableCollection<string> Categories 
+        {
+            get { return new ObservableCollection<string>(allExpertiseEntities
+                                                          .Select(T => T.Category)
+                                                          .Distinct()); }
+        }
+        public string SelectedCategory 
         {
             get
             {
@@ -47,9 +57,16 @@
             {
                 entity.Category = value;
                 notifyPropertyChanged();
+                notifyPropertyChanged(nameof(ExpertiseItems));
             }
         }
-        public string Expertise 
+        public ObservableCollection<string> ExpertiseItems 
+        {
+            get {return new ObservableCollection<string>(allExpertiseEntities
+                                                         .Where(T => T.Category == SelectedCategory)
+                                                         .Select(T => T.Expertise)); }
+        }
+        public string SelectedExpertiseItem 
         {
             get
             {
@@ -58,45 +75,61 @@
             }
             set
             {
-                entity.Expertise = value;
+                if (FormState == UIState.View)
+                {
+                    entity = allExpertiseEntities.First(T => T.Category == SelectedCategory && T.Expertise == value);
+                    FormState = UIState.Edit;
+                }
+                else entity.Expertise = value;
                 notifyPropertyChanged();
             }
         }
 
-        public ICommand AddButtonCmd { get; set; }
+        public ICommand EditButtonCmd { get; set; }
         public ICommand CancelButtonCmd { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-		// Public Methods
+        // Public Methods
 
-        public AddExpertiseViewModel(IExpertiseRepository repository) 
+        public EditExpertiseViewModel(IExpertiseRepository repository) 
         {
             repos = repository;
             using (var ioc = new VitaeNinjectKernel())
             {
                 entity = ioc.Get<IExpertiseEntity>();
             }
+
+            loadExpertiseItems();
             setUpRelayCommands();
+
+            FormState = UIState.View;
         }
 
-		// Private Methods
+        // Private Methods
 
-        private void addExpertiseToRepository() 
+        private void loadExpertiseItems() 
         {
-            repos.Add(entity);
+            allExpertiseEntities = repos.GetAll().ToList();
+            notifyPropertyChanged(nameof(Categories));
+        }
+
+        private void updateExpertise() 
+        {
+            repos.Update(entity.ID, entity);
         }
 
         private void reset() 
         {
             repos = null;
             entity = null;
-		}
+            allExpertiseEntities = null;
+        }
 
         private void setUpRelayCommands() 
         {
-            AddButtonCmd = new RelayCommand(
-                T => { addExpertiseToRepository(); reset(); },
+            EditButtonCmd = new RelayCommand(
+                T => { updateExpertise(); reset(); },
                 T => true);
             CancelButtonCmd = new RelayCommand(
                 T => { reset(); },
@@ -107,5 +140,6 @@
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }

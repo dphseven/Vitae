@@ -60,13 +60,12 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var exRepos = new ConstructorArgument("repository", ioc.Get<IExpertiseRepository>());
-                var exEntity = new ConstructorArgument("entity", (object)null);
-                var emVM = ioc.Get<IExpertiseManagementViewModel>(exRepos, exEntity);
+                var aeVM = ioc.Get<IAddExpertiseViewModel>(exRepos);
 
-                var emView = new ExpertiseManagementView(emVM);
-                emView.IsVisibleChanged += sortOutExpertises;
+                var aeView = new AddExpertiseView(aeVM);
+                aeView.IsVisibleChanged += sortOutExpertises;
 
-                ucHost.Content = emView;
+                ucHost.Content = aeView;
                 ucHost.Visibility = Visibility.Visible;
             }
         }
@@ -75,9 +74,8 @@
         {
             using (var ioc = new VitaeNinjectKernel())
             {
-                var emVM = ioc.Get<IExpertiseManagementViewModel>();
-                emVM.InjectExpertiseEntity(vm.SelectedOutExpertise);
-                var emView = new ExpertiseManagementView(emVM);
+                var emVM = ioc.Get<IEditExpertiseViewModel>();
+                var emView = new EditExpertiseView(emVM);
 
                 emView.IsVisibleChanged += sortOutExpertises;
 
@@ -127,7 +125,20 @@
             }
         }
 
+        private void DeleteJobTitleButton_Click(object sender, RoutedEventArgs e) 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var djtVM = ioc.Get<IDeleteJobTitleViewModel>();
+                djtVM.FormState = UIState.View;
 
+                var djtView = new DeleteJobTitleView(djtVM);
+                djtView.IsVisibleChanged += refreshJobTitles;
+
+                ucHost.Content = djtView;
+                ucHost.Visibility = Visibility.Visible;
+            }
+        }
 
         private void refreshJobTitles(object sender, DependencyPropertyChangedEventArgs e) 
         {
@@ -194,23 +205,6 @@
             if (sfd.ShowDialog() == true)
             {
                 vm.ExportResumeToPdf(sfd.FileName);
-            }
-        }
-
-        // Following are all in progress
-
-        private void DeleteJobTitleButton_Click(object sender, RoutedEventArgs e) 
-        {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var djtVM = ioc.Get<IDeleteJobTitleViewModel>();
-                djtVM.FormState = UIState.View;
-
-                var djtView = new DeleteJobTitleView(djtVM);
-                djtView.IsVisibleChanged += refreshJobTitles;
-
-                ucHost.Content = djtView;
-                ucHost.Visibility = Visibility.Visible;
             }
         }
 

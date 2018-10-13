@@ -59,7 +59,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Vitae_SNKlt.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>VitaeSNK.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -69,10 +69,11 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <ManifestCertificateThumbprint>ADC12D8778965EE6CE0206AE09F4ACEBF3C667BE</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>4E0EC66191029A6E85F5B58C82CC864E6EB9E09E</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Vitae_SNKlt.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
@@ -87,7 +88,6 @@
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
@@ -115,6 +115,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\EditExpertiseViewModel.cs" />
+    <Compile Include="ViewModel\IEditExpertiseViewModel.cs" />
     <Compile Include="ViewModel\AddJobTitleViewModel.cs" />
     <Compile Include="ViewModel\DeleteJobTitleViewModel.cs" />
     <Compile Include="ViewModel\EditJobTitleViewModel.cs" />
@@ -122,11 +124,17 @@
     <Compile Include="ViewModel\IAddJobTitleViewModel.cs" />
     <Compile Include="ViewModel\IDeleteJobTitleViewModel.cs" />
     <Compile Include="ViewModel\IEditJobTitleViewModel.cs" />
+    <Compile Include="View\AddExpertiseView.xaml.cs">
+      <DependentUpon>AddExpertiseView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddJobTitleView.xaml.cs">
       <DependentUpon>AddJobTitleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DeleteJobTitleView.xaml.cs">
       <DependentUpon>DeleteJobTitleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditExpertiseView.xaml.cs">
+      <DependentUpon>EditExpertiseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditJobTitleView.xaml.cs">
       <DependentUpon>EditJobTitleView.xaml</DependentUpon>
@@ -221,11 +229,19 @@
       <DependentUpon>VitaeContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\VitaeNinjectKernel.cs" />
+    <Page Include="View\AddExpertiseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddJobTitleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DeleteJobTitleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditExpertiseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -286,7 +302,7 @@
     <AppDesigner Include="Properties\" />
     <Compile Include="ViewModel\ExpertiseManagementViewModel.cs" />
     <Compile Include="ViewModel\AddExpertiseViewModel.cs" />
-    <None Include="Vitae_SNKlt.pfx" />
+    <None Include="VitaeSNK.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -218,38 +218,6 @@
             }
         }
 
-        // Job Title Form Properties
-        private Guid formJobTitleID;
-        public Guid FormJobTitleID 
-        {
-            get { return formJobTitleID; }
-            set
-            {
-                formJobTitleID = value;
-                notifyPropertyChanged();
-            }
-        }
-        private string formJobTitleJobTitle;
-        public string FormJobTitleJobTitle
-        {
-            get { return formJobTitleJobTitle; }
-            set
-            {
-                formJobTitleJobTitle = value;
-                notifyPropertyChanged();
-            }
-        }
-        private string formJobTitleEmployer;
-        public string FormJobTitleEmployer
-        {
-            get { return formJobTitleEmployer; }
-            set
-            {
-                formJobTitleEmployer = value;
-                notifyPropertyChanged();
-            }
-        }
-
         // Events
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -271,14 +239,7 @@
         public ICommand RemovePublicationCommand { get; set; }
         public ICommand MovePublicationUpCommand { get; set; }
         public ICommand MovePublicationDownCommand { get; set; }
-
-        public ICommand EditExpertiseCmd { get; set; }
-        public ICommand DeleteExpertiseCmd { get; set; }
-
-        public ICommand AddJobTitleButtonCmd { get; set; }
-        public ICommand EditJobTitleButtonCmd { get; set; }
-        public ICommand DeleteJobTitleButtonCmd { get; set; }
-
+        
         /*************************
         **************************
         ***** PUBLIC METHODS *****
@@ -690,77 +651,6 @@
             }
         }
 
-        private void addExpertiseToRepository() 
-        {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var entity = ioc.Get<IExpertiseEntity>();
-                entity.Category = FormExpertiseCategory;
-                entity.Expertise = FormExpertiseExpertise;
-
-                FormExpertiseID = expertiseRepos.Add(entity);
-
-                OutExpertises.Add(entity);
-                SortOutExpertises();
-            }
-        }
-        private void editExpertiseInRepository() 
-        {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var entity = SelectedOutExpertise;
-                entity.Category = FormExpertiseCategory;
-                entity.Expertise = FormExpertiseExpertise;
-                entity.ID = FormExpertiseID;
-
-                expertiseRepos.Update(entity.ID, entity);
-
-                SortOutExpertises();
-            }
-        }
-        private void deleteExpertiseFromRepository() 
-        {
-            expertiseRepos.Remove(SelectedOutExpertise.ID);
-            SortOutExpertises();
-        }
-
-        private void addJobTitleToRepository() 
-        {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var job = experienceRepos.GetAll().FirstOrDefault(T => T.Employer == FormJobTitleEmployer);
-                if (job == null)
-                {
-                    var experience = ioc.Get<IExperienceEntity>();
-                    experience.Employer = FormJobTitleEmployer;
-                    experience.Titles.Add(FormJobTitleJobTitle);
-                    FormJobTitleID = experienceRepos.Add(experience);
-                }
-                else
-                {
-                    job.Titles.Add(FormJobTitleJobTitle);
-                    experienceRepos.Update(job.ID, job);
-                }
-
-                AllEmployers.Add(experienceRepos.Get(job.ID).Employer);
-                LoadJobTitles();
-
-                FormJobTitleEmployer = string.Empty;
-                FormJobTitleJobTitle = string.Empty;
-                FormJobTitleID = Guid.Empty;
-
-                notifyPropertyChanged(nameof(AllEmployers));
-            }
-        }
-        private void editJobTitleInRepository() 
-        {
-            
-        }
-        private void deleteJobTitleFromRepository() 
-        {
-
-        }
-
         private IResumeDataObject createRdo() 
         {
             using (var ioc = new VitaeNinjectKernel())
@@ -884,14 +774,6 @@
             MovePublicationDownCommand = new RelayCommand(
                 T => movePublicationDown(),
                 T => SelectedInPublication != null && InPublications.IndexOf(SelectedInPublication) < InPublications.Count - 1);
-
-            // TODO: Remove following
-            EditExpertiseCmd = new RelayCommand(
-                T => { },
-                T => SelectedOutExpertise != null);
-            DeleteExpertiseCmd = new RelayCommand(
-                T => deleteExpertiseFromRepository(),
-                T => SelectedOutExpertise != null);
         }
     }
 
