@@ -7,7 +7,7 @@
     using System.Windows.Input;
     using Vitae.Model;
 
-    public class DeleteExperienceViewModel : IDeleteExperienceViewModel
+    public class DeleteExperienceViewModel : ViewModelBase, IDeleteExperienceViewModel
     {
         private IExperienceRepository repos;
 
@@ -55,8 +55,6 @@
         public ICommand DeleteCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         // Public Methods
 
         public DeleteExperienceViewModel(IExperienceRepository repository) 
@@ -96,9 +94,5 @@
                 T => true);
         }
 
-        private void notifyPropertyChanged([CallerMemberName] string propertyName = "") 
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

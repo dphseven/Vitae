@@ -7,7 +7,7 @@
     using System.Windows.Input;
     using Vitae.Model;
 
-    public class AddJobTitleViewModel : IAddJobTitleViewModel
+    public class AddJobTitleViewModel : ViewModelBase, IAddJobTitleViewModel
     {
         IExperienceRepository repos;
 
@@ -47,8 +47,6 @@
         public ICommand AddJobTitleCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         // Public Methods
 
         public AddJobTitleViewModel(IExperienceRepository repository) 
@@ -86,11 +84,6 @@
             CancelCmd = new RelayCommand(
                 T => { },
                 T => true);
-        }
-
-        private void notifyPropertyChanged([CallerMemberName] string propertyName = "") 
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }

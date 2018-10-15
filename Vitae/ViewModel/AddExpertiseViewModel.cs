@@ -1,13 +1,10 @@
 ﻿namespace Vitae.ViewModel
 {
     using Ninject;
-    using System;
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
     using System.Windows.Input;
     using Vitae.Model;
 
-    public class AddExpertiseViewModel : IAddExpertiseViewModel
+    public class AddExpertiseViewModel : ViewModelBase, IAddExpertiseViewModel
     {
         private IExpertiseRepository repos;
 
@@ -53,8 +50,6 @@
         public ICommand AddButtonCmd { get; set; }
         public ICommand CancelButtonCmd { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
 		// Public Methods
 
         public AddExpertiseViewModel(IExpertiseRepository repository) 
@@ -90,9 +85,5 @@
                 T => true);
         }
 
-        private void notifyPropertyChanged([CallerMemberName] string propertyName = "") 
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

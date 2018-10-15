@@ -6,7 +6,7 @@
     using System.Windows.Input;
     using Vitae.Model;
 
-    public class EditExperienceViewModel : IEditExperienceViewModel
+    public class EditExperienceViewModel : ViewModelBase, IEditExperienceViewModel
     {
         private IExperienceRepository repos;
 
@@ -70,8 +70,6 @@
         public ICommand EditCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         // Public Methods
 
         public EditExperienceViewModel(IExperienceRepository repository) 
@@ -114,9 +112,5 @@
                 T => true);
         }
 
-        private void notifyPropertyChanged([CallerMemberName] string propertyName = "") 
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

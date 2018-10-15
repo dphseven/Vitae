@@ -131,6 +131,7 @@
     <Compile Include="ViewModel\IAddJobTitleViewModel.cs" />
     <Compile Include="ViewModel\IDeleteJobTitleViewModel.cs" />
     <Compile Include="ViewModel\IEditJobTitleViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddExperienceView.xaml.cs">
       <DependentUpon>AddExperienceView.xaml</DependentUpon>
     </Compile>
@@ -323,7 +324,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <Compile Include="ViewModel\ExpertiseManagementViewModel.cs" />
     <Compile Include="ViewModel\AddExpertiseViewModel.cs" />
     <None Include="VitaeSNK.pfx" />
   </ItemGroup>

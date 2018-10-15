@@ -7,7 +7,7 @@
     using System.Linq;
     using System.Runtime.CompilerServices;
 
-    public class KeywordToolViewModel : INotifyPropertyChanged, IKeywordToolViewModel
+    public class KeywordToolViewModel : ViewModelBase, INotifyPropertyChanged, IKeywordToolViewModel
     {
         IKeywordService ks;
 
@@ -54,8 +54,6 @@
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public KeywordToolViewModel(IKeywordService iks) 
         {
             ks = iks;
@@ -77,9 +75,5 @@
             MessageDisplayed = MessageDisplayed.Remove(MessageDisplayed.Length - 2);
         }
 
-        private void notifyPropertyChanged([CallerMemberName] string propertyName = "") 
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

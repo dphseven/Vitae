@@ -13,7 +13,7 @@
     using System.Windows.Input;
     using System.Collections.Generic;
 
-    public class ResumeCreatorViewModel : INotifyPropertyChanged, IResumeCreatorViewModel
+    public class ResumeCreatorViewModel : ViewModelBase, INotifyPropertyChanged, IResumeCreatorViewModel
     {
         // Dependencies
         private IResumeCreationService rcs;
@@ -217,9 +217,6 @@
                 notifyPropertyChanged();
             }
         }
-
-        // Events
-        public event PropertyChangedEventHandler PropertyChanged;
 
         // Commands
 
@@ -734,12 +731,6 @@
             }
         }
 
-        private void notifyPropertyChanged([CallerMemberName] string propertyName = "") 
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            updateDocumentPreview();
-        }
-
         private void setUpRelayCommands() 
         {
             AddExpertiseCommand = new RelayCommand(T => addExpertise(), T => SelectedOutExpertise != null);
@@ -777,7 +768,7 @@
         }
     }
 
-    public class JobTitleSelectionObject : INotifyPropertyChanged
+    public class JobTitleSelectionObject : ViewModelBase, INotifyPropertyChanged
     {
         private string company;
         private string selectedJobTitle;
@@ -802,16 +793,10 @@
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public JobTitleSelectionObject() 
         {
             JobTitles = new ObservableCollection<string>();
         }
 
-        private void notifyPropertyChanged([CallerMemberName] string propertyName = "") 
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

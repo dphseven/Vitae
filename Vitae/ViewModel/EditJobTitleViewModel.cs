@@ -6,7 +6,7 @@
     using System.Windows.Input;
     using Vitae.Model;
 
-    public class EditJobTitleViewModel : IEditJobTitleViewModel
+    public class EditJobTitleViewModel : ViewModelBase, IEditJobTitleViewModel
     {
         private IExperienceRepository repos;
 
@@ -63,8 +63,6 @@
         public ICommand EditJobTitleCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         // Public Methods
 
         public EditJobTitleViewModel(IExperienceRepository repository) 
@@ -113,9 +111,5 @@
                 T => true);
         }
 
-        private void notifyPropertyChanged([CallerMemberName] string propertyName = "") 
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

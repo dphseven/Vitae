@@ -11,7 +11,7 @@
     using System.Windows.Input;
     using Vitae.Model;
 
-    public class DeleteExpertiseViewModel : IDeleteExpertiseViewModel
+    public class DeleteExpertiseViewModel : ViewModelBase, IDeleteExpertiseViewModel
     {
         private IExpertiseRepository repos;
 
@@ -73,8 +73,6 @@
         public ICommand DeleteCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged; 
-
         // Public Methods
 
         public DeleteExpertiseViewModel(IExpertiseRepository repository) 
@@ -115,9 +113,5 @@
 
         }
 
-        private void notifyPropertyChanged([CallerMemberName] string propertyName = "") 
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

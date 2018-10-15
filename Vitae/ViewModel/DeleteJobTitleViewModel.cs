@@ -7,7 +7,7 @@
     using System.Windows.Input;
     using Vitae.Model;
 
-    public class DeleteJobTitleViewModel : IDeleteJobTitleViewModel
+    public class DeleteJobTitleViewModel : ViewModelBase, IDeleteJobTitleViewModel
     {
         private IExperienceRepository repos;
 
@@ -45,8 +45,6 @@
 
         public ICommand DeleteJobTitleCmd { get; set; }
         public ICommand CancelCmd { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         // Public Methods
 
@@ -90,9 +88,5 @@
                 T => true);
         }
 
-        private void notifyPropertyChanged([CallerMemberName] string propertyName = "") 
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

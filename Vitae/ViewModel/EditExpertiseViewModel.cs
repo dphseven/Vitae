@@ -10,7 +10,7 @@
     using System.Windows.Input;
     using Vitae.Model;
 
-    public class EditExpertiseViewModel : IEditExpertiseViewModel
+    public class EditExpertiseViewModel : ViewModelBase, IEditExpertiseViewModel
     {
         private IExpertiseRepository repos;
 
@@ -89,8 +89,6 @@
         public ICommand EditButtonCmd { get; set; }
         public ICommand CancelButtonCmd { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         // Public Methods
 
         public EditExpertiseViewModel(IExpertiseRepository repository) 
@@ -135,11 +133,6 @@
             CancelButtonCmd = new RelayCommand(
                 T => { reset(); },
                 T => true);
-        }
-
-        private void notifyPropertyChanged([CallerMemberName] string propertyName = "") 
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }
