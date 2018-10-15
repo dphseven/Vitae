@@ -23,19 +23,6 @@
                 notifyPropertyChanged();
             }
         }
-        public Guid ID 
-        {
-            get
-            {
-                if (entity != null) return entity.ID;
-                else return Guid.Empty;
-            }
-            set
-            {
-                entity.ID = value;
-                notifyPropertyChanged();
-            }
-        }
         public string Category 
         {
             get

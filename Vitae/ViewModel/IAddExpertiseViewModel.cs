@@ -6,7 +6,6 @@
 
     public interface IAddExpertiseViewModel : INotifyPropertyChanged
     {
-        Guid ID { get; set; }
         string Category { get; set; }
         string Expertise { get; set; }
 

@@ -34,15 +34,6 @@
                 notifyPropertyChanged();
             }
         }
-        public Guid EmployerID 
-        {
-            get
-            {
-                if (SelectedEmployer != null) return SelectedEmployer.ID;
-                else return Guid.Empty;
-            }
-            set { }
-        }
         public string JobTitle 
         {
             get { return jobTitle; }
@@ -74,12 +65,12 @@
 
         private void addJobTitle() 
         {
-            if (EmployerID == null ||
-                EmployerID == Guid.Empty ||
+            if (SelectedEmployer.ID == null ||
+                SelectedEmployer.ID == Guid.Empty ||
                 string.IsNullOrWhiteSpace(JobTitle)) return;
 
             SelectedEmployer.Titles.Add(JobTitle);
-            repos.Update(EmployerID, SelectedEmployer);
+            repos.Update(SelectedEmployer.ID, SelectedEmployer);
         }
 
         private void loadEmployers() 

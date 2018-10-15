@@ -144,7 +144,6 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var djtVM = ioc.Get<IDeleteJobTitleViewModel>();
-                djtVM.FormState = UIState.View;
 
                 var djtView = new DeleteJobTitleView(djtVM);
                 djtView.IsVisibleChanged += refreshJobTitles;

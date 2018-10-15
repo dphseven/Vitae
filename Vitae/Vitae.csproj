@@ -140,6 +140,7 @@
     <Compile Include="View\AddJobTitleView.xaml.cs">
       <DependentUpon>AddJobTitleView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Converters\GuidToStringConverter.cs" />
     <Compile Include="View\DeleteExperienceView.xaml.cs">
       <DependentUpon>DeleteExperienceView.xaml</DependentUpon>
     </Compile>
@@ -157,9 +158,6 @@
     </Compile>
     <Compile Include="View\EditJobTitleView.xaml.cs">
       <DependentUpon>EditJobTitleView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\FloatingPanel.xaml.cs">
-      <DependentUpon>FloatingPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Model\Entities\GeneralInfoEntity.cs" />
@@ -234,9 +232,6 @@
     <Compile Include="ViewModel\ContainerViewModel.cs" />
     <Compile Include="ViewModel\UIState.cs" />
     <Compile Include="View\Converters\UiStateToVisibilityConverters.cs" />
-    <Compile Include="View\ExpertiseManagementView.xaml.cs">
-      <DependentUpon>ExpertiseManagementView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\IExpertiseManagementViewModel.cs" />
     <Compile Include="ViewModel\IDeleteExperienceViewModel.cs" />
     <Compile Include="View\KeywordToolView.xaml.cs">
@@ -282,14 +277,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EditJobTitleView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\FloatingPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ExpertiseManagementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

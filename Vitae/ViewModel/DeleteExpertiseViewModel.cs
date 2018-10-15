@@ -17,6 +17,7 @@
 
         private ObservableCollection<IExpertiseEntity> allExpertises;
         private string selectedCategory;
+        private IExpertiseEntity selectedExpertise;
 
         public Guid ExpertiseID 
         {
@@ -55,7 +56,19 @@
                 else return new ObservableCollection<IExpertiseEntity>();
             }
         }
-        public IExpertiseEntity SelectedExpertise { get; set; }
+        public IExpertiseEntity SelectedExpertise
+        {
+            get
+            {
+                return selectedExpertise;
+            }
+            set
+            {
+                selectedExpertise = value;
+                notifyPropertyChanged();
+                notifyPropertyChanged(nameof(ExpertiseID));
+            }
+        }
 
         public ICommand DeleteCmd { get; set; }
         public ICommand CancelCmd { get; set; }

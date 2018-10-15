@@ -38,7 +38,7 @@
             <Label Content="Experience" 
                    Grid.Row="3" Grid.Column="1" />
 
-            <Label Content="{Binding SelectedEmployer.ID}" 
+            <Label Content="{Binding SelectedEmployer.ID, Converter={StaticResource GuidToStringConverter}}" 
                    Margin="3" Grid.Row="1" Grid.Column="2" />
 
             <ComboBox ItemsSource="{Binding Employers}" 

@@ -30,6 +30,7 @@
             {
                 selectedEmployer = value;
                 notifyPropertyChanged();
+                notifyPropertyChanged(nameof(EmployerID));
                 notifyPropertyChanged(nameof(Experiences));
             }
         }

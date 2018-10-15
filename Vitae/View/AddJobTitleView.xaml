@@ -32,15 +32,10 @@
                    Style="{StaticResource InterstitialTitle}" 
                    Grid.Row="0" Grid.Column="0" />
 
-            <Label Content="Employer ID" 
-                   Grid.Row="1" Grid.Column="1" />
             <Label Content="Employer" 
                    Grid.Row="2" Grid.Column="1" />
             <Label Content="Job Title" 
                    Grid.Row="3" Grid.Column="1" />
-
-            <Label Content="{Binding EmployerID}" 
-                   Margin="3" Grid.Row="1" Grid.Column="2" />
 
             <ComboBox ItemsSource="{Binding Employers}"
                       DisplayMemberPath="Employer"

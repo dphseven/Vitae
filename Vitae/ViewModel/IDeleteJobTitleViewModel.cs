@@ -8,12 +8,10 @@
 
     public interface IDeleteJobTitleViewModel : INotifyPropertyChanged
     {
-        UIState FormState { get; set; }
-
-        Guid EmployerID { get; set; }
+        Guid EmployerID { get; }
         ObservableCollection<IExperienceEntity> Employers { get; set; }
         IExperienceEntity SelectedEmployer { get; set; }
-        string SelectedJobTitle {get;set;}
+        string SelectedJobTitle { get; set; }
 
         ICommand DeleteJobTitleCmd { get; set; }
         ICommand CancelCmd { get; set; }

@@ -28,15 +28,10 @@
                    Style="{StaticResource InterstitialTitle}" 
                    Grid.Row="0" Grid.Column="0" />
 
-            <Label Content="ID" 
-                   Grid.Row="1" Grid.Column="1" />
             <Label Content="Category" 
                    Grid.Row="2" Grid.Column="1" />
             <Label Content="Expertise" 
                    Grid.Row="3" Grid.Column="1" />
-
-            <Label Content="{Binding ID}" 
-                   Margin="3" Grid.Row="1" Grid.Column="2" />
 
             <TextBox Text="{Binding Category}" 
                      Margin="3" Grid.Row="2" Grid.Column="2" />

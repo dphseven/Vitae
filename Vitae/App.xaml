@@ -80,6 +80,8 @@
         <view:EditStateToVisibilityConverter x:Key="EditStateToVisibilityConverter" />
         <view:CreateStateToVisibilityConverter x:Key="CreateStateToVisibilityConverter" />
 
+        <view:GuidToStringConverter x:Key="GuidToStringConverter" />
+
     </Application.Resources>
 
 </Application>

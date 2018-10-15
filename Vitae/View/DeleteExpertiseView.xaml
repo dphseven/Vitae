@@ -39,7 +39,7 @@
             <Label Content="Expertise" 
                    Grid.Row="3" Grid.Column="1" />
 
-            <Label Content="{Binding ExpertiseID}" 
+            <Label Content="{Binding ExpertiseID, Converter={StaticResource GuidToStringConverter}}" 
                    Margin="3" Grid.Row="1" Grid.Column="2" />
 
             <ComboBox ItemsSource="{Binding Categories}"

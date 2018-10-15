@@ -11,27 +11,15 @@
     {
         private IExperienceRepository repos;
 
-        private UIState formState;
-        private Guid employerID;
         private IExperienceEntity selectedEmployer;
         private string selectedJobTitle;
 
-        public UIState FormState 
-        {
-            get { return formState; }
-            set
-            {
-                formState = value;
-                notifyPropertyChanged();
-            }
-        }
         public Guid EmployerID 
         {
-            get { return employerID; }
-            set
+            get
             {
-                employerID = value;
-                notifyPropertyChanged();
+                if (selectedEmployer != null) return selectedEmployer.ID;
+                else return Guid.Empty;
             }
         }
         public ObservableCollection<IExperienceEntity> Employers { get; set; }
@@ -42,6 +30,7 @@
             {
                 selectedEmployer = value;
                 notifyPropertyChanged();
+                notifyPropertyChanged(nameof(EmployerID));
             }
         }
         public string SelectedJobTitle 

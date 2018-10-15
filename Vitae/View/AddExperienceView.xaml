@@ -29,15 +29,10 @@
                    Style="{StaticResource InterstitialTitle}" 
                    Grid.Row="0" Grid.Column="0" />
 
-            <Label Content="Employer ID" 
-                   Grid.Row="1" Grid.Column="1" />
             <Label Content="Employer" 
                    Grid.Row="2" Grid.Column="1" />
             <Label Content="Experience Detail" 
                    Grid.Row="3" Grid.Column="1" />
-
-            <Label Content="{Binding SelectedExperience.ID}" 
-                   Margin="3" Grid.Row="1" Grid.Column="2" />
 
             <TextBox Text="{Binding Employer}" 
                      Margin="3" Grid.Row="2" Grid.Column="2" />

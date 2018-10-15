@@ -82,6 +82,7 @@
                 }
                 else entity.Expertise = value;
                 notifyPropertyChanged();
+                notifyPropertyChanged(nameof(ID));
             }
         }
 

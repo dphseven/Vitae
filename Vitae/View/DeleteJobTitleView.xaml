@@ -39,7 +39,7 @@
             <Label Content="Job Title" 
                    Grid.Row="3" Grid.Column="1" />
 
-            <Label Content="{Binding EmployerID}" 
+            <Label Content="{Binding EmployerID, Converter={StaticResource GuidToStringConverter}}" 
                    Margin="3" Grid.Row="1" Grid.Column="2" />
 
             <ComboBox ItemsSource="{Binding Employers}"
