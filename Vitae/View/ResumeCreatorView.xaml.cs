@@ -74,12 +74,26 @@
         {
             using (var ioc = new VitaeNinjectKernel())
             {
-                var emVM = ioc.Get<IEditExpertiseViewModel>();
-                var emView = new EditExpertiseView(emVM);
+                var eeVM = ioc.Get<IEditExpertiseViewModel>();
+                var eeView = new EditExpertiseView(eeVM);
 
-                emView.IsVisibleChanged += sortOutExpertises;
+                eeView.IsVisibleChanged += sortOutExpertises;
 
-                ucHost.Content = emView;
+                ucHost.Content = eeView;
+                ucHost.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void DeleteExpertiseButton_Click(object sender, RoutedEventArgs e) 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var deVM = ioc.Get<IDeleteExpertiseViewModel>();
+                var deView = new DeleteExpertiseView(deVM);
+
+                deView.IsVisibleChanged += sortOutExpertises;
+
+                ucHost.Content = deView;
                 ucHost.Visibility = Visibility.Visible;
             }
         }
@@ -162,6 +176,53 @@
             vm.UpdateExperienceLists();
         }
 
+        private void AddExperienceButton_Click(object sender, RoutedEventArgs e) 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var aeVM = ioc.Get<IAddExperienceViewModel>();
+
+                var aeView = new AddExperienceView(aeVM);
+                aeView.IsVisibleChanged += reloadExperiences;
+
+                ucHost.Content = aeView;
+                ucHost.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void EditExperienceButton_Click(object sender, RoutedEventArgs e) 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var eeVM = ioc.Get<IEditExperienceViewModel>();
+
+                var eeView = new EditExperienceView(eeVM);
+                eeView.IsVisibleChanged += reloadExperiences;
+
+                ucHost.Content = eeView;
+                ucHost.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void DeleteExperienceButton_Click(object sender, RoutedEventArgs e) 
+        {
+            using (var ioc = new VitaeNinjectKernel()) 
+            {
+                var deVM = ioc.Get<IDeleteExperienceViewModel>();
+
+                var deView = new DeleteExperienceView(deVM);
+                deView.IsVisibleChanged += reloadExperiences; ;
+
+                ucHost.Content = deView;
+                ucHost.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void reloadExperiences(object sender, DependencyPropertyChangedEventArgs e) 
+        {
+            vm.UpdateExperienceLists();
+        }
+
         // Education Area
 
         private void EducationBox_MouseDoubleClick(object sender, MouseButtonEventArgs e) 
@@ -208,5 +269,6 @@
             }
         }
 
+        
     }
 }

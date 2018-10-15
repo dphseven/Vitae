@@ -70,12 +70,11 @@
                                 Margin="10 0 0 0"/>
                         <Button Name="EditExpertiseButton" Content="edit" 
                                 Template="{StaticResource LinkLabelButtonTemplate}"
-                                Command="{Binding EditExpertiseCmd}"
                                 Click="EditExpertiseButton_Click"
                                 Margin="10 0 0 0" />
                         <Button Name="DeleteExpertiseButton" Content="delete" 
                                 Template="{StaticResource LinkLabelButtonTemplate}"
-                                Command="{Binding DeleteExpertiseCmd}"
+                                Click="DeleteExpertiseButton_Click"
                                 Margin="10 0 0 0" />
                     </StackPanel>
                 </Expander.Header>
@@ -126,12 +125,10 @@
                         <Button Name="EditJobTitleButton" Content="edit" 
                                 Template="{StaticResource LinkLabelButtonTemplate}"
                                 Click="EditJobTitleButton_Click"
-                                Command="{Binding EditJobTitleCmd}"
                                 Margin="10 0 0 0" />
                         <Button Name="DeleteJobTitleButton" Content="delete" 
                                 Template="{StaticResource LinkLabelButtonTemplate}"
                                 Click="DeleteJobTitleButton_Click" 
-                                Command="{Binding DeleteJobTitleCmd}"
                                 Margin="10 0 0 0" />
                     </StackPanel>
                 </Expander.Header>
@@ -165,14 +162,15 @@
                         <Label Content="Experience" />
                         <Button Name="AddExperienceButton" Content="add"
                                 Template="{StaticResource LinkLabelButtonTemplate}"
+                                Click="AddExperienceButton_Click"
                                 Margin="10 0 0 0"/>
                         <Button Name="EditExperienceButton" Content="edit" 
                                 Template="{StaticResource LinkLabelButtonTemplate}"
-                                Command="{Binding EditExperienceCmd}"
+                                Click="EditExperienceButton_Click"
                                 Margin="10 0 0 0" />
                         <Button Name="DeleteExperienceButton" Content="delete" 
                                 Template="{StaticResource LinkLabelButtonTemplate}"
-                                Command="{Binding DeleteExperienceCmd}"
+                                Click="DeleteExperienceButton_Click"
                                 Margin="10 0 0 0" />
                     </StackPanel>
                 </Expander.Header>
@@ -231,11 +229,9 @@
                                 Margin="10 0 0 0"/>
                         <Button Name="EditEducationButton" Content="edit" 
                                 Template="{StaticResource LinkLabelButtonTemplate}"
-                                Command="{Binding EditEducationCmd}"
                                 Margin="10 0 0 0" />
                         <Button Name="DeleteEducationButton" Content="delete" 
                                 Template="{StaticResource LinkLabelButtonTemplate}"
-                                Command="{Binding DeleteEducationCmd}"
                                 Margin="10 0 0 0" />
                     </StackPanel>
                 </Expander.Header>
@@ -286,11 +282,9 @@
                                 Margin="10 0 0 0"/>
                         <Button Name="EditPublicationButton" Content="edit" 
                                 Template="{StaticResource LinkLabelButtonTemplate}"
-                                Command="{Binding EditPublicationCmd}"
                                 Margin="10 0 0 0" />
                         <Button Name="DeletePublicationButton" Content="delete" 
                                 Template="{StaticResource LinkLabelButtonTemplate}"
-                                Command="{Binding DeletePublicationCmd}"
                                 Margin="10 0 0 0" />
                     </StackPanel>
                 </Expander.Header>

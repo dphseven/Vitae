@@ -220,4 +220,16 @@
     <Category>cat</Category>
     <Expertise>exp</Expertise>
   </ExpertiseItem>
+  <ExpertiseItem Guid="66c2ad75-d7da-4836-bd31-a00c10c85b62">
+    <Category>cat</Category>
+    <Expertise>exp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="9d338942-f18a-4c22-ace7-6abfe3b051fe">
+    <Category>cat</Category>
+    <Expertise>exp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="d9e8578b-8f2e-4e05-9ac1-6165b094a2c8">
+    <Category>cat</Category>
+    <Expertise>exp</Expertise>
+  </ExpertiseItem>
 </Expertise>

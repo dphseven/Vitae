@@ -12,7 +12,7 @@
     </JobTitles>
     <Details>
       <Detail>Oversaw new product development, business analysis, and program management globally for the private bank’s online channel, serving approximately 10,000 affluent clients and their family offices, investment managers, and other advisors in seven regulatory jurisdictions on five continents.</Detail>
-      <Detail>Served as lead Product Owner for the client web platform and mobile apps.</Detail>
+      <Detail>Served as lead Product Owner for the client website and mobile apps.</Detail>
       <Detail>Served as lead Product Manager for the client web platform and mobile apps.</Detail>
       <Detail>Managed a mixed team of employee and consultant project managers and business analysts, varying in size from 3 to 10.</Detail>
       <Detail>Evangelized the bank’s online and mobile capabilities to clients and front-office teams. Worked with front-office teams to understand client opportunities and pain points; acted as voice of the online client to operations and technology partners; interfaced with the Client Experience Taskforce on all issues related to the online and mobile channels.</Detail>
@@ -23,10 +23,9 @@
       <Detail>Implemented product development and requirements management processes and systems. These systems were later rolled out in other areas of the Institutional Clients Group.</Detail>
       <Detail>Collaborated with other business units (Personal Wealth Management, Global Consumer, Institutional Client Group, and Global Transaction Services) to find and analyze opportunities to leverage their product offerings for the benefit of our affluent client base.</Detail>
       <Detail>Co-founded and led the bank’s Business Analysis Center of Excellence, focused on coordinating the bank-wide analysis portfolio, driving development of the Business Analyst community, and evangelizing the business analysis function.</Detail>
-      <Detail>Held the FINRA Series 7, 9, 10, 24, and 66 securities licenses.</Detail>
     </Details>
   </Job>
-  <Job Employer="Morgan Stanley" StartDate="June 2002" EndDate="March 2008" Guid="bca4a4f4-3d3e-4fc7-83a2-77ceb215b784">
+  <Job Guid="bca4a4f4-3d3e-4fc7-83a2-77ceb215b784" Employer="Morgan Stanley" StartDate="June 2002" EndDate="March 2008">
     <JobTitles>
       <JobTitle>Product Manager/Business Analyst</JobTitle>
       <JobTitle>Product Owner/Business Analyst</JobTitle>
@@ -46,6 +45,7 @@
       <Detail>Served as member of the Project Governance Standards Committee and the Canonical Services Oversight Board (SOA governance).</Detail>
       <Detail>Provided high-level concierge services to top clients, Branch Managers and Chairman’s Club Financial Advisors. Interfaced with FA Recruiting to drive competitor intelligence activities.</Detail>
       <Detail>Managed the firm-wide implementation of changes to the discretionary brokerage business model.</Detail>
+      <Detail>test1153</Detail>
     </Details>
   </Job>
   <Job Guid="c0c464a7-d6d4-4d4f-9396-c9b919f7b2f2" Employer="test" StartDate="" EndDate="">

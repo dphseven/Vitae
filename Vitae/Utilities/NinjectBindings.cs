@@ -67,9 +67,10 @@
             Bind<IAddJobTitleViewModel>().To<AddJobTitleViewModel>();
             Bind<IEditJobTitleViewModel>().To<EditJobTitleViewModel>();
             Bind<IDeleteJobTitleViewModel>().To<DeleteJobTitleViewModel>();
-
-            // TODO: Refactor
-            Bind<IExpertiseManagementViewModel>().To<ExpertiseManagementViewModel>();
+            Bind<IDeleteExpertiseViewModel>().To<DeleteExpertiseViewModel>();
+            Bind<IAddExperienceViewModel>().To<AddExperienceViewModel>();
+            Bind<IEditExperienceViewModel>().To<EditExperienceViewModel>();
+            Bind<IDeleteExperienceViewModel>().To<DeleteExperienceViewModel>();
         }
     }
 }

@@ -115,7 +115,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\AddExperienceViewModel.cs" />
+    <Compile Include="ViewModel\DeleteExperienceViewModel.cs" />
+    <Compile Include="ViewModel\DeleteExpertiseViewModel.cs" />
+    <Compile Include="ViewModel\EditExperienceViewModel.cs" />
     <Compile Include="ViewModel\EditExpertiseViewModel.cs" />
+    <Compile Include="ViewModel\IAddExperienceViewModel.cs" />
+    <Compile Include="ViewModel\IDeleteExpertiseViewModel.cs" />
+    <Compile Include="ViewModel\IEditExperienceViewModel.cs" />
     <Compile Include="ViewModel\IEditExpertiseViewModel.cs" />
     <Compile Include="ViewModel\AddJobTitleViewModel.cs" />
     <Compile Include="ViewModel\DeleteJobTitleViewModel.cs" />
@@ -124,14 +131,26 @@
     <Compile Include="ViewModel\IAddJobTitleViewModel.cs" />
     <Compile Include="ViewModel\IDeleteJobTitleViewModel.cs" />
     <Compile Include="ViewModel\IEditJobTitleViewModel.cs" />
+    <Compile Include="View\AddExperienceView.xaml.cs">
+      <DependentUpon>AddExperienceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddExpertiseView.xaml.cs">
       <DependentUpon>AddExpertiseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddJobTitleView.xaml.cs">
       <DependentUpon>AddJobTitleView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DeleteExperienceView.xaml.cs">
+      <DependentUpon>DeleteExperienceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DeleteExpertiseView.xaml.cs">
+      <DependentUpon>DeleteExpertiseView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DeleteJobTitleView.xaml.cs">
       <DependentUpon>DeleteJobTitleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditExperienceView.xaml.cs">
+      <DependentUpon>EditExperienceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditExpertiseView.xaml.cs">
       <DependentUpon>EditExpertiseView.xaml</DependentUpon>
@@ -219,6 +238,7 @@
       <DependentUpon>ExpertiseManagementView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\IExpertiseManagementViewModel.cs" />
+    <Compile Include="ViewModel\IDeleteExperienceViewModel.cs" />
     <Compile Include="View\KeywordToolView.xaml.cs">
       <DependentUpon>KeywordToolView.xaml</DependentUpon>
     </Compile>
@@ -229,6 +249,10 @@
       <DependentUpon>VitaeContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\VitaeNinjectKernel.cs" />
+    <Page Include="View\AddExperienceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddExpertiseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -237,7 +261,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\DeleteExperienceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DeleteExpertiseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DeleteJobTitleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditExperienceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
