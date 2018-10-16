@@ -71,6 +71,13 @@
             Bind<IAddExperienceViewModel>().To<AddExperienceViewModel>();
             Bind<IEditExperienceViewModel>().To<EditExperienceViewModel>();
             Bind<IDeleteExperienceViewModel>().To<DeleteExperienceViewModel>();
+            Bind<IAddEducationViewModel>().To<AddEducationViewModel>();
+
+            Bind<IEditEducationViewModel>().To<EditEducationViewModel>();
+            Bind<IDeleteEducationViewModel>().To<DeleteEducationViewModel>();
+            Bind<IAddPublicationViewModel>().To<AddPublicationViewModel>();
+            Bind<IEditPublicationViewModel>().To<EditPublicationViewModel>();
+            Bind<IDeletePublicationViewModel>().To<DeletePublicationViewModel>();
         }
     }
 }

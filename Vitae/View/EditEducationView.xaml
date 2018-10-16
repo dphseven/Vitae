@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="Vitae.View.EditEducationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" >
+
+    <UserControl.Background>
+        <SolidColorBrush Color="Gray" Opacity=".70" />
+    </UserControl.Background>
+
+    <Border BorderBrush="CornflowerBlue" BorderThickness="2" 
+            Margin="400 200 400 200" >
+        <Grid Background="White" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Content="Edit Education" 
+                   Style="{StaticResource InterstitialTitle}"
+                   Grid.Row="0" Grid.Column="0" />
+
+            <Label Content="ID" 
+                   Grid.Row="1" Grid.Column="1" />
+            <Label Content="Institution" 
+                   Grid.Row="2" Grid.Column="1" />
+            <Label Content="Credential" 
+                   Grid.Row="3" Grid.Column="1" />
+
+            <Label Content="{Binding ID, Converter={StaticResource GuidToStringConverter}}" 
+                   Margin="3" Grid.Row="1" Grid.Column="2" />
+
+            <ComboBox ItemsSource="{Binding Institutions}" 
+                      DisplayMemberPath="Institution"
+                      SelectedItem="{Binding SelectedInstitution}"
+                      Margin="3" Grid.Row="2" Grid.Column="2" />
+
+            <ComboBox ItemsSource="{Binding Credentials}"
+                      SelectedItem="{Binding SelectedCredential}"
+                      Visibility="{Binding FormState, Converter={StaticResource ViewStateToVisibilityConverter}}"
+                      Margin="3" Grid.Row="3" Grid.Column="2"/>
+
+            <TextBox Text="{Binding UpdatedCredential}" 
+                     Visibility="{Binding FormState, Converter={StaticResource EditStateToVisibilityConverter}}"
+                     Margin="3" Grid.Row="3" Grid.Column="2" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" 
+                        Grid.Row="4" Grid.Column="2" >
+                <Button Content="Edit" 
+                        Command="{Binding EditCmd}"
+                        Click="EditButton_Click"
+                        Width="100" Height="30" Margin="3" />
+                <Button Content="Cancel" 
+                        Command="{Binding CancelCmd}" 
+                        Click="CancelButton_Click"
+                        Width="100" Height="30" Margin="3" />
+            </StackPanel>
+
+        </Grid>
+    </Border>
+
+</UserControl>

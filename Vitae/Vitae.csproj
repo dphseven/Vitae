@@ -115,13 +115,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\AddEducationViewModel.cs" />
     <Compile Include="ViewModel\AddExperienceViewModel.cs" />
+    <Compile Include="ViewModel\DeleteEducationViewModel.cs" />
     <Compile Include="ViewModel\DeleteExperienceViewModel.cs" />
     <Compile Include="ViewModel\DeleteExpertiseViewModel.cs" />
+    <Compile Include="ViewModel\DeletePublicationViewModel.cs" />
+    <Compile Include="ViewModel\EditEducationViewModel.cs" />
     <Compile Include="ViewModel\EditExperienceViewModel.cs" />
     <Compile Include="ViewModel\EditExpertiseViewModel.cs" />
+    <Compile Include="ViewModel\EditPublicationViewModel.cs" />
+    <Compile Include="ViewModel\IAddEducationViewModel.cs" />
     <Compile Include="ViewModel\IAddExperienceViewModel.cs" />
+    <Compile Include="ViewModel\IAddPublicationViewModel.cs" />
+    <Compile Include="ViewModel\IDeleteEducationViewModel.cs" />
     <Compile Include="ViewModel\IDeleteExpertiseViewModel.cs" />
+    <Compile Include="ViewModel\IDeletePublicationViewModel.cs" />
+    <Compile Include="ViewModel\IEditEducationViewModel.cs" />
     <Compile Include="ViewModel\IEditExperienceViewModel.cs" />
     <Compile Include="ViewModel\IEditExpertiseViewModel.cs" />
     <Compile Include="ViewModel\AddJobTitleViewModel.cs" />
@@ -131,7 +141,11 @@
     <Compile Include="ViewModel\IAddJobTitleViewModel.cs" />
     <Compile Include="ViewModel\IDeleteJobTitleViewModel.cs" />
     <Compile Include="ViewModel\IEditJobTitleViewModel.cs" />
+    <Compile Include="ViewModel\IEditPublicationViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\AddEducationView.xaml.cs">
+      <DependentUpon>AddEducationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddExperienceView.xaml.cs">
       <DependentUpon>AddExperienceView.xaml</DependentUpon>
     </Compile>
@@ -141,7 +155,13 @@
     <Compile Include="View\AddJobTitleView.xaml.cs">
       <DependentUpon>AddJobTitleView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AddPublicationView.xaml.cs">
+      <DependentUpon>AddPublicationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Converters\GuidToStringConverter.cs" />
+    <Compile Include="View\DeleteEducationView.xaml.cs">
+      <DependentUpon>DeleteEducationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DeleteExperienceView.xaml.cs">
       <DependentUpon>DeleteExperienceView.xaml</DependentUpon>
     </Compile>
@@ -150,6 +170,12 @@
     </Compile>
     <Compile Include="View\DeleteJobTitleView.xaml.cs">
       <DependentUpon>DeleteJobTitleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DeletePublicationView.xaml.cs">
+      <DependentUpon>DeletePublicationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditEducationView.xaml.cs">
+      <DependentUpon>EditEducationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditExperienceView.xaml.cs">
       <DependentUpon>EditExperienceView.xaml</DependentUpon>
@@ -235,6 +261,9 @@
     <Compile Include="View\Converters\UiStateToVisibilityConverters.cs" />
     <Compile Include="ViewModel\IExpertiseManagementViewModel.cs" />
     <Compile Include="ViewModel\IDeleteExperienceViewModel.cs" />
+    <Compile Include="View\EditPublicationView.xaml.cs">
+      <DependentUpon>EditPublicationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\KeywordToolView.xaml.cs">
       <DependentUpon>KeywordToolView.xaml</DependentUpon>
     </Compile>
@@ -245,6 +274,10 @@
       <DependentUpon>VitaeContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\VitaeNinjectKernel.cs" />
+    <Page Include="View\AddEducationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddExperienceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -254,6 +287,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddJobTitleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddPublicationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DeleteEducationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -269,6 +310,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\DeletePublicationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditEducationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\EditExperienceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -278,6 +327,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EditJobTitleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditPublicationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -325,6 +378,7 @@
     </None>
     <AppDesigner Include="Properties\" />
     <Compile Include="ViewModel\AddExpertiseViewModel.cs" />
+    <Compile Include="ViewModel\AddPublicationViewModel.cs" />
     <None Include="VitaeSNK.pfx" />
   </ItemGroup>
   <ItemGroup>

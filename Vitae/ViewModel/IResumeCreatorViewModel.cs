@@ -8,8 +8,6 @@ namespace Vitae.ViewModel
 {
     public interface IResumeCreatorViewModel
     {
-        
-
         string FullName { get; set; }
         string AddLine1 { get; set; }
         string AddLine2 { get; set; }

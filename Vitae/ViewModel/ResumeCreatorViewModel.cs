@@ -186,38 +186,6 @@
             }
         }
 
-        // Expertise Form Properties
-        private Guid formExpertiseID;
-        public Guid FormExpertiseID 
-        {
-            get { return formExpertiseID; }
-            set
-            {
-                formExpertiseID = value;
-                notifyPropertyChanged();
-            }
-        }
-        private string formExpertiseCategory;
-        public string FormExpertiseCategory 
-        {
-            get { return formExpertiseCategory; }
-            set
-            {
-                formExpertiseCategory = value;
-                notifyPropertyChanged();
-            }
-        }
-        private string formExpertiseExpertise;
-        public string FormExpertiseExpertise 
-        {
-            get { return formExpertiseExpertise; }
-            set
-            {
-                formExpertiseExpertise = value;
-                notifyPropertyChanged();
-            }
-        }
-
         // Commands
 
         public ICommand AddExpertiseCommand { get; set; }
@@ -766,9 +734,15 @@
                 T => movePublicationDown(),
                 T => SelectedInPublication != null && InPublications.IndexOf(SelectedInPublication) < InPublications.Count - 1);
         }
+
+        protected override void notifyPropertyChanged([CallerMemberName] string propertyName = "") 
+        {
+            updateDocumentPreview();
+            base.notifyPropertyChanged(propertyName);
+        }
     }
 
-    public class JobTitleSelectionObject : ViewModelBase, INotifyPropertyChanged
+    public class JobTitleSelectionObject : ViewModelBase
     {
         private string company;
         private string selectedJobTitle;
@@ -797,6 +771,5 @@
         {
             JobTitles = new ObservableCollection<string>();
         }
-
     }
 }

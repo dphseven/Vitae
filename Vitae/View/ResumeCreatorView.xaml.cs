@@ -35,13 +35,11 @@
             }
         }
 
-        private void closeAllOtherExpanders(object sender, RoutedEventArgs e) 
+        private void CloseAllOtherExpanders(object sender, RoutedEventArgs e) 
         {
             foreach (var item in listOfExpanders.Where(T => T != (Expander)sender))
                 item.IsExpanded = false;
         }
-
-        // General Info Area
 
         // Expertise Area
 
@@ -234,6 +232,49 @@
             if (vm.RemoveEducationCommand.CanExecute(null)) vm.RemoveEducationCommand.Execute(null);
         }
 
+        private void AddEducationButton_Click(object sender, RoutedEventArgs e) 
+
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var aeVM = ioc.Get<IAddEducationViewModel>();
+
+                var aeView = new AddEducationView(aeVM);
+                aeView.IsVisibleChanged += reloadExperiences;
+
+                ucHost.Content = aeView;
+                ucHost.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void EditEducationButton_Click(object sender, RoutedEventArgs e) 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var eeVM = ioc.Get<IEditEducationViewModel>();
+
+                var eeView = new EditEducationView(eeVM);
+                eeView.IsVisibleChanged += reloadExperiences;
+
+                ucHost.Content = eeView;
+                ucHost.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void DeleteEducationButton_Click(object sender, RoutedEventArgs e) 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var deVM = ioc.Get<IDeleteEducationViewModel>();
+
+                var deView = new DeleteEducationView(deVM);
+                deView.IsVisibleChanged += reloadExperiences;
+
+                ucHost.Content = deView;
+                ucHost.Visibility = Visibility.Visible;
+            }
+        }
+
         // Publications Area
 
         private void PublicationBox_MouseDoubleClick(object sender, MouseButtonEventArgs e) 
@@ -244,6 +285,48 @@
         private void SelectedPublicationBox_MouseDoubleClick(object sender, MouseButtonEventArgs e) 
         {
             if (vm.RemovePublicationCommand.CanExecute(null)) vm.RemovePublicationCommand.Execute(null);
+        }
+
+        private void AddPublicationButton_Click(object sender, RoutedEventArgs e) 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var apVM = ioc.Get<IAddPublicationViewModel>();
+
+                var apView = new AddPublicationView(apVM);
+                apView.IsVisibleChanged += reloadExperiences;
+
+                ucHost.Content = apView;
+                ucHost.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void EditPublicationButton_Click(object sender, RoutedEventArgs e) 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var epVM = ioc.Get<IEditPublicationViewModel>();
+
+                var epView = new EditPublicationView(epVM);
+                epView.IsVisibleChanged += reloadExperiences;
+
+                ucHost.Content = epView;
+                ucHost.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void DeletePublicationButton_Click(object sender, RoutedEventArgs e) 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var dpVM = ioc.Get<IDeletePublicationViewModel>();
+
+                var dpView = new DeletePublicationView(dpVM);
+                dpView.IsVisibleChanged += reloadExperiences;
+
+                ucHost.Content = dpView;
+                ucHost.Visibility = Visibility.Visible;
+            }
         }
 
         // Bottom Area
@@ -268,6 +351,5 @@
             }
         }
 
-        
     }
 }
