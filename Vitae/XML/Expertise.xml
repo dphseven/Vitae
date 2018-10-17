@@ -208,4 +208,8 @@
     <Category>test</Category>
     <Expertise>test1011</Expertise>
   </ExpertiseItem>
+  <ExpertiseItem Guid="2f124382-9225-43e0-a2ab-c6618871910c">
+    <Category>test</Category>
+    <Expertise>test1224</Expertise>
+  </ExpertiseItem>
 </Expertise>

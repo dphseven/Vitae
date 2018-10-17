@@ -34,6 +34,8 @@
         public ICommand DeleteCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
+        public event EventHandler PublicationDeleted;
+
         public DeletePublicationViewModel(IPublicationsRepository repository) 
         {
             repos = repository;
@@ -49,6 +51,7 @@
         private void DeletePublication() 
         {
             repos.Remove(SelectedPublication.ID);
+            PublicationDeleted?.Invoke(this, new EventArgs());
         }
 
         private void Reset() 

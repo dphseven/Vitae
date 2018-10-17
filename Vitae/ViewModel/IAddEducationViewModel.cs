@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 
 namespace Vitae.ViewModel
 {
@@ -9,5 +10,7 @@ namespace Vitae.ViewModel
 
         ICommand AddCmd { get; set; }
         ICommand CancelCmd { get; set; }
+
+        event EventHandler EducationAdded;
     }
 }

@@ -17,7 +17,6 @@
         private IResumeCreatorViewModel vm;
 
         private List<Expander> listOfExpanders = new List<Expander>();
-        //private UserControl currentDialog;
 
         public ResumeCreatorView() 
         {
@@ -232,7 +231,7 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var aeVM = ioc.Get<IAddEducationViewModel>();
-
+                aeVM.EducationAdded += EducationDialog_Closing;
                 var aeView = new AddEducationView(aeVM);
 
                 ucHost.Content = aeView;
@@ -245,7 +244,7 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var eeVM = ioc.Get<IEditEducationViewModel>();
-
+                eeVM.EducationEdited += EducationDialog_Closing;
                 var eeView = new EditEducationView(eeVM);
 
                 ucHost.Content = eeView;
@@ -258,12 +257,18 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var deVM = ioc.Get<IDeleteEducationViewModel>();
-
+                deVM.EducationDeleted += EducationDialog_Closing;
                 var deView = new DeleteEducationView(deVM);
 
                 ucHost.Content = deView;
                 ucHost.Visibility = Visibility.Visible;
             }
+        }
+
+        private void EducationDialog_Closing(object sender, EventArgs e) 
+        {
+            ucHost.Visibility = Visibility.Collapsed;
+            vm.RefreshEducationList();
         }
 
         // Publications Area
@@ -283,7 +288,7 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var apVM = ioc.Get<IAddPublicationViewModel>();
-
+                apVM.PublicationAdded += PublicationDialog_Closing;
                 var apView = new AddPublicationView(apVM);
 
                 ucHost.Content = apView;
@@ -296,7 +301,7 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var epVM = ioc.Get<IEditPublicationViewModel>();
-
+                epVM.PublicationEdited += PublicationDialog_Closing;
                 var epView = new EditPublicationView(epVM);
 
                 ucHost.Content = epView;
@@ -309,12 +314,18 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var dpVM = ioc.Get<IDeletePublicationViewModel>();
-
+                dpVM.PublicationDeleted += PublicationDialog_Closing;
                 var dpView = new DeletePublicationView(dpVM);
 
                 ucHost.Content = dpView;
                 ucHost.Visibility = Visibility.Visible;
             }
+        }
+
+        private void PublicationDialog_Closing(object sender, EventArgs e) 
+        {
+            ucHost.Visibility = Visibility.Collapsed;
+            vm.RefreshPublicationsList();
         }
 
         // Bottom Area

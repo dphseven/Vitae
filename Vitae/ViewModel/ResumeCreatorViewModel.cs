@@ -13,7 +13,7 @@
     using System.Windows.Input;
     using System.Collections.Generic;
 
-    public class ResumeCreatorViewModel : ViewModelBase, INotifyPropertyChanged, IResumeCreatorViewModel
+    public class ResumeCreatorViewModel : ViewModelBase, IResumeCreatorViewModel
     {
         // Dependencies
         private IResumeCreationService rcs;
@@ -31,7 +31,7 @@
         private string phone = string.Empty;
         private string email = string.Empty;
         private string tagline = string.Empty;
-        public string FullName 
+        public string FullName
         {
             get { return fullName; }
             set
@@ -40,7 +40,7 @@
                 notifyPropertyChanged();
             }
         }
-        public string AddLine1 
+        public string AddLine1
         {
             get { return addLine1; }
             set
@@ -49,7 +49,7 @@
                 notifyPropertyChanged();
             }
         }
-        public string AddLine2 
+        public string AddLine2
         {
             get { return addLine2; }
             set
@@ -58,7 +58,7 @@
                 notifyPropertyChanged();
             }
         }
-        public string Phone 
+        public string Phone
         {
             get { return phone; }
             set
@@ -67,7 +67,7 @@
                 notifyPropertyChanged();
             }
         }
-        public string Email 
+        public string Email
         {
             get { return email; }
             set
@@ -76,7 +76,7 @@
                 notifyPropertyChanged();
             }
         }
-        public string TagLine 
+        public string TagLine
         {
             get { return tagline; }
             set
@@ -91,7 +91,7 @@
         public ObservableCollection<IExpertiseEntity> InExpertises { get; set; }
         public ObservableCollection<IExpertiseEntity> OutExpertises { get; set; }
         private IExpertiseEntity selectedOutExpertise;
-        public IExpertiseEntity SelectedOutExpertise 
+        public IExpertiseEntity SelectedOutExpertise
         {
             get { return selectedOutExpertise; }
             set
@@ -101,7 +101,7 @@
             }
         }
         private IExpertiseEntity selectedInExpertise;
-        public IExpertiseEntity SelectedInExpertise 
+        public IExpertiseEntity SelectedInExpertise
         {
             get { return selectedInExpertise; }
             set
@@ -176,7 +176,7 @@
 
         // Resume Preview Properties
         private FlowDocument resumePreview = new FlowDocument();
-        public FlowDocument ResumePreview 
+        public FlowDocument ResumePreview
         {
             get { return resumePreview; }
             set
@@ -204,7 +204,7 @@
         public ICommand RemovePublicationCommand { get; set; }
         public ICommand MovePublicationUpCommand { get; set; }
         public ICommand MovePublicationDownCommand { get; set; }
-        
+
         /*************************
         **************************
         ***** PUBLIC METHODS *****
@@ -331,7 +331,7 @@
                 jtso.PropertyChanged += Jtso_PropertyChanged;
                 newList.Add(jtso);
             }
-            
+
             AllJTSOs = new ObservableCollection<JobTitleSelectionObject>(newList);
             notifyPropertyChanged(nameof(AllJTSOs));
         }
@@ -345,6 +345,34 @@
                 if (OutExpertises.Contains(item)) OutExpertises.Remove(item);
             }
             notifyPropertyChanged(nameof(OutExpertises));
+        }
+
+        public void RefreshEducationList() 
+        {
+            var oldInList = new List<IEducationEntity>(InEducations);
+            var oldOutList = new List<IEducationEntity>(OutEducations);
+            var newList = edRepos.GetAll();
+            OutEducations.Clear();
+            InEducations.Clear();
+            foreach (var item in newList)
+            {
+                if (oldInList.Any(T => T.ID == item.ID)) InEducations.Add(item);
+                else OutEducations.Add(item);
+            }
+        }
+
+        public void RefreshPublicationsList() 
+        {
+            var oldInList = new List<IPublicationEntity>(InPublications);
+            var oldOutList = new List<IPublicationEntity>(OutPublications);
+            var newList = pubRepos.GetAll();
+            OutPublications.Clear();
+            InPublications.Clear();
+            foreach (var item in newList)
+            {
+                if (oldInList.Any(T => T.ID == item.ID)) InPublications.Add(item);
+                else OutPublications.Add(item);
+            }
         }
 
         public void UpdateExperienceLists() 

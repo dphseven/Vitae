@@ -1,6 +1,7 @@
 ﻿namespace Vitae.ViewModel
 {
     using Ninject;
+    using System;
     using System.Windows.Input;
     using Vitae.Model;
 
@@ -23,6 +24,8 @@
         public ICommand AddCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
+        public event EventHandler PublicationAdded;
+
         public AddPublicationViewModel(IPublicationsRepository repository) 
         {
             repos = repository;
@@ -37,6 +40,7 @@
                 var ent = ioc.Get<IPublicationEntity>();
                 ent.Publication = Publication;
                 repos.Add(ent);
+                PublicationAdded?.Invoke(this, new EventArgs());
             }            
         }
 

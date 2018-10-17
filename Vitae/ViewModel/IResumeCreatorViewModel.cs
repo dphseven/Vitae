@@ -71,6 +71,7 @@ namespace Vitae.ViewModel
         void LoadJobTitles();
         void SortOutExpertises();
         void UpdateExperienceLists();
-
+        void RefreshEducationList();
+        void RefreshPublicationsList();
     }
 }

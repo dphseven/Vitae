@@ -59,6 +59,8 @@
         public ICommand EditCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
+        public event EventHandler PublicationEdited;
+
         public EditPublicationViewModel(IPublicationsRepository repository) 
         {
             repos = repository;
@@ -75,6 +77,7 @@
         {
             SelectedPublication.Publication = UpdatedPublication;
             repos.Update(SelectedPublication.ID, SelectedPublication);
+            PublicationEdited?.Invoke(this, new EventArgs());
         }
 
         private void Reset() 

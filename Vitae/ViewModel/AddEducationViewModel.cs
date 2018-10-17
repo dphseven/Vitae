@@ -1,6 +1,7 @@
 ﻿namespace Vitae.ViewModel
 {
     using Ninject;
+    using System;
     using System.Windows.Input;
     using Vitae.Model;
 
@@ -33,6 +34,8 @@
         public ICommand AddCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
+        public event EventHandler EducationAdded;
+
         public AddEducationViewModel(IEducationRepository repository) 
         {
             repos = repository;
@@ -48,6 +51,8 @@
                 ent.Institution = Institution;
                 ent.Credential = Credential;
                 repos.Add(ent);
+
+                EducationAdded?.Invoke(this, new EventArgs());
             }
         }
 

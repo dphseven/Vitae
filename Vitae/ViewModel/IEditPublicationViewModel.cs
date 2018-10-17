@@ -15,5 +15,7 @@
 
         ICommand EditCmd { get; set; }
         ICommand CancelCmd { get; set; }
+
+        event EventHandler PublicationEdited;
     }
 }

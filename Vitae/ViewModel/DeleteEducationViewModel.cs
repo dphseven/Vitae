@@ -48,6 +48,8 @@
         public ICommand DeleteCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
+        public event EventHandler EducationDeleted;
+
         public DeleteEducationViewModel(IEducationRepository repository) 
         {
             repos = repository;
@@ -63,6 +65,7 @@
         private void DeleteEducation() 
         {
             repos.Remove(ID);
+            EducationDeleted?.Invoke(this, new EventArgs());
         }
 
         private void Reset() 

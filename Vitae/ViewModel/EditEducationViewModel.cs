@@ -75,6 +75,8 @@
         public ICommand EditCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
+        public event EventHandler EducationEdited;
+
         public EditEducationViewModel(IEducationRepository repository) 
         {
             repos = repository;
@@ -91,6 +93,7 @@
         {
             SelectedInstitution.Credential = UpdatedCredential;
             repos.Update(SelectedInstitution.ID, SelectedInstitution);
+            EducationEdited?.Invoke(this, new EventArgs());
         }
 
         private void Reset() 

@@ -13,5 +13,7 @@
 
         ICommand DeleteCmd { get; set; }
         ICommand CancelCmd { get; set; }
+
+        event EventHandler PublicationDeleted;
     }
 }
