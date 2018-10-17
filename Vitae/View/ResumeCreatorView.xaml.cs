@@ -14,14 +14,17 @@
 
     public partial class ResumeCreatorView : UserControl
     {
-        IResumeCreatorViewModel vm;
-        List<Expander> listOfExpanders = new List<Expander>();
+        private IResumeCreatorViewModel vm;
+
+        private List<Expander> listOfExpanders = new List<Expander>();
+        //private UserControl currentDialog;
 
         public ResumeCreatorView() 
         {
             using (var ioc = new VitaeNinjectKernel())
             {
                 DataContext = vm = ioc.Get<IResumeCreatorViewModel>();
+
                 InitializeComponent();
 
                 DocViewRTB.Document = vm.ResumePreview;
@@ -60,10 +63,9 @@
                 var exRepos = new ConstructorArgument("repository", ioc.Get<IExpertiseRepository>());
                 var aeVM = ioc.Get<IAddExpertiseViewModel>(exRepos);
 
-                var aeView = new AddExpertiseView(aeVM);
-                aeView.IsVisibleChanged += sortOutExpertises;
+                aeVM.ExpertiseAdded += ExpertiseDialog_Closing;
 
-                ucHost.Content = aeView;
+                ucHost.Content = new AddExpertiseView(aeVM);
                 ucHost.Visibility = Visibility.Visible;
             }
         }
@@ -75,7 +77,7 @@
                 var eeVM = ioc.Get<IEditExpertiseViewModel>();
                 var eeView = new EditExpertiseView(eeVM);
 
-                eeView.IsVisibleChanged += sortOutExpertises;
+                eeVM.ExpertiseEdited += ExpertiseDialog_Closing;
 
                 ucHost.Content = eeView;
                 ucHost.Visibility = Visibility.Visible;
@@ -89,20 +91,17 @@
                 var deVM = ioc.Get<IDeleteExpertiseViewModel>();
                 var deView = new DeleteExpertiseView(deVM);
 
-                deView.IsVisibleChanged += sortOutExpertises;
+                deVM.ExpertiseDeleted += ExpertiseDialog_Closing;
 
                 ucHost.Content = deView;
                 ucHost.Visibility = Visibility.Visible;
             }
         }
 
-        private void sortOutExpertises(object sender, DependencyPropertyChangedEventArgs e) 
+        private void ExpertiseDialog_Closing(object sender, EventArgs e) 
         {
-            if (ucHost.Content is UserControl)
-            {
-                var uc = (UserControl)ucHost.Content;
-                if (!uc.IsVisible) vm.SortOutExpertises();
-            }
+            ucHost.Visibility = Visibility.Collapsed;
+            vm.SortOutExpertises();
         }
 
         // Job Title Area
@@ -112,10 +111,9 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var ajtVM = ioc.Get<IAddJobTitleViewModel>();
+                ajtVM.JobTitleAdded += JobTitleDialog_Closing;
                 ajtVM.FormState = UIState.View;
-
                 var ajtView = new AddJobTitleView(ajtVM);
-                ajtView.IsVisibleChanged += refreshJobTitles;
 
                 ucHost.Content = ajtView;
                 ucHost.Visibility = Visibility.Visible;
@@ -127,10 +125,8 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var ejtVM = ioc.Get<IEditJobTitleViewModel>();
-                ejtVM.FormState = UIState.View;
-
+                ejtVM.JobTitleEdited += JobTitleDialog_Closing;
                 var ejtView = new EditJobTitleView(ejtVM);
-                ejtView.IsVisibleChanged += refreshJobTitles;
 
                 ucHost.Content = ejtView;
                 ucHost.Visibility = Visibility.Visible;
@@ -142,19 +138,19 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var djtVM = ioc.Get<IDeleteJobTitleViewModel>();
-
+                djtVM.JobTitleDeleted += JobTitleDialog_Closing;
                 var djtView = new DeleteJobTitleView(djtVM);
-                djtView.IsVisibleChanged += refreshJobTitles;
 
                 ucHost.Content = djtView;
                 ucHost.Visibility = Visibility.Visible;
             }
         }
 
-        private void refreshJobTitles(object sender, DependencyPropertyChangedEventArgs e) 
+        private void JobTitleDialog_Closing(object sender, EventArgs e) 
         {
+            ucHost.Visibility = Visibility.Collapsed;
             vm.LoadJobTitles();
-        } 
+        }
 
         // Experience Area
 
@@ -178,9 +174,8 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var aeVM = ioc.Get<IAddExperienceViewModel>();
-
+                aeVM.ExperienceAdded += ExperienceDialogClosing;
                 var aeView = new AddExperienceView(aeVM);
-                aeView.IsVisibleChanged += reloadExperiences;
 
                 ucHost.Content = aeView;
                 ucHost.Visibility = Visibility.Visible;
@@ -192,9 +187,8 @@
             using (var ioc = new VitaeNinjectKernel())
             {
                 var eeVM = ioc.Get<IEditExperienceViewModel>();
-
+                eeVM.ExperienceEdited += ExperienceDialogClosing;
                 var eeView = new EditExperienceView(eeVM);
-                eeView.IsVisibleChanged += reloadExperiences;
 
                 ucHost.Content = eeView;
                 ucHost.Visibility = Visibility.Visible;
@@ -206,17 +200,17 @@
             using (var ioc = new VitaeNinjectKernel()) 
             {
                 var deVM = ioc.Get<IDeleteExperienceViewModel>();
-
+                deVM.ExperienceDeleted += ExperienceDialogClosing;
                 var deView = new DeleteExperienceView(deVM);
-                deView.IsVisibleChanged += reloadExperiences; ;
 
                 ucHost.Content = deView;
                 ucHost.Visibility = Visibility.Visible;
             }
         }
 
-        private void reloadExperiences(object sender, DependencyPropertyChangedEventArgs e) 
+        private void ExperienceDialogClosing(object sender, EventArgs e) 
         {
+            ucHost.Visibility = Visibility.Collapsed;
             vm.UpdateExperienceLists();
         }
 
@@ -240,7 +234,6 @@
                 var aeVM = ioc.Get<IAddEducationViewModel>();
 
                 var aeView = new AddEducationView(aeVM);
-                aeView.IsVisibleChanged += reloadExperiences;
 
                 ucHost.Content = aeView;
                 ucHost.Visibility = Visibility.Visible;
@@ -254,7 +247,6 @@
                 var eeVM = ioc.Get<IEditEducationViewModel>();
 
                 var eeView = new EditEducationView(eeVM);
-                eeView.IsVisibleChanged += reloadExperiences;
 
                 ucHost.Content = eeView;
                 ucHost.Visibility = Visibility.Visible;
@@ -268,7 +260,6 @@
                 var deVM = ioc.Get<IDeleteEducationViewModel>();
 
                 var deView = new DeleteEducationView(deVM);
-                deView.IsVisibleChanged += reloadExperiences;
 
                 ucHost.Content = deView;
                 ucHost.Visibility = Visibility.Visible;
@@ -294,7 +285,6 @@
                 var apVM = ioc.Get<IAddPublicationViewModel>();
 
                 var apView = new AddPublicationView(apVM);
-                apView.IsVisibleChanged += reloadExperiences;
 
                 ucHost.Content = apView;
                 ucHost.Visibility = Visibility.Visible;
@@ -308,7 +298,6 @@
                 var epVM = ioc.Get<IEditPublicationViewModel>();
 
                 var epView = new EditPublicationView(epVM);
-                epView.IsVisibleChanged += reloadExperiences;
 
                 ucHost.Content = epView;
                 ucHost.Visibility = Visibility.Visible;
@@ -322,7 +311,6 @@
                 var dpVM = ioc.Get<IDeletePublicationViewModel>();
 
                 var dpView = new DeletePublicationView(dpVM);
-                dpView.IsVisibleChanged += reloadExperiences;
 
                 ucHost.Content = dpView;
                 ucHost.Visibility = Visibility.Visible;

@@ -1,5 +1,6 @@
 ﻿namespace Vitae.ViewModel
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Windows.Input;
@@ -14,5 +15,7 @@
 
         ICommand EditJobTitleCmd { get; set; }
         ICommand CancelCmd { get; set; }
+
+        event EventHandler JobTitleEdited;
     }
 }

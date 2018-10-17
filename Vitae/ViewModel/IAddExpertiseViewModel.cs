@@ -13,5 +13,7 @@
 
         ICommand AddButtonCmd { get; set; }
         ICommand CancelButtonCmd { get; set; }
+
+        event EventHandler ExpertiseAdded;
     }
 }

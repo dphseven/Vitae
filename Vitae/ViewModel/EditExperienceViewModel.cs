@@ -1,8 +1,7 @@
 ﻿namespace Vitae.ViewModel
 {
+    using System;
     using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
     using System.Windows.Input;
     using Vitae.Model;
 
@@ -70,30 +69,34 @@
         public ICommand EditCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
+        public event EventHandler ExperienceEdited;
+
         // Public Methods
 
         public EditExperienceViewModel(IExperienceRepository repository) 
         {
             repos = repository;
-            setUpRelayCommands();
-            loadExperiences();
+            SetUpRelayCommands();
+            LoadExperiences();
         }
 
         // Private Methods
 
-        private void editExperience() 
+        private void EditExperience() 
         {
             var index = SelectedEmployer.Details.IndexOf(initialExperienceItem);
             if (index >= 0) SelectedEmployer.Details[index] = updatedExperienceItem;
             repos.Update(SelectedEmployer.ID, SelectedEmployer);
+
+            ExperienceEdited?.Invoke(this, new EventArgs());
         }
 
-        private void loadExperiences() 
+        private void LoadExperiences() 
         {
             Employers = new ObservableCollection<IExperienceEntity>(repos.GetAll());
         }
 
-        private void reset() 
+        private void Reset() 
         {
             repos = null;
             formState = UIState.View;
@@ -102,13 +105,13 @@
             updatedExperienceItem = null;
         }
 
-        private void setUpRelayCommands() 
+        private void SetUpRelayCommands() 
         {
             EditCmd = new RelayCommand(
-                T => { editExperience(); reset(); },
+                T => { EditExperience(); Reset(); },
                 T => true);
             CancelCmd = new RelayCommand(
-                T => reset(),
+                T => Reset(),
                 T => true);
         }
 

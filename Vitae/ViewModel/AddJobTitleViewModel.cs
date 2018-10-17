@@ -47,6 +47,8 @@
         public ICommand AddJobTitleCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
+        public event EventHandler JobTitleAdded;
+
         // Public Methods
 
         public AddJobTitleViewModel(IExperienceRepository repository) 
@@ -69,6 +71,8 @@
 
             SelectedEmployer.Titles.Add(JobTitle);
             repos.Update(SelectedEmployer.ID, SelectedEmployer);
+
+            JobTitleAdded?.Invoke(this, new EventArgs());
         }
 
         private void loadEmployers() 

@@ -43,7 +43,6 @@
                         Grid.Row="4" Grid.Column="2" >
                 <Button Content="Add" 
                         Command="{Binding AddButtonCmd}"
-                        Click="AddButton_Click"
                         Width="100" Height="30" Margin="3" />
                 <Button Content="Cancel" 
                         Command="{Binding CancelButtonCmd}" 

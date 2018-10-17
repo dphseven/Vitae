@@ -46,6 +46,8 @@
         public ICommand DeleteJobTitleCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
+        public event EventHandler JobTitleDeleted;
+
         // Public Methods
 
         public DeleteJobTitleViewModel(IExperienceRepository repository) 
@@ -63,6 +65,8 @@
         {
             SelectedEmployer.Titles.Remove(SelectedJobTitle);
             repos.Update(SelectedEmployer.ID, SelectedEmployer);
+
+            JobTitleDeleted?.Invoke(this, new EventArgs());
         }
 
         private void loadEmployers() 

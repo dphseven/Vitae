@@ -46,11 +46,20 @@
       <Detail>Provided high-level concierge services to top clients, Branch Managers and Chairman’s Club Financial Advisors. Interfaced with FA Recruiting to drive competitor intelligence activities.</Detail>
       <Detail>Managed the firm-wide implementation of changes to the discretionary brokerage business model.</Detail>
       <Detail>test1153</Detail>
+      <Detail>test1037</Detail>
     </Details>
   </Job>
   <Job Guid="c0c464a7-d6d4-4d4f-9396-c9b919f7b2f2" Employer="test" StartDate="" EndDate="">
     <JobTitles />
-    <Details />
+    <Details>
+      <Detail>test1039</Detail>
+      <Detail>test1046</Detail>
+      <Detail>test1048</Detail>
+      <Detail>test1049</Detail>
+      <Detail>test1051</Detail>
+      <Detail>test1052</Detail>
+      <Detail>test1056</Detail>
+    </Details>
   </Job>
   <Job Guid="ce8cff33-778a-47d6-826d-df4c551e8186" Employer="test" StartDate="" EndDate="">
     <JobTitles />

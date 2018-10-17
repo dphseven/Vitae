@@ -1,11 +1,9 @@
 ﻿namespace Vitae
 {
-    using Ninject;
     using Ninject.Modules;
     using Model;
     using Services;
     using ViewModel;
-    using System;
 
     public class NinjectBindings : NinjectModule
     {

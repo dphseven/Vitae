@@ -333,12 +333,13 @@
             }
             
             AllJTSOs = new ObservableCollection<JobTitleSelectionObject>(newList);
+            notifyPropertyChanged(nameof(AllJTSOs));
         }
 
         public void SortOutExpertises() 
         {
             OutExpertises = new ObservableCollection<IExpertiseEntity>(
-                expertiseRepos.GetAll().OrderBy(T => T.Expertise).OrderBy(T => T.Category));
+                expertiseRepos.GetAll().OrderBy(T => T.Category).ThenBy(T => T.Expertise));
             foreach (var item in InExpertises)
             {
                 if (OutExpertises.Contains(item)) OutExpertises.Remove(item);
@@ -348,17 +349,21 @@
 
         public void UpdateExperienceLists() 
         {
+            AllExperiences = new ObservableCollection<IExperienceItem>(experienceRepos.GetAllExperienceItems());
+            notifyPropertyChanged(nameof(AllInExperiences));
+
+            if (SelectedEmployer == null) return;
             try
             {
                 // Load In Experiences
-                var y = new ObservableCollection<IExperienceItem>(AllInExperiences.Where(T => T.Employer == SelectedEmployer));
                 InExperiences.Clear();
-                foreach (var item in y) InExperiences.Add(item);
+                foreach (var item in AllInExperiences.Where(T => T.Employer == SelectedEmployer))
+                    InExperiences.Add(item);
 
                 // Load Out Experiences
-                var x = new ObservableCollection<IExperienceItem>(AllExperiences.Where(T => T.Employer == SelectedEmployer && !InExperiences.Contains(T)));
                 OutExperiences.Clear();
-                foreach (var item in x) OutExperiences.Add(item);
+                foreach (var item in AllExperiences.Where(T => T.Employer == SelectedEmployer))
+                    if (!InExperiences.Contains(item)) OutExperiences.Add(item);
             }
             catch (Exception e)
             {

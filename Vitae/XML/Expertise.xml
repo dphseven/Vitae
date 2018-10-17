@@ -2,7 +2,7 @@
 <Expertise>
   <ExpertiseItem Guid="c8672dac-236f-402e-af39-247b31bac98e">
     <Category>Business Analysis</Category>
-    <Expertise>Thought Leader in Field of Business Analysis</Expertise>
+    <Expertise>Thought Leader in Field of Business Analyzing</Expertise>
   </ExpertiseItem>
   <ExpertiseItem Guid="a187ba85-bb6c-4b6a-bb2e-54568af0fb1b">
     <Category>Business Analysis</Category>
@@ -167,5 +167,45 @@
   <ExpertiseItem Guid="c20eb08a-2fca-4cc9-bb08-a29c5c561322">
     <Category>Business Analysis</Category>
     <Expertise>Business Process Management updated</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="798139e6-5ce7-4091-bb90-6bd65bb5fbff">
+    <Category>test</Category>
+    <Expertise>test1521</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="547c4054-dc35-47f7-a35a-5bed6fddf89f">
+    <Category>test</Category>
+    <Expertise>test1525</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="8c630d54-2628-4b1b-b46e-f8ea51e954dd">
+    <Category>test</Category>
+    <Expertise>test1530</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="6e10c681-91dd-45d2-946a-893bc731f210">
+    <Category>test</Category>
+    <Expertise>test1539</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="cf1cd9e1-d2c7-4c41-97fb-1603dca7a058">
+    <Category>test</Category>
+    <Expertise>test1541</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="aeeba52c-9b49-4aa1-8a52-640c2a314c94">
+    <Category>test</Category>
+    <Expertise>test1551</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="9e59220e-d2e7-4569-b795-46ffb72e0c8b">
+    <Category>test</Category>
+    <Expertise>test1609</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="cdd4db96-5579-4073-b33f-8749e21cfd5c">
+    <Category>test</Category>
+    <Expertise>test1614</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="3cbce21c-7ece-43b8-a681-53d51057c768">
+    <Category>test</Category>
+    <Expertise>test1623</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="f6a3fd79-85d9-4b40-b1b4-9f2fa6b8f71b">
+    <Category>test</Category>
+    <Expertise>test1011</Expertise>
   </ExpertiseItem>
 </Expertise>

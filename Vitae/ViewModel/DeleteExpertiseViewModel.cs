@@ -56,7 +56,7 @@
                 else return new ObservableCollection<IExpertiseEntity>();
             }
         }
-        public IExpertiseEntity SelectedExpertise
+        public IExpertiseEntity SelectedExpertise 
         {
             get
             {
@@ -73,6 +73,8 @@
         public ICommand DeleteCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
+        public event EventHandler ExpertiseDeleted;
+
         // Public Methods
 
         public DeleteExpertiseViewModel(IExpertiseRepository repository) 
@@ -87,6 +89,7 @@
         private void deleteExpertise() 
         {
             repos.Remove(SelectedExpertise.ID);
+            ExpertiseDeleted?.Invoke(this, new EventArgs());
         }
 
         private void loadAllExpertises() 

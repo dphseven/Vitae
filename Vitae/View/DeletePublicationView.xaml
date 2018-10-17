@@ -10,7 +10,7 @@
     </UserControl.Background>
 
     <Border BorderBrush="CornflowerBlue" BorderThickness="2" 
-            Margin="400 200 400 200" Background="White">
+            Margin="200 200 200 200" Background="White">
         <Grid Background="White" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

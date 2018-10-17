@@ -1,6 +1,7 @@
 ﻿namespace Vitae.ViewModel
 {
     using Ninject;
+    using System;
     using System.Windows.Input;
     using Vitae.Model;
 
@@ -50,6 +51,8 @@
         public ICommand AddButtonCmd { get; set; }
         public ICommand CancelButtonCmd { get; set; }
 
+        public event EventHandler ExpertiseAdded;
+
 		// Public Methods
 
         public AddExpertiseViewModel(IExpertiseRepository repository) 
@@ -67,6 +70,8 @@
         private void addExpertiseToRepository() 
         {
             repos.Add(entity);
+
+            ExpertiseAdded?.Invoke(this, new EventArgs());
         }
 
         private void reset() 

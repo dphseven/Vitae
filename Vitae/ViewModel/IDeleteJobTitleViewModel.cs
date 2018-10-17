@@ -15,5 +15,7 @@
 
         ICommand DeleteJobTitleCmd { get; set; }
         ICommand CancelCmd { get; set; }
+
+        event EventHandler JobTitleDeleted;
     }
 }

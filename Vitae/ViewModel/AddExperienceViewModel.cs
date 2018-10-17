@@ -1,6 +1,7 @@
 ﻿namespace Vitae.ViewModel
 {
     using Ninject;
+    using System;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Linq;
@@ -37,6 +38,8 @@
         public ICommand AddCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
+        public event EventHandler ExperienceAdded;
+
         // Public Methods
 
         public AddExperienceViewModel(IExperienceRepository repository) 
@@ -63,6 +66,7 @@
                     job.Details.Add(Experience);
                     repos.Add(job);
                 }
+                ExperienceAdded?.Invoke(this, new EventArgs());
             }
         }
 

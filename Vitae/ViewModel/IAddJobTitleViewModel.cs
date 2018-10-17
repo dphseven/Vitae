@@ -16,5 +16,7 @@
 
         ICommand AddJobTitleCmd { get; set; }
         ICommand CancelCmd { get; set; }
+
+        event EventHandler JobTitleAdded;
     }
 }

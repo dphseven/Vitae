@@ -1,9 +1,8 @@
 ﻿namespace Vitae.ViewModel
 {
-    using System.Collections.ObjectModel;
+    using System;
     using System.ComponentModel;
     using System.Windows.Input;
-    using Vitae.Model;
 
     public interface IAddExperienceViewModel : INotifyPropertyChanged
     {
@@ -12,5 +11,7 @@
 
         ICommand AddCmd { get; set; }
         ICommand CancelCmd { get; set; }
+
+        event EventHandler ExperienceAdded;
     }
 }

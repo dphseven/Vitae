@@ -1,5 +1,6 @@
 ﻿namespace Vitae.ViewModel
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
@@ -10,7 +11,7 @@
     {
         private IExperienceRepository repos;
 
-        private UIState formState;
+        private UIState formState = UIState.View;
         private IExperienceEntity selectedEmployer;
         private string selectedJobTitle;
         private string newJobTitle;
@@ -63,6 +64,8 @@
         public ICommand EditJobTitleCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
+        public event EventHandler JobTitleEdited;
+
         // Public Methods
 
         public EditJobTitleViewModel(IExperienceRepository repository) 
@@ -85,6 +88,8 @@
             SelectedEmployer.Titles.Remove(SelectedJobTitle);
 
             repos.Update(SelectedEmployer.ID, SelectedEmployer);
+
+            JobTitleEdited?.Invoke(this, new EventArgs());
         }
 
         private void loadEmployers() 

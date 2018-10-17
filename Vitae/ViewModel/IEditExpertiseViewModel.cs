@@ -15,9 +15,10 @@
         string SelectedCategory { get; set; }
         ObservableCollection<string> ExpertiseItems { get; }
         string SelectedExpertiseItem { get; set; }
-        //string Expertise { get; set; }
 
         ICommand EditButtonCmd { get; set; }
         ICommand CancelButtonCmd { get; set; }
+
+        event EventHandler ExpertiseEdited;
     }
 }

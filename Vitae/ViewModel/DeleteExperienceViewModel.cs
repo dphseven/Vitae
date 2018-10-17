@@ -55,6 +55,8 @@
         public ICommand DeleteCmd { get; set; }
         public ICommand CancelCmd { get; set; }
 
+        public event EventHandler ExperienceDeleted;
+
         // Public Methods
 
         public DeleteExperienceViewModel(IExperienceRepository repository) 
@@ -75,6 +77,8 @@
         {
             SelectedEmployer.Details.Remove(selectedExperience);
             repos.Update(SelectedEmployer.ID, SelectedEmployer);
+
+            ExperienceDeleted?.Invoke(this, new EventArgs());
         }
 
         private void reset() 

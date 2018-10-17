@@ -89,6 +89,8 @@
         public ICommand EditButtonCmd { get; set; }
         public ICommand CancelButtonCmd { get; set; }
 
+        public event EventHandler ExpertiseEdited;
+
         // Public Methods
 
         public EditExpertiseViewModel(IExpertiseRepository repository) 
@@ -116,6 +118,7 @@
         private void updateExpertise() 
         {
             repos.Update(entity.ID, entity);
+            ExpertiseEdited?.Invoke(this, new EventArgs());
         }
 
         private void reset() 
