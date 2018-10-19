@@ -168,10 +168,6 @@
     <Category>Business Analysis</Category>
     <Expertise>Business Process Management updated</Expertise>
   </ExpertiseItem>
-  <ExpertiseItem Guid="798139e6-5ce7-4091-bb90-6bd65bb5fbff">
-    <Category>test</Category>
-    <Expertise>test1521</Expertise>
-  </ExpertiseItem>
   <ExpertiseItem Guid="547c4054-dc35-47f7-a35a-5bed6fddf89f">
     <Category>test</Category>
     <Expertise>test1525</Expertise>
