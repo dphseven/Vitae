@@ -117,6 +117,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Entities\DecoratedExperienceEntity.cs" />
+    <Compile Include="Model\Entities\IDecoratedExperienceEntity.cs" />
+    <Compile Include="ViewModel\DeleteJobViewModel.cs" />
+    <Compile Include="ViewModel\EditJobViewModel.cs" />
+    <Compile Include="ViewModel\IDeleteJobViewModel.cs" />
+    <Compile Include="ViewModel\IEditJobViewModel.cs" />
     <Compile Include="ViewModel\AddEducationViewModel.cs" />
     <Compile Include="ViewModel\AddExperienceViewModel.cs" />
     <Compile Include="ViewModel\DeleteEducationViewModel.cs" />
@@ -129,6 +135,8 @@
     <Compile Include="ViewModel\EditPublicationViewModel.cs" />
     <Compile Include="ViewModel\IAddEducationViewModel.cs" />
     <Compile Include="ViewModel\IAddExperienceViewModel.cs" />
+    <Compile Include="ViewModel\AddJobViewModel.cs" />
+    <Compile Include="ViewModel\IAddJobViewModel.cs" />
     <Compile Include="ViewModel\IAddPublicationViewModel.cs" />
     <Compile Include="ViewModel\IDeleteEducationViewModel.cs" />
     <Compile Include="ViewModel\IDeleteExpertiseViewModel.cs" />
@@ -159,6 +167,9 @@
     </Compile>
     <Compile Include="View\AddPublicationView.xaml.cs">
       <DependentUpon>AddPublicationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddJobView.xaml.cs">
+      <DependentUpon>AddJobView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Converters\GuidToStringConverter.cs" />
     <Compile Include="View\DeleteEducationView.xaml.cs">
@@ -263,6 +274,9 @@
     <Compile Include="View\Converters\UiStateToVisibilityConverters.cs" />
     <Compile Include="ViewModel\IExpertiseManagementViewModel.cs" />
     <Compile Include="ViewModel\IDeleteExperienceViewModel.cs" />
+    <Compile Include="View\EditJobView.xaml.cs">
+      <DependentUpon>EditJobView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EditPublicationView.xaml.cs">
       <DependentUpon>EditPublicationView.xaml</DependentUpon>
     </Compile>
@@ -293,6 +307,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddPublicationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddJobView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -329,6 +347,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EditJobTitleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditJobView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

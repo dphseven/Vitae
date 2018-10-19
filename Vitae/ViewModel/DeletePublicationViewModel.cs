@@ -26,8 +26,8 @@
             set
             {
                 selectedPublication = value;
-                notifyPropertyChanged();
-                notifyPropertyChanged(nameof(ID));
+                NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(ID));
             }
         }
 

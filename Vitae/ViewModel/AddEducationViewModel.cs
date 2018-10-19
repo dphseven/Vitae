@@ -18,7 +18,7 @@
             set
             {
                 institution = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public string Credential 
@@ -27,7 +27,7 @@
             set
             {
                 credential = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 

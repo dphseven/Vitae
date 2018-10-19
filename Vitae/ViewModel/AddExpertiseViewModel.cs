@@ -18,7 +18,7 @@
             set
             {
                 formState = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public string Category 
@@ -31,7 +31,7 @@
             set
             {
                 entity.Category = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public string Expertise 
@@ -44,7 +44,7 @@
             set
             {
                 entity.Expertise = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 

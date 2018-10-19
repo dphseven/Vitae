@@ -17,7 +17,7 @@
             set
             {
                 publication = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 

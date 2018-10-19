@@ -4,6 +4,7 @@
     using Model;
     using Services;
     using ViewModel;
+    using System;
 
     public class NinjectBindings : NinjectModule
     {
@@ -16,6 +17,7 @@
             Bind<IExpertiseEntity>().To<ExpertiseEntity>();
             Bind<IPublicationEntity>().To<PublicationEntity>();
             Bind<IGeneralInfoEntity>().To<GeneralInfoEntity>();
+            Bind<IDecoratedExperienceEntity>().To<DecoratedExperienceEntity>();
 
             Bind<IBasicInfoSection>().To<BasicInfoSection>();
             Bind<IEducationSection>().To<EducationSection>();
@@ -60,6 +62,7 @@
             Bind<IContainerViewModel>().To<ContainerViewModel>();
             Bind<IKeywordToolViewModel>().To<KeywordToolViewModel>();
             Bind<IResumeCreatorViewModel>().To<ResumeCreatorViewModel>();
+
             Bind<IAddExpertiseViewModel>().To<AddExpertiseViewModel>();
             Bind<IEditExpertiseViewModel>().To<EditExpertiseViewModel>();
             Bind<IAddJobTitleViewModel>().To<AddJobTitleViewModel>();
@@ -70,12 +73,14 @@
             Bind<IEditExperienceViewModel>().To<EditExperienceViewModel>();
             Bind<IDeleteExperienceViewModel>().To<DeleteExperienceViewModel>();
             Bind<IAddEducationViewModel>().To<AddEducationViewModel>();
-
             Bind<IEditEducationViewModel>().To<EditEducationViewModel>();
             Bind<IDeleteEducationViewModel>().To<DeleteEducationViewModel>();
             Bind<IAddPublicationViewModel>().To<AddPublicationViewModel>();
             Bind<IEditPublicationViewModel>().To<EditPublicationViewModel>();
             Bind<IDeletePublicationViewModel>().To<DeletePublicationViewModel>();
+            Bind<IAddJobViewModel>().To<AddJobViewModel>();
+            Bind<IEditJobViewModel>().To<EditJobViewModel>();
+            Bind<IDeleteJobViewModel>().To<DeleteJobViewModel>();
         }
     }
 }

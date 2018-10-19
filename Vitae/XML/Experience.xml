@@ -1,39 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Jobs>
-  <Job Guid="e54f3adf-959a-4995-84ec-b481a01c5828" Employer="Citigroup" StartDate="March 2008" EndDate="July 2013">
+  <Job Guid="e54f3adf-959a-4995-84ec-b481a01c5828" Employer="Citigroup" StartDate="Mar 2008" EndDate="Jul 2013">
     <JobTitles>
-      <JobTitle>Senior Vice President, Product Management</JobTitle>
-      <JobTitle>Senior Vice President, Business Analysis Manager</JobTitle>
-      <JobTitle>Senior Vice President, Program Director</JobTitle>
-      <JobTitle>Senior Vice President, Project Director</JobTitle>
-      <JobTitle>Lead Business Analyst</JobTitle>
-      <JobTitle>Chief Product Manager</JobTitle>
-      <JobTitle>test 0947</JobTitle>
-    </JobTitles>
-    <Details>
-      <Detail>Oversaw new product development, business analysis, and program management globally for the private bank’s online channel, serving approximately 10,000 affluent clients and their family offices, investment managers, and other advisors in seven regulatory jurisdictions on five continents.</Detail>
-      <Detail>Served as lead Product Owner for the client website and mobile apps.</Detail>
-      <Detail>Served as lead Product Manager for the client web platform and mobile apps.</Detail>
-      <Detail>Managed a mixed team of employee and consultant project managers and business analysts, varying in size from 3 to 10.</Detail>
-      <Detail>Evangelized the bank’s online and mobile capabilities to clients and front-office teams. Worked with front-office teams to understand client opportunities and pain points; acted as voice of the online client to operations and technology partners; interfaced with the Client Experience Taskforce on all issues related to the online and mobile channels.</Detail>
-      <Detail>Redesigned the citiprivatebank.com portal, moving the bank’s online capabilities forward by approximately 10 years and winning the following awards: InformationWeek 500 list of business technology innovators, Interactive Media Award: Best in Class, Banking, Interactive Media Award: Best in Class, Financial Services, Interactive Media Award: Outstanding Achievement, Financial Information.</Detail>
-      <Detail>Changed the orientation of a team of project managers and business analysts into a delivery-focused product team.</Detail>
-      <Detail>Won a finalist position in the Citigroup-wide “Best Practices in Project Management” award (1 of 8 projects selected across Citi’s entire project footprint numbering in the thousands).</Detail>
-      <Detail>Chaired the GWM Online Platform Capabilities Committee, tasked with defining a common online strategy for the Private Bank (UHNW), Smith Barney (HNW), and myFi (Mass Affluent).</Detail>
-      <Detail>Implemented product development and requirements management processes and systems. These systems were later rolled out in other areas of the Institutional Clients Group.</Detail>
-      <Detail>Collaborated with other business units (Personal Wealth Management, Global Consumer, Institutional Client Group, and Global Transaction Services) to find and analyze opportunities to leverage their product offerings for the benefit of our affluent client base.</Detail>
-      <Detail>Co-founded and led the bank’s Business Analysis Center of Excellence, focused on coordinating the bank-wide analysis portfolio, driving development of the Business Analyst community, and evangelizing the business analysis function.</Detail>
-    </Details>
-  </Job>
-  <Job Guid="bca4a4f4-3d3e-4fc7-83a2-77ceb215b784" Employer="Morgan Stanley" StartDate="June 2002" EndDate="March 2008">
-    <JobTitles>
-      <JobTitle>Product Manager/Business Analyst</JobTitle>
-      <JobTitle>Product Owner/Business Analyst</JobTitle>
-      <JobTitle>Project Manager/Business Analyst</JobTitle>
-      <JobTitle>Business Analyst/Product Manager</JobTitle>
-      <JobTitle>Business Analyst/Product Owner</JobTitle>
-      <JobTitle>Business Analyst/Project Manager</JobTitle>
-      <JobTitle>CEO</JobTitle>
+      <JobTitle>Senior VP, Product Management</JobTitle>
     </JobTitles>
     <Details>
       <Detail>Performed dual Product Manager and Business Analyst roles in a broad variety of Financial Advisor Workstation and ClientServ projects. Delivered 33 (out of 33) projects on time and on budget.</Detail>
@@ -45,24 +14,45 @@
       <Detail>Served as member of the Project Governance Standards Committee and the Canonical Services Oversight Board (SOA governance).</Detail>
       <Detail>Provided high-level concierge services to top clients, Branch Managers and Chairman’s Club Financial Advisors. Interfaced with FA Recruiting to drive competitor intelligence activities.</Detail>
       <Detail>Managed the firm-wide implementation of changes to the discretionary brokerage business model.</Detail>
-      <Detail>test1153</Detail>
-      <Detail>test1037</Detail>
     </Details>
   </Job>
-  <Job Guid="c0c464a7-d6d4-4d4f-9396-c9b919f7b2f2" Employer="test" StartDate="" EndDate="">
-    <JobTitles />
+  <Job Guid="bca4a4f4-3d3e-4fc7-83a2-77ceb215b784" Employer="Morgan Stanley Global Wealth Management" StartDate="June 2002" EndDate="March 2008">
+    <JobTitles>
+      <JobTitle>Product Manager/Business Analyst</JobTitle>
+      <JobTitle>Product Owner/Business Analyst</JobTitle>
+      <JobTitle>Project Manager/Business Analyst</JobTitle>
+    </JobTitles>
     <Details>
-      <Detail>test1039</Detail>
-      <Detail>test1046</Detail>
-      <Detail>test1048</Detail>
-      <Detail>test1049</Detail>
-      <Detail>test1051</Detail>
-      <Detail>test1052</Detail>
-      <Detail>test1056</Detail>
+      <Detail>Oversaw new product development, business analysis, and program management globally for the private bank’s online channel, serving approximately 10,000 affluent clients and their family offices, investment managers, and other advisors in seven regulatory jurisdictions on five continents.</Detail>
+      <Detail>Served as lead Product Owner for the client web platform and mobile apps.</Detail>
+      <Detail>Served as lead Product Manager for the client web platform and mobile apps.</Detail>
+      <Detail>Managed a mixed team of employee and consultant project managers and business analysts, varying in size from 3 to 10.</Detail>
+      <Detail>Evangelized the bank’s online and mobile capabilities to clients and front-office teams. Worked with front-office teams to understand client opportunities and pain points; acted as voice of the online client to operations and technology partners; interfaced with the Client Experience Taskforce on all issues related to the online and mobile channels.</Detail>
+      <Detail>Redesigned the citiprivatebank.com portal, moving the bank’s online capabilities forward by approximately 10 years and winning the following awards: InformationWeek 500 list of business technology innovators, Interactive Media Award: Best in Class, Banking, Interactive Media Award: Best in Class, Financial Services, Interactive Media Award: Outstanding Achievement, Financial Information.</Detail>
+      <Detail>Changed the orientation of a team of project managers and business analysts into a delivery-focused product team.</Detail>
+      <Detail>Won a finalist position in the Citigroup-wide “Best Practices in Project Management” award (1 of 8 projects selected across Citi’s entire project footprint numbering in the thousands).</Detail>
+      <Detail>Chaired the GWM Online Platform Capabilities Committee, tasked with defining a common online strategy for the Private Bank (UHNW), Smith Barney (HNW), and myFi (Mass Affluent).</Detail>
+      <Detail>Implemented product development and requirements management processes and systems. These systems were later rolled out in other areas of the Institutional Clients Group.</Detail>
+      <Detail>Collaborated with other business units (Personal Wealth Management, Global Consumer, Institutional Client Group, and Global Transaction Services) to find and analyze opportunities to leverage their product offerings for the benefit of our affluent client base.</Detail>
+      <Detail>Co-founded and led the bank’s Business Analysis Center of Excellence, focused on coordinating the bank-wide analysis portfolio, driving development of the Business Analyst community, and evangelizing the business analysis function.</Detail>
+      <Detail>Held the FINRA Series 7, 9, 10, 24, and 66 securities licenses.</Detail>
     </Details>
   </Job>
-  <Job Guid="ce8cff33-778a-47d6-826d-df4c551e8186" Employer="test" StartDate="" EndDate="">
-    <JobTitles />
-    <Details />
+  <Job Guid="3d94ba36-e5b4-448c-b840-5a64d8fb01aa" Employer="NorwalkAberdeen" StartDate="Jul 2013" EndDate="Present">
+    <JobTitles>
+      <JobTitle>Managing Director</JobTitle>
+      <JobTitle>Managing Director, Advisory Services</JobTitle>
+    </JobTitles>
+    <Details>
+      <Detail>Founded a start-up specializing in business analyst/product owner training. Primary responsibilities are firm strategy, marketing, product development and delivery, sales, and client development.</Detail>
+      <Detail>Ideated, developed, and brought to maturity our on-demand course product line, consisting of a suite of six business analysis and product ownership courses. Over the course of five years, we have had more than 20,000 enrolled students across approximately 150 countries.</Detail>
+      <Detail>Ideated, developed, and am maturing our on-site class product line, consisting of a suite of four business analysis and product ownership courses.</Detail>
+      <Detail>Ran numerous proprietary on-site training classes in New York and Washington.</Detail>
+      <Detail>Developed and delivered CRM training for JPMorgan Private Bank in New York, Los Angeles, and Miami.</Detail>
+      <Detail>Led the efforts to develop a cross-selling partnership with Learning Tree, a $13 million technology training company.</Detail>
+      <Detail>Conducted in-depth webinars and online round tables on the topics of business analysis and Agile to drive lead capture.</Detail>
+      <Detail>Wrote 24 articles and white papers on the topic of agile product ownership and traditional business analysis.</Detail>
+      <Detail>Designed and developed a proprietary CRM and Lead Management platform for institutional sales (.Net, C#, WPF). Designed and developed the NorwalkAberdeen website, including the development of custom widgets and integration with third party services (HTML/CSS/JS).</Detail>
+    </Details>
   </Job>
 </Jobs>

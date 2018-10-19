@@ -42,8 +42,8 @@
             set
             {
                 selectedCategory = value;
-                notifyPropertyChanged();
-                notifyPropertyChanged(nameof(Expertises));
+                NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(Expertises));
             }
         }
         public ObservableCollection<IExpertiseEntity> Expertises 
@@ -65,8 +65,8 @@
             set
             {
                 selectedExpertise = value;
-                notifyPropertyChanged();
-                notifyPropertyChanged(nameof(ExpertiseID));
+                NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(ExpertiseID));
             }
         }
 
@@ -95,9 +95,9 @@
         private void loadAllExpertises() 
         {
             allExpertises = new ObservableCollection<IExpertiseEntity>(repos.GetAll());
-            notifyPropertyChanged(nameof(ExpertiseID));
-            notifyPropertyChanged(nameof(Categories));
-            notifyPropertyChanged(nameof(Expertises));
+            NotifyPropertyChanged(nameof(ExpertiseID));
+            NotifyPropertyChanged(nameof(Categories));
+            NotifyPropertyChanged(nameof(Expertises));
         }
 
         private void reset() 

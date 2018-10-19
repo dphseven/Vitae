@@ -29,8 +29,8 @@
             {
                 selectedInstitution = value;
                 Credentials = new ObservableCollection<string>(Institutions.Where(T => T == value).Select(T => T.Credential));
-                notifyPropertyChanged();
-                notifyPropertyChanged(nameof(Credentials));
+                NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(Credentials));
             }
         }
         public ObservableCollection<string> Credentials { get; set; }
@@ -40,8 +40,8 @@
             set
             {
                 selectedCredential = value;
-                notifyPropertyChanged();
-                notifyPropertyChanged(nameof(ID));
+                NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(ID));
             } 
         } 
 

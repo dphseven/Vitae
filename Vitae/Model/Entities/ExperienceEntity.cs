@@ -12,7 +12,7 @@
         public IList<string> Titles { get; set; }
         public IList<string> Details { get; set; }
 
-        public ExperienceEntity()
+        public ExperienceEntity() 
         {
             Employer = string.Empty;
             StartDate = string.Empty;

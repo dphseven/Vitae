@@ -19,7 +19,7 @@
             set
             {
                 formState = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public Guid ID 
@@ -42,8 +42,8 @@
                 selectedPublication = value;
                 UpdatedPublication = SelectedPublication.Publication;
                 FormState = UIState.Edit;
-                notifyPropertyChanged();
-                notifyPropertyChanged(nameof(ID));
+                NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(ID));
             }
         }
         public string UpdatedPublication 
@@ -52,7 +52,7 @@
             set
             {
                 updatedPublication = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 

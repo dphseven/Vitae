@@ -34,6 +34,7 @@
 
         public RelayCommand(Action<object> execute) : this(execute, null) 
         {
+
         }
 
         public RelayCommand(Action<object> execute, Predicate<object> canExecute) 

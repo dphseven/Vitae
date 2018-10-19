@@ -4,6 +4,7 @@
     using Services;
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
 
     public class ExperienceRepository : IExperienceRepository
@@ -44,6 +45,34 @@
             try
             {
                 return xs.GetAll();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public IList<IDecoratedExperienceEntity> GetAllDecorators() 
+        {
+            try
+            {
+                using (var ioc = new VitaeNinjectKernel())
+                {
+                    var temp = xs.GetAll();
+                    var listToReturn = new List<IDecoratedExperienceEntity>();
+                    foreach (var item in temp)
+                    {
+                        var decorated = ioc.Get<IDecoratedExperienceEntity>();
+                        decorated.ID = item.ID;
+                        decorated.Employer = item.Employer;
+                        decorated.Titles = item.Titles;
+                        decorated.StartDate = item.StartDate;
+                        decorated.EndDate = item.EndDate;
+                        decorated.Details = new ObservableCollection<string>(item.Details);
+                        listToReturn.Add(decorated);
+                    }
+                    return listToReturn;
+                }
             }
             catch (Exception)
             {

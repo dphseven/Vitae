@@ -7,7 +7,7 @@
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void notifyPropertyChanged([CallerMemberName] string propertyName = "") 
+        protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "") 
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

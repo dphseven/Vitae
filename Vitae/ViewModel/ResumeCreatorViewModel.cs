@@ -31,58 +31,58 @@
         private string phone = string.Empty;
         private string email = string.Empty;
         private string tagline = string.Empty;
-        public string FullName
+        public string FullName 
         {
             get { return fullName; }
             set
             {
                 fullName = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
-        public string AddLine1
+        public string AddLine1 
         {
             get { return addLine1; }
             set
             {
                 addLine1 = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
-        public string AddLine2
+        public string AddLine2 
         {
             get { return addLine2; }
             set
             {
                 addLine2 = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
-        public string Phone
+        public string Phone 
         {
             get { return phone; }
             set
             {
                 phone = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
-        public string Email
+        public string Email 
         {
             get { return email; }
             set
             {
                 email = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
-        public string TagLine
+        public string TagLine 
         {
             get { return tagline; }
             set
             {
                 tagline = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 
@@ -91,61 +91,66 @@
         public ObservableCollection<IExpertiseEntity> InExpertises { get; set; }
         public ObservableCollection<IExpertiseEntity> OutExpertises { get; set; }
         private IExpertiseEntity selectedOutExpertise;
-        public IExpertiseEntity SelectedOutExpertise
+        public IExpertiseEntity SelectedOutExpertise 
         {
             get { return selectedOutExpertise; }
             set
             {
                 selectedOutExpertise = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         private IExpertiseEntity selectedInExpertise;
-        public IExpertiseEntity SelectedInExpertise
+        public IExpertiseEntity SelectedInExpertise 
         {
             get { return selectedInExpertise; }
             set
             {
                 selectedInExpertise = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 
-        // Job Titles Properties
-        public ObservableCollection<JobTitleSelectionObject> AllJTSOs { get; set; }
+        // Jobs Properties
+        public ObservableCollection<IDecoratedExperienceEntity> AllJobs { get; } 
+            = new ObservableCollection<IDecoratedExperienceEntity>();
+        private IDecoratedExperienceEntity selectedJob;
+        public IDecoratedExperienceEntity SelectedJob 
+        {
+            get { return selectedJob; }
+            set
+            {
+                selectedJob = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         // Experience Properties
-        public ObservableCollection<string> AllEmployers { get; set; }
-        public string SelectedEmployer { get; set; }
-        public ObservableCollection<IExperienceItem> AllExperiences { get; set; }
-        public ObservableCollection<IExperienceItem> OutExperiences { get; set; }
-        public ObservableCollection<IExperienceItem> InExperiences { get; set; }
-        public ObservableCollection<IExperienceItem> AllInExperiences { get; set; }
-        public IExperienceItem SelectedInExperience { get; set; }
-        public IExperienceItem SelectedOutExperience { get; set; }
+        public string SelectedInExperience { get; set; }
+        public string SelectedOutExperience { get; set; }
 
         // Education Properties
         public ObservableCollection<IEducationEntity> AllEducations { get; set; }
         public ObservableCollection<IEducationEntity> InEducations { get; set; }
         public ObservableCollection<IEducationEntity> OutEducations { get; set; }
         private IEducationEntity selectedOutEducation;
-        public IEducationEntity SelectedOutEducation
+        public IEducationEntity SelectedOutEducation 
         {
             get { return selectedOutEducation; }
             set
             {
                 selectedOutEducation = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         private IEducationEntity selectedInEducation;
-        public IEducationEntity SelectedInEducation
+        public IEducationEntity SelectedInEducation 
         {
             get { return selectedInEducation; }
             set
             {
                 selectedInEducation = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 
@@ -154,40 +159,39 @@
         public ObservableCollection<IPublicationEntity> InPublications { get; set; }
         public ObservableCollection<IPublicationEntity> OutPublications { get; set; }
         private IPublicationEntity selectedOutPublication;
-        public IPublicationEntity SelectedOutPublication
+        public IPublicationEntity SelectedOutPublication 
         {
             get { return selectedOutPublication; }
             set
             {
                 selectedOutPublication = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         private IPublicationEntity selectedInPublication;
-        public IPublicationEntity SelectedInPublication
+        public IPublicationEntity SelectedInPublication 
         {
             get { return selectedInPublication; }
             set
             {
                 selectedInPublication = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 
         // Resume Preview Properties
         private FlowDocument resumePreview = new FlowDocument();
-        public FlowDocument ResumePreview
+        public FlowDocument ResumePreview 
         {
             get { return resumePreview; }
             set
             {
                 resumePreview = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 
         // Commands
-
         public ICommand AddExpertiseCommand { get; set; }
         public ICommand RemoveExpertiseCommand { get; set; }
         public ICommand MoveExpertiseUpCommand { get; set; }
@@ -218,8 +222,7 @@
             IExperienceRepository experienceRepository,
             IExpertiseRepository expertiseRepository,
             IEducationRepository educationRepository,
-            IPublicationsRepository publicationsRepository
-            ) 
+            IPublicationsRepository publicationsRepository) 
         {
             try
             {
@@ -231,7 +234,8 @@
                 this.pubRepos = publicationsRepository;
                 this.ls = ls;
 
-                setUpRelayCommands();
+                SetUpRelayCommands();
+
                 var gie = giRepos.Get(Guid.Empty);
                 FullName = gie.FullName;
                 Email = gie.Email;
@@ -239,10 +243,10 @@
                 AddLine1 = gie.Add1;
                 AddLine2 = gie.Add2;
 
-                AllEmployers = new ObservableCollection<string>(experienceRepos.GetAll().Select(T => T.Employer).Distinct());
-
                 InExpertises = new ObservableCollection<IExpertiseEntity>();
                 OutExpertises = AllExpertises = new ObservableCollection<IExpertiseEntity>(expertiseRepos.GetAll());
+
+                RefreshJobs();
 
                 InEducations = new ObservableCollection<IEducationEntity>();
                 OutEducations = AllEducations = new ObservableCollection<IEducationEntity>(edRepos.GetAll());
@@ -250,19 +254,20 @@
                 InPublications = new ObservableCollection<IPublicationEntity>();
                 OutPublications = AllPublications = new ObservableCollection<IPublicationEntity>(pubRepos.GetAll());
 
-                AllExperiences = new ObservableCollection<IExperienceItem>(experienceRepos.GetAllExperienceItems());
-                OutExperiences = new ObservableCollection<IExperienceItem>();
-                InExperiences = new ObservableCollection<IExperienceItem>();
-                AllInExperiences = new ObservableCollection<IExperienceItem>();
-
-                AllJTSOs = new ObservableCollection<JobTitleSelectionObject>();
-                LoadJobTitles();
-
-                updateDocumentPreview();
+                UpdateDocumentPreview();
             }
             catch (Exception e)
             {
                 ls.Log(e, "Exception");
+            }
+        }
+
+        public void DeleteJob(Guid jobId) 
+        {
+            if (experienceRepos.Get(jobId) != null)
+            {
+                experienceRepos.Remove(jobId);
+                RefreshJobs();
             }
         }
 
@@ -272,7 +277,7 @@
             {
                 using (var ioc = new VitaeNinjectKernel())
                 {
-                    var rdo = createRdo();
+                    var rdo = CreateRdo();
                     var rfo = ioc.Get<IResumeFormatObject>();
                     var rso = ioc.Get<IResumeStructureObject>();
                     rso.AddSection(ioc.Get<IFullNameSection>());
@@ -298,7 +303,7 @@
             {
                 using (var ioc = new VitaeNinjectKernel())
                 {
-                    var rdo = createRdo();
+                    var rdo = CreateRdo();
                     var rfo = ioc.Get<IResumeFormatObject>();
                     var rso = ioc.Get<IResumeStructureObject>();
                     rso.AddSection(ioc.Get<IFullNameSection>());
@@ -318,25 +323,7 @@
             }
         }
 
-        public void LoadJobTitles() 
-        {
-            var listOfJobs = experienceRepos.GetAll();
-            var newList = new List<JobTitleSelectionObject>();
-
-            foreach (var job in listOfJobs)
-            {
-                var jtso = new JobTitleSelectionObject();
-                jtso.Company = job.Employer;
-                foreach (var item in job.Titles) jtso.JobTitles.Add(item);
-                jtso.PropertyChanged += Jtso_PropertyChanged;
-                newList.Add(jtso);
-            }
-
-            AllJTSOs = new ObservableCollection<JobTitleSelectionObject>(newList);
-            notifyPropertyChanged(nameof(AllJTSOs));
-        }
-
-        public void SortOutExpertises() 
+        public void RefreshExpertises() 
         {
             OutExpertises = new ObservableCollection<IExpertiseEntity>(
                 expertiseRepos.GetAll().OrderBy(T => T.Category).ThenBy(T => T.Expertise));
@@ -344,7 +331,19 @@
             {
                 if (OutExpertises.Contains(item)) OutExpertises.Remove(item);
             }
-            notifyPropertyChanged(nameof(OutExpertises));
+            NotifyPropertyChanged(nameof(OutExpertises));
+        }
+
+        public void RefreshJobs() 
+        {
+            if (AllJobs == null) return;
+            AllJobs.Clear();
+            var list = experienceRepos.GetAllDecorators();
+            foreach (var job in list)
+            {
+                AllJobs.Add(job);
+                job.PropertyChanged += Job_PropertyChanged;
+            }
         }
 
         public void RefreshEducationList() 
@@ -375,28 +374,9 @@
             }
         }
 
-        public void UpdateExperienceLists() 
+        public void RefreshExperienceLists() 
         {
-            AllExperiences = new ObservableCollection<IExperienceItem>(experienceRepos.GetAllExperienceItems());
-            notifyPropertyChanged(nameof(AllInExperiences));
 
-            if (SelectedEmployer == null) return;
-            try
-            {
-                // Load In Experiences
-                InExperiences.Clear();
-                foreach (var item in AllInExperiences.Where(T => T.Employer == SelectedEmployer))
-                    InExperiences.Add(item);
-
-                // Load Out Experiences
-                OutExperiences.Clear();
-                foreach (var item in AllExperiences.Where(T => T.Employer == SelectedEmployer))
-                    if (!InExperiences.Contains(item)) OutExperiences.Add(item);
-            }
-            catch (Exception e)
-            {
-                ls.Log(e, "Exception");
-            }
         }
 
         /**************************
@@ -405,7 +385,7 @@
         ***************************
         **************************/
 
-        private void addExpertise() 
+        private void AddExpertiseToResume() 
         {
             if (SelectedOutExpertise == null) return;
             try
@@ -419,7 +399,7 @@
                 ls.Log(e, "Exception");
             }
         }
-        private void removeExpertise() 
+        private void RemoveExpertiseFromResume() 
         {
             try
             {
@@ -434,7 +414,7 @@
                 ls.Log(e, "Exception");
             }
         }
-        private void moveExpertiseUp() 
+        private void MoveExpertiseUpInResume() 
         {
             try
             {
@@ -442,14 +422,14 @@
 
                 int currentIndex = InExpertises.IndexOf(SelectedInExpertise);
                 InExpertises.Move(currentIndex, currentIndex - 1);
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
             catch (Exception e)
             {
                 ls.Log(e, "Exception");
             }
         }
-        private void moveExpertiseDown() 
+        private void MoveExpertiseDownInResume() 
         {
             try
             {
@@ -457,7 +437,7 @@
 
                 int currentIndex = InExpertises.IndexOf(SelectedInExpertise);
                 InExpertises.Move(currentIndex, currentIndex + 1);
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
             catch (Exception e)
             {
@@ -465,68 +445,56 @@
             }
         }
 
-        private void addExperienceItem() 
+        private void AddExperienceItemToResume() 
         {
             try
             {
-                if (SelectedOutExperience == null) return;
-
-                AllInExperiences.Add(SelectedOutExperience);
-                InExperiences.Add(SelectedOutExperience);
-                OutExperiences.Remove(SelectedOutExperience);
-                notifyPropertyChanged();
+                if (SelectedOutExperience == null || SelectedJob == null) return;
+                SelectedJob.SelectedDetails.Add(SelectedOutExperience);
+                if (SelectedJob.Details.Contains(SelectedOutExperience)) SelectedJob.Details.Remove(SelectedOutExperience);
+                UpdateDocumentPreview();
             }
             catch (Exception e)
             {
                 ls.Log(e, "Exception");
             }
         }
-        private void removeExperienceItem() 
+        private void RemoveExperienceItemFromResume() 
         {
             try
             {
-                if (SelectedInExperience == null) return;
-
-                OutExperiences.Add(SelectedInExperience);
-                AllInExperiences.Remove(SelectedInExperience);
-                InExperiences.Remove(SelectedInExperience);
-                notifyPropertyChanged();
+                if (SelectedInExperience == null || SelectedJob == null) return;
+                SelectedJob.Details.Add(SelectedInExperience);
+                SelectedJob.SelectedDetails.Remove(SelectedInExperience);
+                UpdateDocumentPreview();
             }
             catch (Exception e)
             {
                 ls.Log(e, "Exception");
             }
         }
-        private void moveExperienceItemUp() 
+        private void MoveExperienceItemUpInResume() 
         {
             try
             {
-                if (SelectedInExperience == null) return;
-
-                int currentIndex = InExperiences.IndexOf(SelectedInExperience);
-                InExperiences.Move(currentIndex, currentIndex - 1);
-
-                currentIndex = AllInExperiences.IndexOf(SelectedInExperience);
-                AllInExperiences.Move(currentIndex, currentIndex - 1);
-                notifyPropertyChanged();
+                if (SelectedJob == null || SelectedInExperience == null) return;
+                int currentIndex = SelectedJob.SelectedDetails.IndexOf(SelectedInExperience);
+                SelectedJob.SelectedDetails.Move(currentIndex, currentIndex - 1);
+                UpdateDocumentPreview();
             }
             catch (Exception e)
             {
                 ls.Log(e, "Exception");
             }
         }
-        private void moveExperienceItemDown() 
+        private void MoveExperienceItemDownInResume() 
         {
             try
             {
                 if (SelectedInExperience == null) return;
-
-                int currentIndex = InExperiences.IndexOf(SelectedInExperience);
-                InExperiences.Move(currentIndex, currentIndex + 1);
-
-                currentIndex = AllInExperiences.IndexOf(SelectedInExperience);
-                AllInExperiences.Move(currentIndex, currentIndex + 1);
-                notifyPropertyChanged();
+                int currentIndex = SelectedJob.SelectedDetails.IndexOf(SelectedInExperience);
+                SelectedJob.SelectedDetails.Move(currentIndex, currentIndex + 1);
+                UpdateDocumentPreview();
             }
             catch (Exception e)
             {
@@ -534,7 +502,7 @@
             }
         }
 
-        private void addEducation() 
+        private void AddEducationToResume() 
         {
             try
             {
@@ -548,7 +516,7 @@
                 ls.Log(e, "Exception");
             }
         }
-        private void removeEducation() 
+        private void RemoveEducationFromResume() 
         {
             try
             {
@@ -562,7 +530,7 @@
                 ls.Log(e, "Exception");
             }
         }
-        private void moveEducationUp() 
+        private void MoveEducationUpInResume() 
         {
             try
             {
@@ -570,14 +538,14 @@
 
                 int currentIndex = InEducations.IndexOf(SelectedInEducation);
                 InEducations.Move(currentIndex, currentIndex - 1);
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
             catch (Exception e)
             {
                 ls.Log(e, "Exception");
             }
         }
-        private void moveEducationDown() 
+        private void MoveEducationDownInResume() 
         {
             try
             {
@@ -585,7 +553,7 @@
 
                 int currentIndex = InEducations.IndexOf(SelectedInEducation);
                 InEducations.Move(currentIndex, currentIndex + 1);
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
             catch (Exception e)
             {
@@ -593,7 +561,7 @@
             }
         }
 
-        private void addPublication() 
+        private void AddPublicationToResume() 
         {
             try
             {
@@ -607,7 +575,7 @@
                 ls.Log(e, "Exception");
             }
         }
-        private void removePublication() 
+        private void RemovePublicationFromResume() 
         {
             if (SelectedInPublication == null) return;
             try
@@ -620,28 +588,28 @@
                 ls.Log(e, "Exception");
             }
         }
-        private void movePublicationUp() 
+        private void MovePublicationUpInResume() 
         {
             if (SelectedInPublication == null) return;
             try
             {
                 int currentIndex = InPublications.IndexOf(SelectedInPublication);
                 InPublications.Move(currentIndex, currentIndex - 1);
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
             catch (Exception e)
             {
                 ls.Log(e, "Exception");
             }
         }
-        private void movePublicationDown() 
+        private void MovePublicationDownInResume() 
         {
             if (SelectedInPublication == null) return;
             try
             {
                 int currentIndex = InPublications.IndexOf(SelectedInPublication);
                 InPublications.Move(currentIndex, currentIndex + 1);
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
             catch (Exception e)
             {
@@ -649,7 +617,7 @@
             }
         }
 
-        private IResumeDataObject createRdo() 
+        private IResumeDataObject CreateRdo() 
         {
             using (var ioc = new VitaeNinjectKernel())
             {
@@ -661,21 +629,19 @@
                 rdo.AddressLine2 = this.AddLine2;
                 rdo.TagLine = this.TagLine;
 
-                if (InExpertises != null)
-                {
-                    foreach (IExpertiseEntity item in InExpertises) rdo.ExpertiseEntities.Add(item);
-                }
+                if (InExpertises != null) foreach (IExpertiseEntity item in InExpertises) rdo.ExpertiseEntities.Add(item);
 
-                var allJobs = experienceRepos.GetAll();
-                for (int i = 0; i < allJobs.Count; i++)
+                foreach (var job in AllJobs)
                 {
                     IExperienceEntity ee = ioc.Get<IExperienceEntity>();
-                    ee.Employer = allJobs[i].Employer;
-                    ee.StartDate = allJobs[i].StartDate;
-                    ee.EndDate = allJobs[i].EndDate;
-                    if (AllJTSOs != null) ee.Titles.Add(AllJTSOs.FirstOrDefault(T => T.Company == allJobs[i].Employer).SelectedJobTitle);
-                    if (AllInExperiences != null && AllInExperiences.Count > 0)
-                        (ee.Details as List<string>).AddRange(AllInExperiences.Where(T => T.Employer == ee.Employer).Select(T => T.ExperienceDetail));
+                    ee.Employer = job.Employer;
+                    ee.StartDate = job.StartDate;
+                    ee.EndDate = job.EndDate;
+                    ee.Titles.Add(job.SelectedJobTitle);
+                    foreach (var detail in job.SelectedDetails)
+                    {
+                        ee.Details.Add(detail);
+                    }
                     rdo.ExperienceEntities.Add(ee);
                 }
 
@@ -687,18 +653,18 @@
             }
         }
 
-        private void Jtso_PropertyChanged(object sender, PropertyChangedEventArgs e) 
+        private void Job_PropertyChanged(object sender, PropertyChangedEventArgs e) 
         {
-            notifyPropertyChanged(e.PropertyName);
+            NotifyPropertyChanged(e.PropertyName);
         }
 
-        private void updateDocumentPreview() 
+        private void UpdateDocumentPreview() 
         {
             try
             {
                 using (var ioc = new VitaeNinjectKernel())
                 {
-                    IResumeDataObject rdo = createRdo();
+                    IResumeDataObject rdo = CreateRdo();
                     IResumeFormatObject rfo = ioc.Get<IResumeFormatObject>();
 
                     var blks = ResumePreview.Blocks;
@@ -732,77 +698,48 @@
             }
         }
 
-        private void setUpRelayCommands() 
+        private void SetUpRelayCommands() 
         {
-            AddExpertiseCommand = new RelayCommand(T => addExpertise(), T => SelectedOutExpertise != null);
-            RemoveExpertiseCommand = new RelayCommand(T => removeExpertise(), T => SelectedInExpertise != null);
+            AddExpertiseCommand = new RelayCommand(T => AddExpertiseToResume(), T => SelectedOutExpertise != null);
+            RemoveExpertiseCommand = new RelayCommand(T => RemoveExpertiseFromResume(), T => SelectedInExpertise != null);
             MoveExpertiseUpCommand = new RelayCommand(
-                T => moveExpertiseUp(),
+                T => MoveExpertiseUpInResume(),
                 T => SelectedInExpertise != null && InExpertises.IndexOf(SelectedInExpertise) > 0);
             MoveExpertiseDownCommand = new RelayCommand(
-                T => moveExpertiseDown(),
+                T => MoveExpertiseDownInResume(),
                 T => SelectedInExpertise != null && InExpertises.IndexOf(SelectedInExpertise) < InExpertises.Count - 1);
-            AddExperienceCommand = new RelayCommand(T => addExperienceItem(), T => SelectedOutExperience != null);
-            RemoveExperienceCommand = new RelayCommand(T => removeExperienceItem(), T => SelectedInExperience != null);
+            AddExperienceCommand = new RelayCommand(T => AddExperienceItemToResume(), T => SelectedOutExperience != null);
+            RemoveExperienceCommand = new RelayCommand(T => RemoveExperienceItemFromResume(), T => SelectedInExperience != null);
             MoveExperienceUpCommand = new RelayCommand(
-                T => moveExperienceItemUp(),
-                T => SelectedInExperience != null && InExperiences.IndexOf(SelectedInExperience) > 0);
+                T => MoveExperienceItemUpInResume(),
+                T => SelectedInExperience != null && 
+                     SelectedJob.SelectedDetails.IndexOf(SelectedInExperience) > 0);
             MoveExperienceDownCommand = new RelayCommand(
-                T => moveExperienceItemDown(),
-                T => SelectedInExperience != null && InExperiences.IndexOf(SelectedInExperience) < InExperiences.Count - 1);
-            AddEducationCommand = new RelayCommand(T => addEducation(), T => SelectedOutEducation != null);
-            RemoveEducationCommand = new RelayCommand(T => removeEducation(), T => SelectedInEducation != null);
+                T => MoveExperienceItemDownInResume(),
+                T => SelectedInExperience != null &&
+                     SelectedJob.SelectedDetails.IndexOf(SelectedInExperience) < SelectedJob.SelectedDetails.Count - 1);
+            AddEducationCommand = new RelayCommand(T => AddEducationToResume(), T => SelectedOutEducation != null);
+            RemoveEducationCommand = new RelayCommand(T => RemoveEducationFromResume(), T => SelectedInEducation != null);
             MoveEducationUpCommand = new RelayCommand(
-                T => moveEducationUp(),
+                T => MoveEducationUpInResume(),
                 T => SelectedInEducation != null && InEducations.IndexOf(SelectedInEducation) > 0);
             MoveEducationDownCommand = new RelayCommand(
-                T => moveEducationDown(),
+                T => MoveEducationDownInResume(),
                 T => SelectedInEducation != null && InEducations.IndexOf(SelectedInEducation) < InEducations.Count - 1);
-            AddPublicationCommand = new RelayCommand(T => addPublication(), T => SelectedOutPublication != null);
-            RemovePublicationCommand = new RelayCommand(T => removePublication(), T => SelectedInPublication != null);
+            AddPublicationCommand = new RelayCommand(T => AddPublicationToResume(), T => SelectedOutPublication != null);
+            RemovePublicationCommand = new RelayCommand(T => RemovePublicationFromResume(), T => SelectedInPublication != null);
             MovePublicationUpCommand = new RelayCommand(
-                T => movePublicationUp(),
+                T => MovePublicationUpInResume(),
                 T => SelectedInPublication != null && InPublications.IndexOf(SelectedInPublication) > 0);
             MovePublicationDownCommand = new RelayCommand(
-                T => movePublicationDown(),
+                T => MovePublicationDownInResume(),
                 T => SelectedInPublication != null && InPublications.IndexOf(SelectedInPublication) < InPublications.Count - 1);
         }
 
-        protected override void notifyPropertyChanged([CallerMemberName] string propertyName = "") 
+        protected override void NotifyPropertyChanged([CallerMemberName] string propertyName = "") 
         {
-            updateDocumentPreview();
-            base.notifyPropertyChanged(propertyName);
-        }
-    }
-
-    public class JobTitleSelectionObject : ViewModelBase
-    {
-        private string company;
-        private string selectedJobTitle;
-
-        public string Company 
-        {
-            get { return company; }
-            set
-            {
-                company = value;
-                notifyPropertyChanged();
-            }
-        }
-        public ObservableCollection<string> JobTitles { get; set; }
-        public string SelectedJobTitle 
-        {
-            get { return selectedJobTitle; }
-            set
-            {
-                selectedJobTitle = value;
-                notifyPropertyChanged();
-            }
-        }
-
-        public JobTitleSelectionObject() 
-        {
-            JobTitles = new ObservableCollection<string>();
+            UpdateDocumentPreview();
+            base.NotifyPropertyChanged(propertyName);
         }
     }
 }

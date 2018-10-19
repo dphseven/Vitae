@@ -22,7 +22,7 @@
             set
             {
                 formState = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public ObservableCollection<IExperienceEntity> Employers { get; set; }
@@ -32,7 +32,7 @@
             set
             {
                 selectedEmployer = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public ObservableCollection<string> JobTitles { get; set; }
@@ -48,7 +48,7 @@
                     NewJobTitle = SelectedJobTitle;
                     FormState = UIState.Edit;
                 }
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public string NewJobTitle 
@@ -57,7 +57,7 @@
             set
             {
                 newJobTitle = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 

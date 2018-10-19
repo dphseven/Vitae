@@ -30,7 +30,7 @@
 
                 listOfExpanders.Add(hGeneralInfo);
                 listOfExpanders.Add(hExpertise);
-                listOfExpanders.Add(hJobTitles);
+                listOfExpanders.Add(hJobs);
                 listOfExpanders.Add(hExperience);
                 listOfExpanders.Add(hEducation);
                 listOfExpanders.Add(hPublications);
@@ -100,7 +100,56 @@
         private void ExpertiseDialog_Closing(object sender, EventArgs e) 
         {
             ucHost.Visibility = Visibility.Collapsed;
-            vm.SortOutExpertises();
+            vm.RefreshExpertises();
+        }
+
+        // Jobs Area
+
+        private void AddJobButton_Click(object sender, RoutedEventArgs e) 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var exRepos = new ConstructorArgument("repository", ioc.Get<IExperienceRepository>());
+                var ajVM = ioc.Get<IAddJobViewModel>(exRepos);
+                ajVM.JobAdded += JobDialog_Closing;
+
+                ucHost.Content = new AddJobView(ajVM);
+                ucHost.Visibility = Visibility.Visible;
+            }
+        }
+        
+        private void EditJobButton_Click(object sender, RoutedEventArgs e) 
+        {
+            using (var ioc = new VitaeNinjectKernel())
+            {
+                var reposArgument = new ConstructorArgument("repository", ioc.Get<IExperienceRepository>());
+
+                var id = ((IExperienceEntity)JobsDataGrid.SelectedItem).ID;
+                var idArgument = new ConstructorArgument("jobId", id);
+
+                var ejVM = ioc.Get<IEditJobViewModel>(reposArgument, idArgument);
+                ejVM.JobEdited += JobDialog_Closing;
+
+                ucHost.Content = new EditJobView(ejVM);
+                ucHost.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void DeleteJobButton_Click(object sender, RoutedEventArgs e) 
+        {
+            var result = MessageBox.Show("Are you 100% sure that you wish to delete this job?", "", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                var id = ((IExperienceEntity)JobsDataGrid.SelectedItem).ID;
+                vm.DeleteJob(id);
+                vm.RefreshJobs();
+            }
+        }
+
+        private void JobDialog_Closing(object sender, EventArgs e) 
+        {
+            ucHost.Visibility = Visibility.Collapsed;
+            vm.RefreshJobs();
         }
 
         // Job Title Area
@@ -148,7 +197,6 @@
         private void JobTitleDialog_Closing(object sender, EventArgs e) 
         {
             ucHost.Visibility = Visibility.Collapsed;
-            vm.LoadJobTitles();
         }
 
         // Experience Area
@@ -165,7 +213,7 @@
 
         private void UpdateExperienceLists(object sender, RoutedEventArgs e) 
         {
-            vm.UpdateExperienceLists();
+            vm.RefreshExperienceLists();
         }
 
         private void AddExperienceButton_Click(object sender, RoutedEventArgs e) 
@@ -210,7 +258,7 @@
         private void ExperienceDialogClosing(object sender, EventArgs e) 
         {
             ucHost.Visibility = Visibility.Collapsed;
-            vm.UpdateExperienceLists();
+            vm.RefreshExperienceLists();
         }
 
         // Education Area

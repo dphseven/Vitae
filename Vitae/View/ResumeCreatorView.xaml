@@ -111,10 +111,67 @@
                 </Grid>
             </Expander>
 
+            <!-- JOBS AREA -->
+            <Expander Name="hJobs" Expanded="CloseAllOtherExpanders"
+                      Margin="0 20 20 0">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Jobs" />
+                        <Button Name="AddJobButton" Content="add"
+                                Click="AddJobButton_Click"
+                                Template="{StaticResource LinkLabelButtonTemplate}"
+                                Margin="10 0 0 0"/>
+                    </StackPanel>
+                </Expander.Header>
+                <DataGrid Name="JobsDataGrid" AutoGenerateColumns="False" 
+                          ItemsSource="{Binding AllJobs}"
+                          SelectedItem="{Binding SelectedJob}"
+                          CanUserSortColumns="False" CanUserReorderColumns="False" CanUserDeleteRows="False"
+                          Margin="10" RowHeaderWidth="30" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Job ID" Binding="{Binding ID}" 
+                                            Width="SizeToCells" ElementStyle="{StaticResource DataGridColumnElementStyle}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Employer" Binding="{Binding Employer}" 
+                                            Width="SizeToCells" ElementStyle="{StaticResource DataGridColumnElementStyle}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}" 
+                                            Width="SizeToCells" ElementStyle="{StaticResource DataGridColumnElementStyle}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}" 
+                                            Width="SizeToCells" ElementStyle="{StaticResource DataGridColumnElementStyle}" IsReadOnly="True" />
+                        <DataGridTemplateColumn Header="Titles"
+                                                Width="*" IsReadOnly="False" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox ItemsSource="{Binding Titles}"
+                                              SelectedItem="{Binding SelectedJobTitle, UpdateSourceTrigger=PropertyChanged}"
+                                              Style="{StaticResource ComboBoxDataGridColumn}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Actions" Width="SizeToCells"  IsReadOnly="True" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Button Content="Edit" 
+                                                Click="EditJobButton_Click"
+                                                Command="{Binding DataContext.EditJobCmd, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                CommandParameter="{Binding ID}"
+                                                Margin="3"
+                                                Template="{StaticResource LinkLabelButtonTemplate}" />
+                                        <Button Content="Delete" Click="DeleteJobButton_Click"
+                                                Margin="3"
+                                                Template="{StaticResource LinkLabelButtonTemplate}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Expander>
+
             <!-- JOB TITLES AREA -->
+            <!--
             <Expander Name="hJobTitles" Expanded="CloseAllOtherExpanders"
-                      Margin="0 20 20 0"
-                      Grid.Column="0" Grid.Row="0">
+                      Margin="0 20 20 0" >
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Job Titles" />
@@ -133,7 +190,11 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid Margin="10">
-                    <ItemsControl ItemsSource="{Binding AllJTSOs}" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="21*"/>
+                    </Grid.ColumnDefinitions>
+                    <ItemsControl ItemsSource="{Binding AllJobs}" Grid.ColumnSpan="2" >
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="3">
@@ -141,9 +202,9 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="3*" />
                                     </Grid.ColumnDefinitions>
-                                    <Label Content="{Binding Company}" 
+                                    <Label Content="{Binding Employer}" 
                                            Grid.Column="0" />
-                                    <ComboBox ItemsSource="{Binding JobTitles}" SelectedItem="{Binding SelectedJobTitle}"
+                                    <ComboBox ItemsSource="{Binding Titles}" SelectedItem="{Binding SelectedJobTitle}"
                                               Grid.Column="1" />
                                 </Grid>
                             </DataTemplate>
@@ -152,6 +213,7 @@
                 </Grid>
 
             </Expander>
+            -->
 
             <!-- EXPERIENCE AREA -->
             <Expander Name="hExperience" Expanded="CloseAllOtherExpanders"
@@ -184,36 +246,35 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <ComboBox ItemsSource="{Binding AllEmployers}" SelectedValue="{Binding SelectedEmployer}"
-                              SelectionChanged="UpdateExperienceLists"
-                              Margin="3"
-                              Grid.Column="0" Grid.Row="0" />
+                    <ComboBox ItemsSource="{Binding AllJobs}" 
+                              DisplayMemberPath="Employer" 
+                              SelectedValue="{Binding SelectedJob}"
+                              Margin="3" Grid.Column="0" Grid.Row="0" />
                     <ListBox Name="ExperienceBox" MouseDoubleClick="ExperienceBox_MouseDoubleClick"
-                             ItemsSource="{Binding OutExperiences}"
-                             DisplayMemberPath="ExperienceDetail"
+                             ItemsSource="{Binding SelectedJob.Details}"
                              SelectedItem="{Binding SelectedOutExperience}"
                              SelectionMode="Single" Margin="3"
-                             Grid.Column="0" Grid.Row="1" />
-                    <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
+                             Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" />
+                    <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Grid.RowSpan="2"
+                                Margin="3">
                         <Button Content=">" Name="ExperienceRightButton" 
                                 Command="{Binding AddExperienceCommand}"
-                                Width="30" Height="20" Margin="3" />
+                                Width="30" Height="20" Margin="0 0 0 0" />
                         <Button Content="&lt;" Name="ExperienceLeftButton" 
                                 Command="{Binding RemoveExperienceCommand}"
-                                Width="30" Height="20" Margin="3"/>
+                                Width="30" Height="20" Margin="0 3 0 0"/>
                         <Button Content="^" Name="ExperienceUpButton" 
                                 Command="{Binding MoveExperienceUpCommand}"
-                                Width="30" Height="20" Margin="3" />
+                                Width="30" Height="20" Margin="0 3 0 0" />
                         <Button Content="v" Name="ExperienceDownButton" 
                                 Command="{Binding MoveExperienceDownCommand}"
-                                Width="30" Height="20" Margin="3" />
+                                Width="30" Height="20" Margin="0 3 0 0" />
                     </StackPanel>
-                    <ListBox    Name="SelectedExperienceBox" MouseDoubleClick="SelectedExperienceBox_MouseDoubleClick"
-                                ItemsSource="{Binding InExperiences}"
-                                DisplayMemberPath="ExperienceDetail"
-                                SelectedItem="{Binding SelectedInExperience}"
-                                SelectionMode="Single" Margin="3"
-                                Grid.Column="2" Grid.Row="1" />
+                    <ListBox Name="SelectedExperienceBox" MouseDoubleClick="SelectedExperienceBox_MouseDoubleClick"
+                             ItemsSource="{Binding SelectedJob.SelectedDetails}"
+                             SelectedItem="{Binding SelectedInExperience}"
+                             SelectionMode="Single" Margin="3"
+                             Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" />
                 </Grid>
             </Expander>
 
@@ -279,16 +340,16 @@
                       Grid.Column="0" Grid.Row="0">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Publication" />
-                        <Button Name="AddPublicationButton" Content="add"
+                        <Label Content="Publications" />
+                        <Button Content="add"
                                 Template="{StaticResource LinkLabelButtonTemplate}"
                                 Click="AddPublicationButton_Click"
                                 Margin="10 0 0 0"/>
-                        <Button Name="EditPublicationButton" Content="edit" 
+                        <Button Content="edit" 
                                 Template="{StaticResource LinkLabelButtonTemplate}"
                                 Click="EditPublicationButton_Click"
                                 Margin="10 0 0 0" />
-                        <Button Name="DeletePublicationButton" Content="delete" 
+                        <Button Content="delete" 
                                 Template="{StaticResource LinkLabelButtonTemplate}"
                                 Click="DeletePublicationButton_Click"
                                 Margin="10 0 0 0" />
@@ -300,27 +361,27 @@
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <ListBox Name="PublicationBox" MouseDoubleClick="PublicationBox_MouseDoubleClick"
+                    <ListBox MouseDoubleClick="PublicationBox_MouseDoubleClick"
                              ItemsSource="{Binding OutPublications}"
                              DisplayMemberPath="Publication"
                              SelectedItem="{Binding SelectedOutPublication}"
                              SelectionMode="Single" Margin="3"
                              Grid.Column="0" />
                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <Button Content=">" Name="PublicationRightButton" 
+                        <Button Content=">"
                                 Command="{Binding AddPublicationCommand}"
                                 Width="30" Height="20" Margin="3" />
-                        <Button Content="&lt;" Name="PublicationLeftButton" 
+                        <Button Content="&lt;"
                                 Command="{Binding RemovePublicationCommand}"
                                 Width="30" Height="20" Margin="3"/>
-                        <Button Content="^" Name="PublicationUpButton" 
+                        <Button Content="^" 
                                 Command="{Binding MovePublicationUpCommand}"
                                 Width="30" Height="20" Margin="3" />
-                        <Button Content="v" Name="PublicationDownButton" 
+                        <Button Content="v" 
                                 Command="{Binding MovePublicationDownCommand}"
                                 Width="30" Height="20" Margin="3" />
                     </StackPanel>
-                    <ListBox Name="SelectedPublicationBox" MouseDoubleClick="SelectedPublicationBox_MouseDoubleClick"
+                    <ListBox MouseDoubleClick="SelectedPublicationBox_MouseDoubleClick"
                              ItemsSource="{Binding InPublications}"
                              DisplayMemberPath="Publication"
                              SelectedItem="{Binding SelectedInPublication}"
@@ -332,7 +393,6 @@
         </StackPanel>
 
         <!-- RESUME PREVIEW AREA -->
-
         <Grid Grid.Column="1" Grid.Row="0" Margin="10 10 10 10" Visibility="Visible" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -355,19 +415,17 @@
         </Grid>
 
         <!-- BOTTOM AREA -->
-
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" >
-            
+
             <Button Content="Export to PDF" Name="ExportPdfButton" Click="ExportPdfButton_Click" 
                     Height="30" Width="100" HorizontalAlignment="Right" Margin="10 10 0 10" />
-            
+
             <Button Content="Export to Word" Name="ExportButton" Click="ExportButton_Click"
                     Height="30" Width="100" HorizontalAlignment="Right" Margin="10 10 0 10" />
-            
+
         </StackPanel>
 
         <!-- INTERSTITIAL FORM USERCONTROLS -->
-
         <UserControl x:Name="ucHost" Visibility="Collapsed"
                      Grid.ColumnSpan="2" Grid.RowSpan="2" />
 

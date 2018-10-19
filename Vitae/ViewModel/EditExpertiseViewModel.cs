@@ -24,7 +24,7 @@
             set
             {
                 formState = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public Guid ID 
@@ -37,7 +37,7 @@
             set
             {
                 entity.ID = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public ObservableCollection<string> Categories 
@@ -56,8 +56,8 @@
             set
             {
                 entity.Category = value;
-                notifyPropertyChanged();
-                notifyPropertyChanged(nameof(ExpertiseItems));
+                NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(ExpertiseItems));
             }
         }
         public ObservableCollection<string> ExpertiseItems 
@@ -81,8 +81,8 @@
                     FormState = UIState.Edit;
                 }
                 else entity.Expertise = value;
-                notifyPropertyChanged();
-                notifyPropertyChanged(nameof(ID));
+                NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(ID));
             }
         }
 
@@ -112,7 +112,7 @@
         private void loadExpertiseItems() 
         {
             allExpertiseEntities = repos.GetAll().ToList();
-            notifyPropertyChanged(nameof(Categories));
+            NotifyPropertyChanged(nameof(Categories));
         }
 
         private void updateExpertise() 

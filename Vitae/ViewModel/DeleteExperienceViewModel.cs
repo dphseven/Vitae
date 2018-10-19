@@ -29,9 +29,9 @@
             set
             {
                 selectedEmployer = value;
-                notifyPropertyChanged();
-                notifyPropertyChanged(nameof(EmployerID));
-                notifyPropertyChanged(nameof(Experiences));
+                NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(EmployerID));
+                NotifyPropertyChanged(nameof(Experiences));
             }
         }
         public ObservableCollection<string> Experiences 
@@ -48,7 +48,7 @@
             set
             {
                 selectedExperience = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 

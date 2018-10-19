@@ -29,8 +29,8 @@
             set
             {
                 selectedEmployer = value;
-                notifyPropertyChanged();
-                notifyPropertyChanged(nameof(EmployerID));
+                NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(EmployerID));
             }
         }
         public string SelectedJobTitle 
@@ -39,7 +39,7 @@
             set
             {
                 selectedJobTitle = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 

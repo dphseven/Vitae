@@ -22,7 +22,7 @@
             set
             {
                 employer = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public string Experience 
@@ -31,7 +31,7 @@
             set
             {
                 experience = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 

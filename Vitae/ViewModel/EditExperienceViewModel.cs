@@ -20,7 +20,7 @@
             set
             {
                 formState = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public IExperienceEntity SelectedEmployer 
@@ -29,8 +29,8 @@
             set
             {
                 selectedEmployer = value;
-                notifyPropertyChanged();
-                notifyPropertyChanged(nameof(ExperienceItems));
+                NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(ExperienceItems));
             }
         }
         public ObservableCollection<IExperienceEntity> Employers { get; set; }
@@ -53,7 +53,7 @@
                 initialExperienceItem = value;
                 UpdatedExperienceItem = value;
                 FormState = UIState.Edit;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public string UpdatedExperienceItem 
@@ -62,7 +62,7 @@
             set
             {
                 updatedExperienceItem = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 

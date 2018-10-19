@@ -60,6 +60,16 @@
             <Setter Property="Grid.ColumnSpan" Value="4" />
         </Style>
 
+        <Style x:Key="DataGridColumnElementStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="ComboBoxDataGridColumn" TargetType="ComboBox" >
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
         <ControlTemplate x:Key="LinkLabelButtonTemplate" TargetType="Button">
             <Grid Cursor="Hand">
                 <ContentPresenter x:Name="cp" Content="{TemplateBinding Content}" Cursor="Hand"

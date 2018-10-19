@@ -22,7 +22,7 @@
             set
             {
                 messageDisplayed = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public string TextForAnalysis 
@@ -31,7 +31,7 @@
             set
             {
                 textForAnalysis = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public int MinimumKeywordLength 
@@ -40,7 +40,7 @@
             set
             {
                 minimumKeywordLength = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public HTMLDocument BrowserPage { get; set; }
@@ -50,7 +50,7 @@
             set
             {
                 url = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 

@@ -22,7 +22,7 @@
             set
             {
                 formState = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public Guid ID 
@@ -35,7 +35,7 @@
             set
             {
                 id = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public ObservableCollection<IEducationEntity> Institutions { get; set; }
@@ -46,8 +46,8 @@
             {
                 selectedInstitution = value;
                 Credentials = new ObservableCollection<string>(Institutions.Where(T => T == value).Select(T => T.Credential));
-                notifyPropertyChanged();
-                notifyPropertyChanged(nameof(Credentials));
+                NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(Credentials));
             }
         }
         public ObservableCollection<string> Credentials { get; set; }
@@ -59,7 +59,7 @@
                 selectedCredential = value;
                 FormState = UIState.Edit;
                 UpdatedCredential = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public string UpdatedCredential 
@@ -68,7 +68,7 @@
             set
             {
                 updatedCredential = value;
-                notifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 

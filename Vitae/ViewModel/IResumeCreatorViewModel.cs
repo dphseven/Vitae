@@ -1,11 +1,11 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Documents;
-using System.Windows.Input;
-using Vitae.Model;
-using Vitae.Services;
-
-namespace Vitae.ViewModel
+﻿namespace Vitae.ViewModel
 {
+    using System;
+    using System.Collections.ObjectModel;
+    using System.Windows.Documents;
+    using System.Windows.Input;
+    using Vitae.Model;
+
     public interface IResumeCreatorViewModel
     {
         string FullName { get; set; }
@@ -21,14 +21,11 @@ namespace Vitae.ViewModel
         IExpertiseEntity SelectedOutExpertise { get; set; }
         IExpertiseEntity SelectedInExpertise { get; set; }
 
-        ObservableCollection<string> AllEmployers { get; set; }
-        string SelectedEmployer { get; set; }
-        ObservableCollection<IExperienceItem> AllExperiences { get; set; }
-        ObservableCollection<IExperienceItem> OutExperiences { get; set; }
-        ObservableCollection<IExperienceItem> InExperiences { get; set; }
-        ObservableCollection<IExperienceItem> AllInExperiences { get; set; }
-        IExperienceItem SelectedInExperience { get; set; }
-        IExperienceItem SelectedOutExperience { get; set; }
+        ObservableCollection<IDecoratedExperienceEntity> AllJobs { get; }
+        IDecoratedExperienceEntity SelectedJob { get; set; }
+
+        string SelectedInExperience { get; set; }
+        string SelectedOutExperience { get; set; }
 
         ObservableCollection<IEducationEntity> AllEducations { get; set; }
         ObservableCollection<IEducationEntity> InEducations { get; set; }
@@ -41,8 +38,6 @@ namespace Vitae.ViewModel
         ObservableCollection<IPublicationEntity> OutPublications { get; set; }
         IPublicationEntity SelectedOutPublication { get; set; }
         IPublicationEntity SelectedInPublication { get; set; }
-
-        ObservableCollection<JobTitleSelectionObject> AllJTSOs { get; set; }
 
         FlowDocument ResumePreview { get; set; }
 
@@ -68,10 +63,13 @@ namespace Vitae.ViewModel
 
         void ExportResumeToWord(string filePathAndName);
         void ExportResumeToPdf(string filePathAndName);
-        void LoadJobTitles();
-        void SortOutExpertises();
-        void UpdateExperienceLists();
+
+        void RefreshExpertises();
+        void RefreshJobs();
+        void RefreshExperienceLists();
         void RefreshEducationList();
         void RefreshPublicationsList();
+
+        void DeleteJob(Guid id);
     }
 }
