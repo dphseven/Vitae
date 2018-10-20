@@ -1,7 +1,6 @@
 ﻿namespace Vitae.View
 {
     using mshtml;
-    using Ninject;
     using System;
     using System.Windows;
     using System.Windows.Controls;
@@ -11,13 +10,10 @@
     {
         private IKeywordToolViewModel vm;
 
-        public KeywordToolView() 
+        public KeywordToolView(IKeywordToolViewModel viewModel) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                this.DataContext = vm = ioc.Get<IKeywordToolViewModel>();
-                InitializeComponent();
-            }
+            DataContext = vm = viewModel;
+            InitializeComponent();
         }
 
         private void FindKeywordsButton_Click(object sender, RoutedEventArgs e) 

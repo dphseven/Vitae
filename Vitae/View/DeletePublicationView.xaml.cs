@@ -6,11 +6,9 @@
 
     public partial class DeletePublicationView : UserControl
     {
-        private IDeletePublicationViewModel vm;
-
         public DeletePublicationView(IDeletePublicationViewModel viewModel) 
         {
-            DataContext = vm = viewModel;
+            DataContext = viewModel;
 
             InitializeComponent();
         }

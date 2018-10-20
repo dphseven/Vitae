@@ -244,4 +244,16 @@
     <Category>cat</Category>
     <Expertise>exp</Expertise>
   </ExpertiseItem>
+  <ExpertiseItem Guid="f9adb263-cb21-4c61-aa18-430e6143de6e">
+    <Category>cat</Category>
+    <Expertise>exp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="cfd0a558-c0f3-428b-acec-7392fa8423b7">
+    <Category>cat</Category>
+    <Expertise>exp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="81fb1e6c-a733-433d-b509-977364d28c04">
+    <Category>cat</Category>
+    <Expertise>exp</Expertise>
+  </ExpertiseItem>
 </Expertise>

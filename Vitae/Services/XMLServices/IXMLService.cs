@@ -12,5 +12,4 @@
         void Delete(Guid g);
         void Update(Guid guid, T entity);
     }
-
-}
+    }

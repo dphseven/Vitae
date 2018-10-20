@@ -6,11 +6,9 @@
 
     public partial class DeleteExperienceView : UserControl
     {
-        IDeleteExperienceViewModel vm;
-
         public DeleteExperienceView(IDeleteExperienceViewModel viewModel) 
         {
-            DataContext = vm = viewModel;
+            DataContext = viewModel;
 
             InitializeComponent();
         }

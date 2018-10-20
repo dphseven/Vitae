@@ -42,6 +42,9 @@ namespace VitaeUnitTests
             var experienceList = new List<IExperienceEntity>();
             for (int i = 0; i < 45; i++) experienceList.Add(new ExperienceEntity { Employer = "emp" });
             mockExperienceRepos.Setup(T => T.GetAll()).Returns(experienceList);
+            var experienceDecoratorsList = new List<IDecoratedExperienceEntity>();
+            foreach (var item in experienceList) experienceDecoratorsList.Add(new DecoratedExperienceEntity { Employer = item.Employer });
+            mockExperienceRepos.Setup(T => T.GetAllDecorators()).Returns(experienceDecoratorsList);
 
             var experienceItemList = new List<IExperienceItem>();
             for (int i = 0; i < 108; i++) experienceItemList.Add(new ExperienceItem { ExperienceDetail = "d" });
@@ -63,7 +66,7 @@ namespace VitaeUnitTests
                 mockExpertiseRepos.Object,
                 mockEdRepos.Object,
                 mockPubRepos.Object,
-                new VitaeNinjectKernel());
+                new StandardKernel());
 
             Assert.AreEqual("fn", vm.FullName);
             Assert.AreEqual("add1", vm.AddLine1);
@@ -78,11 +81,6 @@ namespace VitaeUnitTests
             Assert.IsNull(vm.SelectedOutExpertise);
             Assert.IsNull(vm.SelectedInExpertise);
 
-            //Assert.AreEqual(1, vm.AllEmployers.Count);
-            //Assert.IsNull(vm.SelectedEmployer);
-
-            //Assert.AreEqual(108, vm.AllExperiences.Count);
-            //Assert.AreEqual(0, vm.AllInExperiences.Count);
             Assert.IsNull(vm.SelectedInExperience);
             Assert.IsNull(vm.SelectedOutExperience);
 

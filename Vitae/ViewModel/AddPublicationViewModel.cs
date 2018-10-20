@@ -8,6 +8,7 @@
     public class AddPublicationViewModel : ViewModelBase, IAddPublicationViewModel
     {
         private IPublicationsRepository repos;
+        private IKernel kernel;
 
         private string publication;
 
@@ -35,13 +36,10 @@
 
         private void AddPublication() 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var ent = ioc.Get<IPublicationEntity>();
-                ent.Publication = Publication;
-                repos.Add(ent);
-                PublicationAdded?.Invoke(this, new EventArgs());
-            }            
+            var ent = kernel.Get<IPublicationEntity>();
+            ent.Publication = Publication;
+            repos.Add(ent);
+            PublicationAdded?.Invoke(this, new EventArgs());
         }
 
         private void Reset() 

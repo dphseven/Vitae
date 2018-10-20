@@ -3,8 +3,6 @@
     using Ninject;
     using System;
     using System.Collections.Generic;
-    using System.Deployment.Application;
-    using System.IO;
     using System.Linq;
     using System.Xml.Linq;
     using Vitae.Model;
@@ -12,32 +10,29 @@
     public class PublicationsXMLService : IPublicationsXMLService
     {
         private readonly IKernel _kernel;
-        private readonly string filePath;
+        private readonly IPersistenceService persister;
 
-        public PublicationsXMLService(IKernel kernel) 
+        public PublicationsXMLService(IKernel kernel, IPersistenceService persistenceService) 
         {
             _kernel = kernel;
-            string prefix = string.Empty;
-
-            if (ApplicationDeployment.IsNetworkDeployed) prefix = ApplicationDeployment.CurrentDeployment.DataDirectory;
-            else prefix = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-
-            filePath = prefix + @"\XML\Publications.xml";
+            persister = persistenceService;
         }
 
         public void Delete(Guid guid) 
         {
-            var doc = XDocument.Load(filePath);
+            var doc = persister.Load<IPublicationEntity>();
+
             var element = doc.Root.Elements("Publication")
                              .FirstOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
             if (element == null) throw new ArgumentException("guid not found.");
             element.Remove();
-            doc.Save(filePath);
+
+            persister.Persist<IPublicationEntity>(doc);
         }
 
         public IPublicationEntity Get(Guid guid) 
         {
-            var doc = XDocument.Load(filePath);
+            var doc = persister.Load<IPublicationEntity>();
             var element = GetXElement(doc, guid);
             if (element == null) return null;
             return ConvertToObject(element);
@@ -46,7 +41,7 @@
         public IList<IPublicationEntity> GetAll() 
         {
             var list = new List<IPublicationEntity>();
-            var doc = XDocument.Load(filePath);
+            var doc = persister.Load<IPublicationEntity>();
             foreach (var element in doc.Root.Elements("Publication"))
             {
                 list.Add(ConvertToObject(element));
@@ -57,20 +52,20 @@
 
         public Guid Insert(IPublicationEntity entity) 
         {
-            var doc = XDocument.Load(filePath);
+            var doc = persister.Load<IPublicationEntity>();
             var g = Guid.NewGuid();
             doc.Root.Add(ConvertToXml(g, entity));
-            doc.Save(filePath);
+            persister.Persist<IPublicationEntity>(doc);
             return g;
         }
 
         public void Update(Guid guid, IPublicationEntity entity) 
         {
-            var doc = XDocument.Load(filePath);
+            var doc = persister.Load<IPublicationEntity>();
             var element = GetXElement(doc, guid);
             if (element == null) throw new ArgumentException("guid not found.");
             element.ReplaceWith(ConvertToXml(guid, entity));
-            doc.Save(filePath);
+            persister.Persist<IPublicationEntity>(doc);
         }
 
         private XElement GetXElement(XDocument doc, Guid guid) 

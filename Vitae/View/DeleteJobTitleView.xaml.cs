@@ -6,11 +6,9 @@
 
     public partial class DeleteJobTitleView : UserControl
     {
-        private IDeleteJobTitleViewModel vm;
-
         public DeleteJobTitleView(IDeleteJobTitleViewModel viewModel) 
         {
-            DataContext = vm = viewModel;
+            DataContext = viewModel;
 
             InitializeComponent();
         }

@@ -119,6 +119,8 @@
     </ApplicationDefinition>
     <Compile Include="Model\Entities\DecoratedExperienceEntity.cs" />
     <Compile Include="Model\Entities\IDecoratedExperienceEntity.cs" />
+    <Compile Include="Services\IPersistenceService.cs" />
+    <Compile Include="Services\PersistenceService.cs" />
     <Compile Include="ViewModel\DeleteJobViewModel.cs" />
     <Compile Include="ViewModel\EditJobViewModel.cs" />
     <Compile Include="ViewModel\IDeleteJobViewModel.cs" />
@@ -286,8 +288,8 @@
     <Compile Include="View\ResumeCreatorView.xaml.cs">
       <DependentUpon>ResumeCreatorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\VitaeContainer.xaml.cs">
-      <DependentUpon>VitaeContainer.xaml</DependentUpon>
+    <Compile Include="View\ContainerView.xaml.cs">
+      <DependentUpon>ContainerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\VitaeNinjectKernel.cs" />
     <Page Include="View\AddEducationView.xaml">
@@ -371,7 +373,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\VitaeContainer.xaml">
+    <Page Include="View\ContainerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

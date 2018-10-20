@@ -6,11 +6,9 @@
 
     public partial class EditExpertiseView : UserControl
     {
-        IEditExpertiseViewModel vm;
-
         public EditExpertiseView(IEditExpertiseViewModel viewModel) 
         {
-            DataContext = vm = viewModel;
+            DataContext = viewModel;
 
             InitializeComponent();
         }

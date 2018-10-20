@@ -8,7 +8,7 @@ namespace Vitae.Services_UnitTests
     [TestClass()]
     public class EducationXMLService_UnitTests
     {
-        EducationXMLService xs = new EducationXMLService(new VitaeNinjectKernel());
+        EducationXMLService xs = new EducationXMLService(new VitaeNinjectKernel(), new PersistenceService());
 
         [TestMethod()]
         public void EducationXMLService_EducationXMLService_Works() 

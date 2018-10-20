@@ -6,11 +6,9 @@
 
     public partial class AddPublicationView : UserControl
     {
-        IAddPublicationViewModel vm;
-
         public AddPublicationView(IAddPublicationViewModel viewModel)
         {
-            DataContext = vm = viewModel;
+            DataContext = viewModel;
 
             InitializeComponent();
         }

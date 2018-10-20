@@ -1,12 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Vitae.Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vitae.Model;
-using Moq;
 using Vitae;
 
 namespace VitaeUnitTests
@@ -14,7 +10,7 @@ namespace VitaeUnitTests
     [TestClass()]
     public class PublicationsXMLService_UnitTests
     {
-        PublicationsXMLService serv = new PublicationsXMLService(new VitaeNinjectKernel());
+        PublicationsXMLService serv = new PublicationsXMLService(new VitaeNinjectKernel(), new PersistenceService());
 
         [TestMethod()]
         public void PublicationsXMLService_Delete_Works() 

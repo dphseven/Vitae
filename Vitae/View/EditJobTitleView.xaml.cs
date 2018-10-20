@@ -6,11 +6,9 @@
 
     public partial class EditJobTitleView : UserControl
     {
-        IEditJobTitleViewModel vm;
-
         public EditJobTitleView(IEditJobTitleViewModel viewModel) 
         {
-            DataContext = vm = viewModel;
+            DataContext = viewModel;
 
             InitializeComponent();
         }

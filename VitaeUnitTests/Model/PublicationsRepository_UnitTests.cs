@@ -15,7 +15,7 @@ namespace VitaeUnitTests
         [TestMethod]
         public void PublicationsRepository_ImplementsInterfaces() 
         {
-            var repos = new PublicationsRepository(new PublicationsXMLService(new VitaeNinjectKernel()));
+            var repos = new PublicationsRepository(new PublicationsXMLService(new VitaeNinjectKernel(), new PersistenceService()));
 
             Assert.IsTrue(repos is IPublicationsRepository);
             Assert.IsTrue(repos is IRepository<IPublicationEntity>);

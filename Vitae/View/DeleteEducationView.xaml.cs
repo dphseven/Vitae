@@ -6,11 +6,9 @@
 
     public partial class DeleteEducationView : UserControl
     {
-        IDeleteEducationViewModel vm;
-
         public DeleteEducationView(IDeleteEducationViewModel viewModel) 
         {
-            DataContext = vm = viewModel;
+            DataContext = viewModel;
 
             InitializeComponent();
         }

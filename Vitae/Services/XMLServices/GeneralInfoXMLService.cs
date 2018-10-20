@@ -3,42 +3,33 @@
     using Ninject;
     using System;
     using System.Collections.Generic;
-    using System.Deployment.Application;
-    using System.IO;
     using System.Xml.Linq;
     using Vitae.Model;
 
     public class GeneralInfoXMLService : IGeneralInfoXMLService 
     {
         private readonly IKernel _kernel;
-        private readonly string generalInfoFilePath;
+        private readonly IPersistenceService persister;
 
-        public GeneralInfoXMLService(IKernel kernel) 
+        public GeneralInfoXMLService(IKernel kernel, IPersistenceService persistenceService) 
         {
             _kernel = kernel;
-
-            string prefix = string.Empty;
-
-            if (ApplicationDeployment.IsNetworkDeployed) prefix = ApplicationDeployment.CurrentDeployment.DataDirectory;
-            else prefix = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-
-            generalInfoFilePath = prefix + @"\XML\GeneralInfo.xml";
+            persister = persistenceService;
         }
 
         public void Delete(Guid guid) 
         {
-            XDocument doc = new XDocument();
-            doc = XDocument.Load(generalInfoFilePath);
-            var el = GetXElement(doc, guid);
+            XDocument doc = persister.Load<IGeneralInfoEntity>();
 
+            var el = GetXElement(doc, guid);
             el.ReplaceWith(ConvertToXml(guid, _kernel.Get<IGeneralInfoEntity>()));
 
-            doc.Save(generalInfoFilePath);
+            persister.Persist<IGeneralInfoEntity>(doc);
         }
 
         public IGeneralInfoEntity Get(Guid guid) 
         {
-            var doc = XDocument.Load(generalInfoFilePath);
+            XDocument doc = persister.Load<IGeneralInfoEntity>();
             return ConvertToObject(GetXElement(doc, guid));
         }
 
@@ -56,12 +47,12 @@
 
         public void Update(Guid guid, IGeneralInfoEntity entity) 
         {
-            var doc = XDocument.Load(generalInfoFilePath);
+            XDocument doc = persister.Load<IGeneralInfoEntity>();
 
             var ele = GetXElement(doc, guid);
             ele.ReplaceWith(ConvertToXml(guid, entity));
 
-            doc.Save(generalInfoFilePath);
+            persister.Persist<IGeneralInfoEntity>(doc);
         }
 
         private XElement GetXElement(XDocument doc, Guid guid) 

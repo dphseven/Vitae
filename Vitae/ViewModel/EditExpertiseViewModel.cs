@@ -4,9 +4,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.ComponentModel;
     using System.Linq;
-    using System.Runtime.CompilerServices;
     using System.Windows.Input;
     using Vitae.Model;
 
@@ -93,13 +91,11 @@
 
         // Public Methods
 
-        public EditExpertiseViewModel(IExpertiseRepository repository) 
+        public EditExpertiseViewModel(IExpertiseRepository repository, IKernel kernel) 
         {
             repos = repository;
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                entity = ioc.Get<IExpertiseEntity>();
-            }
+
+            entity = kernel.Get<IExpertiseEntity>();
 
             loadExpertiseItems();
             setUpRelayCommands();

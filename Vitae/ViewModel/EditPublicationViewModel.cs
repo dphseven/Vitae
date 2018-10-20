@@ -64,7 +64,6 @@
 
         public EditPublicationViewModel(IPublicationsRepository repository) 
         {
-            _kernel = kernel;
             repos = repository;
             LoadPublications();
             SetUpRelayCommands();

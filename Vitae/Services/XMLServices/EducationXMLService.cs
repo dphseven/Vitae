@@ -11,33 +11,28 @@
 
     public class EducationXMLService : IEducationXMLService
     {
-        private readonly IKernel _kernel;
-        private readonly string educationFilePath;
+        private readonly IKernel kernel;
+        private readonly IPersistenceService persister;
 
-        public EducationXMLService(IKernel kernel) 
+        public EducationXMLService(IKernel kernel, IPersistenceService persistenceService) 
         {
-            _kernel = kernel;
-            string prefix = string.Empty;
-
-            if (ApplicationDeployment.IsNetworkDeployed) prefix = ApplicationDeployment.CurrentDeployment.DataDirectory;
-            else prefix = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-
-            educationFilePath = prefix + @"\XML\Education.xml";
+            this.kernel = kernel;
+            persister = persistenceService;
         }
 
         public void Delete(Guid guid) 
         {
             if (guid == null) throw new ArgumentNullException("guid");
 
-            var doc = XDocument.Load(educationFilePath);
+            var doc = persister.Load<IEducationEntity>();
             GetXElement(doc, guid).Remove();
 
-            doc.Save(educationFilePath);
+            persister.Persist<IEducationEntity>(doc);
         }
 
         public IEducationEntity Get(Guid guid) 
         {
-            var doc = XDocument.Load(educationFilePath);
+            var doc = persister.Load<IEducationEntity>();
 
             var element = GetXElement(doc, guid);
             if (element == null) return null;
@@ -47,30 +42,27 @@
 
         public IList<IEducationEntity> GetAll() 
         {
-            using (var ioc = new VitaeNinjectKernel())
+            var list = new List<IEducationEntity>();
+            var doc = persister.Load<IEducationEntity>();
+
+            var elements = doc.Root.Elements("EducationItem").ToList();
+            foreach (var element in elements)
             {
-                var list = new List<IEducationEntity>();
-                var doc = XDocument.Load(educationFilePath);
-
-                var elements = doc.Root.Elements("EducationItem").ToList();
-                foreach (var element in elements)
-                {
-                    list.Add(ConvertToObject(element));
-                }
-
-                return list;
+                list.Add(ConvertToObject(element));
             }
+
+            return list;
         }
 
         public Guid Insert(IEducationEntity entity) 
         {
-            var doc = XDocument.Load(educationFilePath);
+            var doc = persister.Load<IEducationEntity>();
 
             var guid = Guid.NewGuid();
             var newElement = ConvertToXml(guid, entity);
             doc.Root.Add(newElement);
 
-            doc.Save(educationFilePath);
+            persister.Persist<IEducationEntity>(doc);
 
             return guid;
         }
@@ -80,12 +72,12 @@
             if (guid == null) throw new ArgumentNullException("guid");
             if (entity == null) throw new ArgumentNullException("entity");
 
-            var doc = XDocument.Load(educationFilePath);
+            var doc = persister.Load<IEducationEntity>();
             XElement oldEl = GetXElement(doc, guid);
             if (oldEl == null) throw new ArgumentException("guid not found.");
             oldEl.ReplaceWith(ConvertToXml(guid, entity));
 
-            doc.Save(educationFilePath);
+            persister.Persist<IEducationEntity>(doc);
         }
 
         private XElement GetXElement(XDocument doc, Guid guid) 
@@ -104,7 +96,7 @@
 
         private IEducationEntity ConvertToObject(XElement el) 
         {
-            var ee = _kernel.Get<IEducationEntity>();
+            var ee = kernel.Get<IEducationEntity>();
 
             if (el.Attribute("Guid") != null)
             {

@@ -3,8 +3,6 @@
     using Ninject;
     using System;
     using System.Collections.Generic;
-    using System.Deployment.Application;
-    using System.IO;
     using System.Linq;
     using System.Xml.Linq;
     using Vitae.Model;
@@ -12,34 +10,29 @@
     public class ExperienceXMLService : IExperienceXMLService
     {
         private readonly IKernel _kernel;
-        private readonly string experienceFilePath;
+        private readonly IPersistenceService persister;
 
-        public ExperienceXMLService(IKernel kernel) 
+        public ExperienceXMLService(IKernel kernel, IPersistenceService persistenceService) 
         {
             _kernel = kernel;
-            string prefix = string.Empty;
-
-            if (ApplicationDeployment.IsNetworkDeployed) prefix = ApplicationDeployment.CurrentDeployment.DataDirectory;
-            else prefix = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-
-            experienceFilePath = prefix + @"\XML\Experience.xml";
+            persister = persistenceService;
         }
 
         public void Delete(Guid g) 
         {
-            var doc = XDocument.Load(experienceFilePath);
+            var doc = persister.Load<IExperienceEntity>();
 
             var element = doc.Root.Elements("Job")
                 .SingleOrDefault(T => T.Attribute("Guid").Value == g.ToString());
 
             element.Remove();
 
-            doc.Save(experienceFilePath);
+            persister.Persist<IExperienceEntity>(doc);
         }
 
         public IExperienceEntity Get(Guid guid) 
         {
-            var doc = XDocument.Load(experienceFilePath);
+            var doc = persister.Load<IExperienceEntity>();
 
             var eeXml = doc.Root.Elements("Job")
                 .SingleOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
@@ -52,8 +45,8 @@
         {
             var list = new List<IExperienceEntity>();
 
-            XDocument xDoc = XDocument.Load(experienceFilePath);
-            var jobElements = xDoc.Root.Elements("Job");
+            var doc = persister.Load<IExperienceEntity>();
+            var jobElements = doc.Root.Elements("Job");
             foreach (var job in jobElements)
             {
                 list.Add(ConvertToObject(job));
@@ -64,25 +57,25 @@
 
         public Guid Insert(IExperienceEntity entity) 
         {
-            var doc = XDocument.Load(experienceFilePath);
+            var doc = persister.Load<IExperienceEntity>();
 
             var guid = Guid.NewGuid();
             var el = ConvertToXml(guid, entity);
             doc.Root.Add(el);
-            doc.Save(experienceFilePath);
+            persister.Persist<IExperienceEntity>(doc);
 
             return guid;
         }
 
         public void Update(Guid guid, IExperienceEntity entity) 
         {
-            var doc = XDocument.Load(experienceFilePath);
+            var doc = persister.Load<IExperienceEntity>();
 
             var job = doc.Root.Elements("Job").FirstOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
             if (job == null) throw new ArgumentException("guid not found.");
             job.ReplaceWith(ConvertToXml(guid, entity));
 
-            doc.Save(experienceFilePath);
+            persister.Persist<IExperienceEntity>(doc);
         }
 
         private IExperienceEntity ConvertToObject(XElement el) 

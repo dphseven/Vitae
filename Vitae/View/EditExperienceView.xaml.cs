@@ -6,11 +6,9 @@
 
     public partial class EditExperienceView : UserControl
     {
-        IEditExperienceViewModel vm;
-
         public EditExperienceView(IEditExperienceViewModel viewModel) 
         {
-            DataContext = vm = viewModel;
+            DataContext = viewModel;
             InitializeComponent();
         }
 

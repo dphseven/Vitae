@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Vitae
 {
-    public class VitaeNinjectKernel : StandardKernel
+    public class VitaeNinjectKernel : StandardKernel, IKernel
     {
         public VitaeNinjectKernel() : base()
         {

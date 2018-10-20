@@ -9,7 +9,7 @@ namespace Vitae.Services_UnitTests
     [TestClass()]
     public class ExpertiseXMLService_UnitTests
     {
-        ExpertiseXMLService xs = new ExpertiseXMLService(new VitaeNinjectKernel());
+        ExpertiseXMLService xs = new ExpertiseXMLService(new VitaeNinjectKernel(), new PersistenceService());
 
         [TestMethod()]
         public void ExpertiseXMLService_Works() 

@@ -5,24 +5,25 @@
     using System.Windows.Controls;
     using Vitae.ViewModel;
 
-    public partial class VitaeContainer : Window
+    public partial class ContainerView : Window
     {
         private IContainerViewModel vm;
+        private IKernel kernel;
 
-        public VitaeContainer() 
+        public ContainerView(IContainerViewModel viewModel, IKernel kernel) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                DataContext = vm = ioc.Get<IContainerViewModel>();
-            }
+            this.kernel = kernel;
+            DataContext = vm = viewModel;
 
             InitializeComponent();
 
             UserControl uc = null;
-            ResumeCreatorTab.Content = new ResumeCreatorView();
+
+            ResumeCreatorTab.Content = kernel.Get<ResumeCreatorView>();
             uc = ResumeCreatorTab.Content as UserControl;
             uc.Style = (Style)FindResource("TabContent");
-            KeywordToolTab.Content = new KeywordToolView();
+
+            KeywordToolTab.Content = kernel.Get<KeywordToolView>();
             uc = KeywordToolTab.Content as UserControl;
             uc.Style = (Style)FindResource("TabContent");
         }

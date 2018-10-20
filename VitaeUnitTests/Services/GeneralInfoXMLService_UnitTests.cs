@@ -7,7 +7,7 @@ namespace Vitae.Services_UnitTests
     [TestClass()]
     public class GeneralInfoXMLService_UnitTests
     {
-        GeneralInfoXMLService xs = new GeneralInfoXMLService(new VitaeNinjectKernel());
+        GeneralInfoXMLService xs = new GeneralInfoXMLService(new VitaeNinjectKernel(), new PersistenceService());
 
         [TestMethod()]
         public void GeneralInfoXMLService_Works() 

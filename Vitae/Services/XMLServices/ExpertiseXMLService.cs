@@ -4,36 +4,27 @@
     using Ninject;
     using System;
     using System.Collections.Generic;
-    using System.Deployment.Application;
-    using System.IO;
     using System.Linq;
     using System.Xml.Linq;
 
     public class ExpertiseXMLService : IExpertiseXMLService
     {
         private readonly IKernel _kernel;
-        private readonly string expertiseFilePath;
+        private readonly IPersistenceService persister;
 
-        public ExpertiseXMLService(IKernel kernel) 
+        public ExpertiseXMLService(IKernel kernel, IPersistenceService persistenceService) 
         {
             _kernel = kernel;
-            string prefix = string.Empty;
-
-            if (ApplicationDeployment.IsNetworkDeployed) prefix = ApplicationDeployment.CurrentDeployment.DataDirectory;
-            else prefix = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-
-            expertiseFilePath = prefix + @"\XML\Expertise.xml";
+            persister = persistenceService;
         }
 
         public IList<IExpertiseEntity> GetAll() 
         {
             var list = new List<IExpertiseEntity>();
-            var doc = XDocument.Load(expertiseFilePath);
+            var doc = persister.Load<IExpertiseEntity>();
 
             foreach (var el in doc.Root.Elements("ExpertiseItem"))
-            {
                 list.Add(ConvertToObject(el));
-            }
 
             return list;
         }
@@ -41,17 +32,17 @@
         public Guid Insert(IExpertiseEntity entity) 
         {
             var g = Guid.NewGuid();
-            var doc = XDocument.Load(expertiseFilePath);
+            var doc = persister.Load<IExpertiseEntity>();
 
             doc.Root.Add(ConvertToXml(g, entity));
 
-            doc.Save(expertiseFilePath);
+            persister.Persist<IExpertiseEntity>(doc);
             return g;
         }
 
         public IExpertiseEntity Get(Guid guid) 
         {
-            var doc = XDocument.Load(expertiseFilePath);
+            var doc = persister.Load<IExpertiseEntity>();
 
             var el = GetXElement(doc, guid);
             if (el == null) throw new ArgumentException("guid not found.");
@@ -61,22 +52,22 @@
 
         public void Delete(Guid guid) 
         {
-            var doc = XDocument.Load(expertiseFilePath);
+            var doc = persister.Load<IExpertiseEntity>();
 
             var element = GetXElement(doc, guid);
             if (element != null) element.Remove();
 
-            doc.Save(expertiseFilePath);
+            persister.Persist<IExpertiseEntity>(doc);
         }
 
         public void Update(Guid guid, IExpertiseEntity entity) 
         {
-            var doc = XDocument.Load(expertiseFilePath);
+            var doc = persister.Load<IExpertiseEntity>();
 
             var element = GetXElement(doc, guid);
             element.ReplaceWith(ConvertToXml(guid, entity));
 
-            doc.Save(expertiseFilePath);
+            persister.Persist<IExpertiseEntity>(doc);
         }
 
         private XElement GetXElement(XDocument doc, Guid guid) 

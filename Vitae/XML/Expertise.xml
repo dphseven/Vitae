@@ -1,9 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Expertise>
-  <ExpertiseItem Guid="c8672dac-236f-402e-af39-247b31bac98e">
-    <Category>Business Analysis</Category>
-    <Expertise>Thought Leader in Field of Business Analysis</Expertise>
-  </ExpertiseItem>
   <ExpertiseItem Guid="a187ba85-bb6c-4b6a-bb2e-54568af0fb1b">
     <Category>Business Analysis</Category>
     <Expertise>Project-Level Analysis</Expertise>
@@ -162,15 +158,7 @@
   </ExpertiseItem>
   <ExpertiseItem Guid="5eeaacbb-c413-4944-8b55-7dfafc7f5e83">
     <Category>Business Analysis</Category>
-    <Expertise>Thought Leader in Field upd</Expertise>
-  </ExpertiseItem>
-  <ExpertiseItem Guid="c20eb08a-2fca-4cc9-bb08-a29c5c561322">
-    <Category>Business Analysis</Category>
-    <Expertise>Business Process Management updated</Expertise>
-  </ExpertiseItem>
-  <ExpertiseItem Guid="547c4054-dc35-47f7-a35a-5bed6fddf89f">
-    <Category>test</Category>
-    <Expertise>test1525</Expertise>
+    <Expertise>Thought Leader in Field</Expertise>
   </ExpertiseItem>
   <ExpertiseItem Guid="8c630d54-2628-4b1b-b46e-f8ea51e954dd">
     <Category>test</Category>
@@ -203,9 +191,5 @@
   <ExpertiseItem Guid="f6a3fd79-85d9-4b40-b1b4-9f2fa6b8f71b">
     <Category>test</Category>
     <Expertise>test1011</Expertise>
-  </ExpertiseItem>
-  <ExpertiseItem Guid="2f124382-9225-43e0-a2ab-c6618871910c">
-    <Category>test</Category>
-    <Expertise>test1224</Expertise>
   </ExpertiseItem>
 </Expertise>

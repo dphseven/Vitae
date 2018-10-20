@@ -6,11 +6,9 @@
 
     public partial class AddEducationView : UserControl
     {
-        IAddEducationViewModel vm;
-
         public AddEducationView(IAddEducationViewModel viewModel) 
         {
-            DataContext = vm = viewModel;
+            DataContext = viewModel;
 
             InitializeComponent();
         }

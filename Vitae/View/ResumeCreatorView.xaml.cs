@@ -15,26 +15,26 @@
     public partial class ResumeCreatorView : UserControl
     {
         private IResumeCreatorViewModel vm;
+        private IKernel kernel;
 
         private List<Expander> listOfExpanders = new List<Expander>();
 
-        public ResumeCreatorView() 
+        public ResumeCreatorView(IResumeCreatorViewModel viewModel, IKernel kernel) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                DataContext = vm = ioc.Get<IResumeCreatorViewModel>();
+            DataContext = vm = viewModel;
 
-                InitializeComponent();
+            InitializeComponent();
 
-                DocViewRTB.Document = vm.ResumePreview;
+            this.kernel = kernel;
 
-                listOfExpanders.Add(hGeneralInfo);
-                listOfExpanders.Add(hExpertise);
-                listOfExpanders.Add(hJobs);
-                listOfExpanders.Add(hExperience);
-                listOfExpanders.Add(hEducation);
-                listOfExpanders.Add(hPublications);
-            }
+            DocViewRTB.Document = vm.ResumePreview;
+
+            listOfExpanders.Add(hGeneralInfo);
+            listOfExpanders.Add(hExpertise);
+            listOfExpanders.Add(hJobs);
+            listOfExpanders.Add(hExperience);
+            listOfExpanders.Add(hEducation);
+            listOfExpanders.Add(hPublications);
         }
 
         private void CloseAllOtherExpanders(object sender, RoutedEventArgs e) 
@@ -57,44 +57,35 @@
 
         private void AddExpertiseButton_Click(object sender, RoutedEventArgs e) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var exRepos = new ConstructorArgument("repository", ioc.Get<IExpertiseRepository>());
-                var aeVM = ioc.Get<IAddExpertiseViewModel>(exRepos);
+            var exRepos = new ConstructorArgument("repository", kernel.Get<IExpertiseRepository>());
+            var aeVM = kernel.Get<IAddExpertiseViewModel>(exRepos);
 
-                aeVM.ExpertiseAdded += ExpertiseDialog_Closing;
+            aeVM.ExpertiseAdded += ExpertiseDialog_Closing;
 
-                ucHost.Content = new AddExpertiseView(aeVM);
-                ucHost.Visibility = Visibility.Visible;
-            }
+            ucHost.Content = new AddExpertiseView(aeVM);
+            ucHost.Visibility = Visibility.Visible;
         }
 
         private void EditExpertiseButton_Click(object sender, RoutedEventArgs e) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var eeVM = ioc.Get<IEditExpertiseViewModel>();
-                var eeView = new EditExpertiseView(eeVM);
+            var eeVM = kernel.Get<IEditExpertiseViewModel>();
+            var eeView = new EditExpertiseView(eeVM);
 
-                eeVM.ExpertiseEdited += ExpertiseDialog_Closing;
+            eeVM.ExpertiseEdited += ExpertiseDialog_Closing;
 
-                ucHost.Content = eeView;
-                ucHost.Visibility = Visibility.Visible;
-            }
+            ucHost.Content = eeView;
+            ucHost.Visibility = Visibility.Visible;
         }
 
         private void DeleteExpertiseButton_Click(object sender, RoutedEventArgs e) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var deVM = ioc.Get<IDeleteExpertiseViewModel>();
-                var deView = new DeleteExpertiseView(deVM);
+            var deVM = kernel.Get<IDeleteExpertiseViewModel>();
+            var deView = new DeleteExpertiseView(deVM);
 
-                deVM.ExpertiseDeleted += ExpertiseDialog_Closing;
+            deVM.ExpertiseDeleted += ExpertiseDialog_Closing;
 
-                ucHost.Content = deView;
-                ucHost.Visibility = Visibility.Visible;
-            }
+            ucHost.Content = deView;
+            ucHost.Visibility = Visibility.Visible;
         }
 
         private void ExpertiseDialog_Closing(object sender, EventArgs e) 
@@ -107,32 +98,26 @@
 
         private void AddJobButton_Click(object sender, RoutedEventArgs e) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var exRepos = new ConstructorArgument("repository", ioc.Get<IExperienceRepository>());
-                var ajVM = ioc.Get<IAddJobViewModel>(exRepos);
-                ajVM.JobAdded += JobDialog_Closing;
+            var exRepos = new ConstructorArgument("repository", kernel.Get<IExperienceRepository>());
+            var ajVM = kernel.Get<IAddJobViewModel>(exRepos);
+            ajVM.JobAdded += JobDialog_Closing;
 
-                ucHost.Content = new AddJobView(ajVM);
-                ucHost.Visibility = Visibility.Visible;
-            }
+            ucHost.Content = new AddJobView(ajVM);
+            ucHost.Visibility = Visibility.Visible;
         }
         
         private void EditJobButton_Click(object sender, RoutedEventArgs e) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var reposArgument = new ConstructorArgument("repository", ioc.Get<IExperienceRepository>());
+            var reposArgument = new ConstructorArgument("repository", kernel.Get<IExperienceRepository>());
 
-                var id = ((IExperienceEntity)JobsDataGrid.SelectedItem).ID;
-                var idArgument = new ConstructorArgument("jobId", id);
+            var id = ((IExperienceEntity)JobsDataGrid.SelectedItem).ID;
+            var idArgument = new ConstructorArgument("jobId", id);
 
-                var ejVM = ioc.Get<IEditJobViewModel>(reposArgument, idArgument);
-                ejVM.JobEdited += JobDialog_Closing;
+            var ejVM = kernel.Get<IEditJobViewModel>(reposArgument, idArgument);
+            ejVM.JobEdited += JobDialog_Closing;
 
-                ucHost.Content = new EditJobView(ejVM);
-                ucHost.Visibility = Visibility.Visible;
-            }
+            ucHost.Content = new EditJobView(ejVM);
+            ucHost.Visibility = Visibility.Visible;
         }
 
         private void DeleteJobButton_Click(object sender, RoutedEventArgs e) 
@@ -150,53 +135,6 @@
         {
             ucHost.Visibility = Visibility.Collapsed;
             vm.RefreshJobs();
-        }
-
-        // Job Title Area
-
-        private void AddJobTitleButton_Click(object sender, RoutedEventArgs e) 
-        {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var ajtVM = ioc.Get<IAddJobTitleViewModel>();
-                ajtVM.JobTitleAdded += JobTitleDialog_Closing;
-                ajtVM.FormState = UIState.View;
-                var ajtView = new AddJobTitleView(ajtVM);
-
-                ucHost.Content = ajtView;
-                ucHost.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void EditJobTitleButton_Click(object sender, RoutedEventArgs e) 
-        {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var ejtVM = ioc.Get<IEditJobTitleViewModel>();
-                ejtVM.JobTitleEdited += JobTitleDialog_Closing;
-                var ejtView = new EditJobTitleView(ejtVM);
-
-                ucHost.Content = ejtView;
-                ucHost.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void DeleteJobTitleButton_Click(object sender, RoutedEventArgs e) 
-        {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var djtVM = ioc.Get<IDeleteJobTitleViewModel>();
-                djtVM.JobTitleDeleted += JobTitleDialog_Closing;
-                var djtView = new DeleteJobTitleView(djtVM);
-
-                ucHost.Content = djtView;
-                ucHost.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void JobTitleDialog_Closing(object sender, EventArgs e) 
-        {
-            ucHost.Visibility = Visibility.Collapsed;
         }
 
         // Experience Area
@@ -218,41 +156,32 @@
 
         private void AddExperienceButton_Click(object sender, RoutedEventArgs e) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var aeVM = ioc.Get<IAddExperienceViewModel>();
-                aeVM.ExperienceAdded += ExperienceDialogClosing;
-                var aeView = new AddExperienceView(aeVM);
+            var aeVM = kernel.Get<IAddExperienceViewModel>();
+            aeVM.ExperienceAdded += ExperienceDialogClosing;
+            var aeView = new AddExperienceView(aeVM);
 
-                ucHost.Content = aeView;
-                ucHost.Visibility = Visibility.Visible;
-            }
+            ucHost.Content = aeView;
+            ucHost.Visibility = Visibility.Visible;
         }
 
         private void EditExperienceButton_Click(object sender, RoutedEventArgs e) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var eeVM = ioc.Get<IEditExperienceViewModel>();
-                eeVM.ExperienceEdited += ExperienceDialogClosing;
-                var eeView = new EditExperienceView(eeVM);
+            var eeVM = kernel.Get<IEditExperienceViewModel>();
+            eeVM.ExperienceEdited += ExperienceDialogClosing;
+            var eeView = new EditExperienceView(eeVM);
 
-                ucHost.Content = eeView;
-                ucHost.Visibility = Visibility.Visible;
-            }
+            ucHost.Content = eeView;
+            ucHost.Visibility = Visibility.Visible;
         }
 
         private void DeleteExperienceButton_Click(object sender, RoutedEventArgs e) 
         {
-            using (var ioc = new VitaeNinjectKernel()) 
-            {
-                var deVM = ioc.Get<IDeleteExperienceViewModel>();
-                deVM.ExperienceDeleted += ExperienceDialogClosing;
-                var deView = new DeleteExperienceView(deVM);
+            var deVM = kernel.Get<IDeleteExperienceViewModel>();
+            deVM.ExperienceDeleted += ExperienceDialogClosing;
+            var deView = new DeleteExperienceView(deVM);
 
-                ucHost.Content = deView;
-                ucHost.Visibility = Visibility.Visible;
-            }
+            ucHost.Content = deView;
+            ucHost.Visibility = Visibility.Visible;
         }
 
         private void ExperienceDialogClosing(object sender, EventArgs e) 
@@ -274,43 +203,33 @@
         }
 
         private void AddEducationButton_Click(object sender, RoutedEventArgs e) 
-
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var aeVM = ioc.Get<IAddEducationViewModel>();
-                aeVM.EducationAdded += EducationDialog_Closing;
-                var aeView = new AddEducationView(aeVM);
+            var aeVM = kernel.Get<IAddEducationViewModel>();
+            aeVM.EducationAdded += EducationDialog_Closing;
+            var aeView = new AddEducationView(aeVM);
 
-                ucHost.Content = aeView;
-                ucHost.Visibility = Visibility.Visible;
-            }
+            ucHost.Content = aeView;
+            ucHost.Visibility = Visibility.Visible;
         }
 
         private void EditEducationButton_Click(object sender, RoutedEventArgs e) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var eeVM = ioc.Get<IEditEducationViewModel>();
-                eeVM.EducationEdited += EducationDialog_Closing;
-                var eeView = new EditEducationView(eeVM);
+            var eeVM = kernel.Get<IEditEducationViewModel>();
+            eeVM.EducationEdited += EducationDialog_Closing;
+            var eeView = new EditEducationView(eeVM);
 
-                ucHost.Content = eeView;
-                ucHost.Visibility = Visibility.Visible;
-            }
+            ucHost.Content = eeView;
+            ucHost.Visibility = Visibility.Visible;
         }
 
         private void DeleteEducationButton_Click(object sender, RoutedEventArgs e) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var deVM = ioc.Get<IDeleteEducationViewModel>();
-                deVM.EducationDeleted += EducationDialog_Closing;
-                var deView = new DeleteEducationView(deVM);
+            var deVM = kernel.Get<IDeleteEducationViewModel>();
+            deVM.EducationDeleted += EducationDialog_Closing;
+            var deView = new DeleteEducationView(deVM);
 
-                ucHost.Content = deView;
-                ucHost.Visibility = Visibility.Visible;
-            }
+            ucHost.Content = deView;
+            ucHost.Visibility = Visibility.Visible;
         }
 
         private void EducationDialog_Closing(object sender, EventArgs e) 
@@ -333,41 +252,32 @@
 
         private void AddPublicationButton_Click(object sender, RoutedEventArgs e) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var apVM = ioc.Get<IAddPublicationViewModel>();
-                apVM.PublicationAdded += PublicationDialog_Closing;
-                var apView = new AddPublicationView(apVM);
+            var apVM = kernel.Get<IAddPublicationViewModel>();
+            apVM.PublicationAdded += PublicationDialog_Closing;
+            var apView = new AddPublicationView(apVM);
 
-                ucHost.Content = apView;
-                ucHost.Visibility = Visibility.Visible;
-            }
+            ucHost.Content = apView;
+            ucHost.Visibility = Visibility.Visible;
         }
 
         private void EditPublicationButton_Click(object sender, RoutedEventArgs e) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var epVM = ioc.Get<IEditPublicationViewModel>();
-                epVM.PublicationEdited += PublicationDialog_Closing;
-                var epView = new EditPublicationView(epVM);
+            var epVM = kernel.Get<IEditPublicationViewModel>();
+            epVM.PublicationEdited += PublicationDialog_Closing;
+            var epView = new EditPublicationView(epVM);
 
-                ucHost.Content = epView;
-                ucHost.Visibility = Visibility.Visible;
-            }
+            ucHost.Content = epView;
+            ucHost.Visibility = Visibility.Visible;
         }
 
         private void DeletePublicationButton_Click(object sender, RoutedEventArgs e) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var dpVM = ioc.Get<IDeletePublicationViewModel>();
-                dpVM.PublicationDeleted += PublicationDialog_Closing;
-                var dpView = new DeletePublicationView(dpVM);
+            var dpVM = kernel.Get<IDeletePublicationViewModel>();
+            dpVM.PublicationDeleted += PublicationDialog_Closing;
+            var dpView = new DeletePublicationView(dpVM);
 
-                ucHost.Content = dpView;
-                ucHost.Visibility = Visibility.Visible;
-            }
+            ucHost.Content = dpView;
+            ucHost.Visibility = Visibility.Visible;
         }
 
         private void PublicationDialog_Closing(object sender, EventArgs e) 

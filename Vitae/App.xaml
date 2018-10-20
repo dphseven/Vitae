@@ -1,9 +1,8 @@
 ﻿<Application x:Class="Vitae.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Vitae" xmlns:view="clr-namespace:Vitae.View"
-             StartupUri="/View/VitaeContainer.xaml">
-    
+             xmlns:local="clr-namespace:Vitae" xmlns:view="clr-namespace:Vitae.View" >
+
     <Application.Resources>
 
         <Style x:Key="FullNameParagraphStyle" TargetType="Paragraph">
