@@ -1,13 +1,13 @@
-﻿using Vitae.Model;
-
-namespace Vitae.Services
+﻿namespace Vitae.Services
 {
+    using Vitae.Model;
+
     public interface IResumeCreationService
     {
         void CreateResumeAsWordFile(
             IResumeDataObject rdo,
             IResumeFormatObject rfo,
-            IResumeStructureObject rso,            
+            IResumeStructureObject rso,
             string filePathAndName);
         void CreateResumeAsPdfFile(
             IResumeDataObject rdo,

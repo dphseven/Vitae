@@ -119,6 +119,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\Entities\DecoratedExperienceEntity.cs" />
     <Compile Include="Model\Entities\IDecoratedExperienceEntity.cs" />
+    <Compile Include="Services\DocumentPersistenceFileType.cs" />
     <Compile Include="Services\IPersistenceService.cs" />
     <Compile Include="Services\PersistenceService.cs" />
     <Compile Include="ViewModel\DeleteJobViewModel.cs" />

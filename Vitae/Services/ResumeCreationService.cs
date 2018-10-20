@@ -3,12 +3,22 @@
     using Microsoft.Office.Interop.Word;
     using Model;
 
-    public class ResumeCreationService : IResumeCreationService
+    public class ResumeCreationService : IResumeCreationService 
     {
+        private readonly IResumeDataObject rdo;
+        private readonly IResumeFormatObject rfo;
+        private readonly IResumeStructureObject rso;
+        private readonly IPersistenceService persister;
+
+        public ResumeCreationService(IPersistenceService persistenceService) 
+        {
+            persister = persistenceService;
+        }
+
         public void CreateResumeAsWordFile(
             IResumeDataObject rdo,
             IResumeFormatObject rfo,
-            IResumeStructureObject rso,
+            IResumeStructureObject rso, 
             string filePathAndName) 
         {
             Application wordApp = new Application(); 
@@ -17,7 +27,7 @@
             foreach (var item in rso.ResumeSections)
                 item.AddToWordDocument(rdo, rfo, wordDocument).DynamicInvoke();
 
-            wordDocument.SaveAs2(FileName: filePathAndName);
+            persister.Persist(wordDocument, filePathAndName, DocumentPersistenceFileType.Word);
 
             wordDocument.Close();
             wordDocument = null;
@@ -28,7 +38,7 @@
         public void CreateResumeAsPdfFile(
             IResumeDataObject rdo,
             IResumeFormatObject rfo,
-            IResumeStructureObject rso,
+            IResumeStructureObject rso, 
             string filePathAndName) 
         {
             Application wordApp = new Application();
@@ -37,7 +47,7 @@
             foreach (var item in rso.ResumeSections)
                 item.AddToWordDocument(rdo, rfo, wordDocument).DynamicInvoke();
 
-            wordDocument.ExportAsFixedFormat(filePathAndName, WdExportFormat.wdExportFormatPDF);
+            persister.Persist(wordDocument, filePathAndName, DocumentPersistenceFileType.PDF);
 
             wordDocument.Close(SaveChanges: false);
             wordDocument = null;

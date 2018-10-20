@@ -1,5 +1,6 @@
 ﻿namespace Vitae.Services
 {
+    using Microsoft.Office.Interop.Word;
     using System;
     using System.Collections.Generic;
     using System.Deployment.Application;
@@ -28,6 +29,19 @@
                     document.Save(filePath);
                 }
                 else throw new ArgumentException("The supplied type argument is not registered in the PersistenceService.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void Persist(Document document, string filePath, DocumentPersistenceFileType type) 
+        {
+            try
+            {
+                if (type == DocumentPersistenceFileType.PDF) document.ExportAsFixedFormat(filePath, WdExportFormat.wdExportFormatPDF);
+                if (type == DocumentPersistenceFileType.Word) document.SaveAs2(FileName: filePath);
             }
             catch (Exception)
             {
