@@ -7,6 +7,7 @@
 
     public class AddJobViewModel : ViewModelBase, IAddJobViewModel
     {
+        private readonly IKernel _kernel;
         private IExperienceRepository repos;
 
         private string employer = "";
@@ -55,26 +56,24 @@
 
         public event EventHandler JobAdded;
 
-        public AddJobViewModel(IExperienceRepository repository) 
+        public AddJobViewModel(IExperienceRepository repository, IKernel kernel) 
         {
+            _kernel = kernel;
             repos = repository;
             SetUpRelayCommands();
         }
 
         private void AddJob() 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var ent = ioc.Get<IExperienceEntity>();
-                ent.Employer = Employer;
-                ent.Titles.Add(JobTitle);
-                ent.StartDate = StartDate;
-                ent.EndDate = EndDate;
+            var ent = _kernel.Get<IExperienceEntity>();
+            ent.Employer = Employer;
+            ent.Titles.Add(JobTitle);
+            ent.StartDate = StartDate;
+            ent.EndDate = EndDate;
 
-                repos.Add(ent);
+            repos.Add(ent);
 
-                JobAdded?.Invoke(this, new EventArgs());
-            }
+            JobAdded?.Invoke(this, new EventArgs());
         }
 
         private void SetUpRelayCommands() 

@@ -10,10 +10,13 @@
 
     public class GeneralInfoXMLService : IGeneralInfoXMLService 
     {
+        private readonly IKernel _kernel;
         private readonly string generalInfoFilePath;
 
-        public GeneralInfoXMLService() 
+        public GeneralInfoXMLService(IKernel kernel) 
         {
+            _kernel = kernel;
+
             string prefix = string.Empty;
 
             if (ApplicationDeployment.IsNetworkDeployed) prefix = ApplicationDeployment.CurrentDeployment.DataDirectory;
@@ -24,22 +27,19 @@
 
         public void Delete(Guid guid) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                XDocument doc = new XDocument();
-                doc = XDocument.Load(generalInfoFilePath);
-                var el = getXElement(doc, guid);
+            XDocument doc = new XDocument();
+            doc = XDocument.Load(generalInfoFilePath);
+            var el = GetXElement(doc, guid);
 
-                el.ReplaceWith(convertToXml(guid, ioc.Get<IGeneralInfoEntity>()));
+            el.ReplaceWith(ConvertToXml(guid, _kernel.Get<IGeneralInfoEntity>()));
 
-                doc.Save(generalInfoFilePath);
-            }
+            doc.Save(generalInfoFilePath);
         }
 
         public IGeneralInfoEntity Get(Guid guid) 
         {
             var doc = XDocument.Load(generalInfoFilePath);
-            return convertToObject(getXElement(doc, guid));
+            return ConvertToObject(GetXElement(doc, guid));
         }
 
         public IList<IGeneralInfoEntity> GetAll() 
@@ -58,47 +58,45 @@
         {
             var doc = XDocument.Load(generalInfoFilePath);
 
-            var ele = getXElement(doc, guid);
-            ele.ReplaceWith(convertToXml(guid, entity));
+            var ele = GetXElement(doc, guid);
+            ele.ReplaceWith(ConvertToXml(guid, entity));
 
             doc.Save(generalInfoFilePath);
         }
 
-        private XElement getXElement(XDocument doc, Guid guid) 
+        private XElement GetXElement(XDocument doc, Guid guid) 
         {
             return doc.Root;
         }
 
-        private IGeneralInfoEntity convertToObject(XElement element) 
+        private IGeneralInfoEntity ConvertToObject(XElement element) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var entity = ioc.Get<IGeneralInfoEntity>();
+            var entity = _kernel.Get<IGeneralInfoEntity>();
 
-                Guid output = Guid.Empty;
-                if (Guid.TryParse(element.Attribute("Guid").Value, out output))
-                    entity.ID = output;
-                else entity.ID = Guid.NewGuid();
+            Guid output = Guid.Empty;
+            if (Guid.TryParse(element.Attribute("Guid").Value, out output))
+                entity.ID = output;
+            else entity.ID = Guid.NewGuid();
 
-                entity.FullName = element.Element("FullName").Value;
-                entity.Add1 = element.Element("AddLine1").Value;
-                entity.Add2 = element.Element("AddLine2").Value;
-                entity.Email = element.Element("Email").Value;
-                entity.Phone = element.Element("Phone").Value;
+            entity.FullName = element.Element("FullName").Value;
+            entity.Add1 = element.Element("AddLine1").Value;
+            entity.Add2 = element.Element("AddLine2").Value;
+            entity.Email = element.Element("Email").Value;
+            entity.Phone = element.Element("Phone").Value;
 
-                return entity;
-            }
+            return entity;
         }
 
-        private XElement convertToXml(Guid guid, IGeneralInfoEntity entity) 
+        private XElement ConvertToXml(Guid guid, IGeneralInfoEntity entity) 
         {
-            return new XElement("GeneralInfo",
-                new XAttribute("Guid", entity.ID),
-                new XElement("FullName", entity.FullName),
-                new XElement("AddLine1", entity.Add1),
-                new XElement("AddLine2", entity.Add2),
-                new XElement("Email", entity.Email),
-                new XElement("Phone", entity.Phone));
+            return 
+                new XElement("GeneralInfo",
+                    new XAttribute("Guid", entity.ID),
+                    new XElement("FullName", entity.FullName),
+                    new XElement("AddLine1", entity.Add1),
+                    new XElement("AddLine2", entity.Add2),
+                    new XElement("Email", entity.Email),
+                    new XElement("Phone", entity.Phone));
         }
     }
 }

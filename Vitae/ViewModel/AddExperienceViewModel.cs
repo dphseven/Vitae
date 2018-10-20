@@ -11,6 +11,7 @@
 
     public class AddExperienceViewModel : ViewModelBase, IAddExperienceViewModel
     {
+        private readonly IKernel _kernel;
         private IExperienceRepository repos;
 
         private string employer;
@@ -42,8 +43,9 @@
 
         // Public Methods
 
-        public AddExperienceViewModel(IExperienceRepository repository) 
+        public AddExperienceViewModel(IExperienceRepository repository, IKernel kernel) 
         {
+            _kernel = kernel;
             repos = repository;
             setUpRelayCommands();
         }
@@ -52,22 +54,19 @@
 
         private void addExperience() 
         {
-            using (var ioc = new VitaeNinjectKernel())
+            var job = repos.GetAll().FirstOrDefault(T => T.Employer == Employer);
+            if (job != null)
             {
-                var job = repos.GetAll().FirstOrDefault(T => T.Employer == Employer);
-                if (job != null)
-                {
-                    job.Details.Add(Experience);
-                    repos.Update(job.ID, job);
-                }
-                else
-                {
-                    job = ioc.Get<IExperienceEntity>();
-                    job.Details.Add(Experience);
-                    repos.Add(job);
-                }
-                ExperienceAdded?.Invoke(this, new EventArgs());
+                job.Details.Add(Experience);
+                repos.Update(job.ID, job);
             }
+            else
+            {
+                job = _kernel.Get<IExperienceEntity>();
+                job.Details.Add(Experience);
+                repos.Add(job);
+            }
+            ExperienceAdded?.Invoke(this, new EventArgs());
         }
 
         private void reset() 

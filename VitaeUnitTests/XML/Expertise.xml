@@ -232,4 +232,16 @@
     <Category>cat</Category>
     <Expertise>exp</Expertise>
   </ExpertiseItem>
+  <ExpertiseItem Guid="2c67ef19-d6f5-42d5-a1a1-bffd2223ef86">
+    <Category>cat</Category>
+    <Expertise>exp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="ec9261e7-fd9f-4e4b-bbd9-56f675461b73">
+    <Category>cat</Category>
+    <Expertise>exp</Expertise>
+  </ExpertiseItem>
+  <ExpertiseItem Guid="abfdd4cf-9511-4d6e-9120-00827af0dd37">
+    <Category>cat</Category>
+    <Expertise>exp</Expertise>
+  </ExpertiseItem>
 </Expertise>

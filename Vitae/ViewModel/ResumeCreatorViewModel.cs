@@ -23,6 +23,7 @@
         private IEducationRepository edRepos;
         private IPublicationsRepository pubRepos;
         private ILoggingService ls;
+        private readonly IKernel _kernel;
 
         // Basic Info Properties
         private string fullName = string.Empty;
@@ -222,7 +223,8 @@
             IExperienceRepository experienceRepository,
             IExpertiseRepository expertiseRepository,
             IEducationRepository educationRepository,
-            IPublicationsRepository publicationsRepository) 
+            IPublicationsRepository publicationsRepository,
+            IKernel kernel) 
         {
             try
             {
@@ -233,6 +235,7 @@
                 this.edRepos = educationRepository;
                 this.pubRepos = publicationsRepository;
                 this.ls = ls;
+                this._kernel = kernel;
 
                 SetUpRelayCommands();
 
@@ -275,21 +278,19 @@
         {
             try
             {
-                using (var ioc = new VitaeNinjectKernel())
-                {
-                    var rdo = CreateRdo();
-                    var rfo = ioc.Get<IResumeFormatObject>();
-                    var rso = ioc.Get<IResumeStructureObject>();
-                    rso.AddSection(ioc.Get<IFullNameSection>());
-                    rso.AddSection(ioc.Get<IBasicInfoSection>());
-                    rso.AddSection(ioc.Get<ITagLineSection>());
-                    rso.AddSection(ioc.Get<IExpertiseSection>());
-                    rso.AddSection(ioc.Get<IExperienceSection>());
-                    rso.AddSection(ioc.Get<IEducationSection>());
-                    rso.AddSection(ioc.Get<IPublicationsSection>());
+                var rdo = CreateRdo();
+                var rfo = _kernel.Get<IResumeFormatObject>();
+                var rso = _kernel.Get<IResumeStructureObject>();
 
-                    rcs.CreateResumeAsPdfFile(rdo, rfo, rso, filePathAndName);
-                }
+                rso.AddSection(_kernel.Get<IFullNameSection>());
+                rso.AddSection(_kernel.Get<IBasicInfoSection>());
+                rso.AddSection(_kernel.Get<ITagLineSection>());
+                rso.AddSection(_kernel.Get<IExpertiseSection>());
+                rso.AddSection(_kernel.Get<IExperienceSection>());
+                rso.AddSection(_kernel.Get<IEducationSection>());
+                rso.AddSection(_kernel.Get<IPublicationsSection>());
+
+                rcs.CreateResumeAsPdfFile(rdo, rfo, rso, filePathAndName);
             }
             catch (Exception e)
             {
@@ -301,21 +302,19 @@
         {
             try
             {
-                using (var ioc = new VitaeNinjectKernel())
-                {
-                    var rdo = CreateRdo();
-                    var rfo = ioc.Get<IResumeFormatObject>();
-                    var rso = ioc.Get<IResumeStructureObject>();
-                    rso.AddSection(ioc.Get<IFullNameSection>());
-                    rso.AddSection(ioc.Get<IBasicInfoSection>());
-                    rso.AddSection(ioc.Get<ITagLineSection>());
-                    rso.AddSection(ioc.Get<IExpertiseSection>());
-                    rso.AddSection(ioc.Get<IExperienceSection>());
-                    rso.AddSection(ioc.Get<IEducationSection>());
-                    rso.AddSection(ioc.Get<IPublicationsSection>());
+                var rdo = CreateRdo();
+                var rfo = _kernel.Get<IResumeFormatObject>();
+                var rso = _kernel.Get<IResumeStructureObject>();
 
-                    rcs.CreateResumeAsWordFile(rdo, rfo, rso, filePathAndName);
-                }
+                rso.AddSection(_kernel.Get<IFullNameSection>());
+                rso.AddSection(_kernel.Get<IBasicInfoSection>());
+                rso.AddSection(_kernel.Get<ITagLineSection>());
+                rso.AddSection(_kernel.Get<IExpertiseSection>());
+                rso.AddSection(_kernel.Get<IExperienceSection>());
+                rso.AddSection(_kernel.Get<IEducationSection>());
+                rso.AddSection(_kernel.Get<IPublicationsSection>());
+
+                rcs.CreateResumeAsWordFile(rdo, rfo, rso, filePathAndName);
             }
             catch (Exception e)
             {
@@ -619,38 +618,32 @@
 
         private IResumeDataObject CreateRdo() 
         {
-            using (var ioc = new VitaeNinjectKernel())
+            IResumeDataObject rdo = _kernel.Get<IResumeDataObject>();
+            rdo.FullName = this.FullName;
+            rdo.PhoneNumber = this.Phone;
+            rdo.Email = this.Email;
+            rdo.AddressLine1 = this.AddLine1;
+            rdo.AddressLine2 = this.AddLine2;
+            rdo.TagLine = this.TagLine;
+
+            if (InExpertises != null) foreach (IExpertiseEntity item in InExpertises) rdo.ExpertiseEntities.Add(item);
+
+            foreach (var job in AllJobs)
             {
-                IResumeDataObject rdo = ioc.Get<IResumeDataObject>();
-                rdo.FullName = this.FullName;
-                rdo.PhoneNumber = this.Phone;
-                rdo.Email = this.Email;
-                rdo.AddressLine1 = this.AddLine1;
-                rdo.AddressLine2 = this.AddLine2;
-                rdo.TagLine = this.TagLine;
-
-                if (InExpertises != null) foreach (IExpertiseEntity item in InExpertises) rdo.ExpertiseEntities.Add(item);
-
-                foreach (var job in AllJobs)
-                {
-                    IExperienceEntity ee = ioc.Get<IExperienceEntity>();
-                    ee.Employer = job.Employer;
-                    ee.StartDate = job.StartDate;
-                    ee.EndDate = job.EndDate;
-                    ee.Titles.Add(job.SelectedJobTitle);
-                    foreach (var detail in job.SelectedDetails)
-                    {
-                        ee.Details.Add(detail);
-                    }
-                    rdo.ExperienceEntities.Add(ee);
-                }
-
-                if (InEducations != null) foreach (IEducationEntity item in InEducations) rdo.EducationEntities.Add(item);
-
-                if (InPublications != null) foreach (IPublicationEntity item in InPublications) rdo.PublicationEntities.Add(item);
-
-                return rdo;
+                IExperienceEntity ee = _kernel.Get<IExperienceEntity>();
+                ee.Employer = job.Employer;
+                ee.StartDate = job.StartDate;
+                ee.EndDate = job.EndDate;
+                ee.Titles.Add(job.SelectedJobTitle);
+                foreach (var detail in job.SelectedDetails) ee.Details.Add(detail);
+                rdo.ExperienceEntities.Add(ee);
             }
+
+            if (InEducations != null) foreach (IEducationEntity item in InEducations) rdo.EducationEntities.Add(item);
+
+            if (InPublications != null) foreach (IPublicationEntity item in InPublications) rdo.PublicationEntities.Add(item);
+
+            return rdo;
         }
 
         private void Job_PropertyChanged(object sender, PropertyChangedEventArgs e) 
@@ -662,35 +655,32 @@
         {
             try
             {
-                using (var ioc = new VitaeNinjectKernel())
-                {
-                    IResumeDataObject rdo = CreateRdo();
-                    IResumeFormatObject rfo = ioc.Get<IResumeFormatObject>();
+                IResumeDataObject rdo = CreateRdo();
+                IResumeFormatObject rfo = _kernel.Get<IResumeFormatObject>();
 
-                    var blks = ResumePreview.Blocks;
-                    blks.Clear();
+                var blks = ResumePreview.Blocks;
+                blks.Clear();
 
-                    IFullNameSection fns = ioc.Get<IFullNameSection>();
-                    fns.AddToFlowDocument(rdo, rfo, ResumePreview).DynamicInvoke();
+                IFullNameSection fns = _kernel.Get<IFullNameSection>();
+                fns.AddToFlowDocument(rdo, rfo, ResumePreview).DynamicInvoke();
 
-                    IBasicInfoSection bis = ioc.Get<IBasicInfoSection>();
-                    bis.AddToFlowDocument(rdo, rfo, ResumePreview).DynamicInvoke();
+                IBasicInfoSection bis = _kernel.Get<IBasicInfoSection>();
+                bis.AddToFlowDocument(rdo, rfo, ResumePreview).DynamicInvoke();
 
-                    ITagLineSection tls = ioc.Get<ITagLineSection>();
-                    tls.AddToFlowDocument(rdo, rfo, ResumePreview).DynamicInvoke();
+                ITagLineSection tls = _kernel.Get<ITagLineSection>();
+                tls.AddToFlowDocument(rdo, rfo, ResumePreview).DynamicInvoke();
 
-                    IExpertiseSection es = ioc.Get<IExpertiseSection>();
-                    es.AddToFlowDocument(rdo, rfo, ResumePreview).DynamicInvoke();
+                IExpertiseSection es = _kernel.Get<IExpertiseSection>();
+                es.AddToFlowDocument(rdo, rfo, ResumePreview).DynamicInvoke();
 
-                    IExperienceSection xs = ioc.Get<IExperienceSection>();
-                    xs.AddToFlowDocument(rdo, rfo, ResumePreview).DynamicInvoke();
+                IExperienceSection xs = _kernel.Get<IExperienceSection>();
+                xs.AddToFlowDocument(rdo, rfo, ResumePreview).DynamicInvoke();
 
-                    IEducationSection eds = ioc.Get<IEducationSection>();
-                    eds.AddToFlowDocument(rdo, rfo, ResumePreview).DynamicInvoke();
+                IEducationSection eds = _kernel.Get<IEducationSection>();
+                eds.AddToFlowDocument(rdo, rfo, ResumePreview).DynamicInvoke();
 
-                    IPublicationsSection pubs = ioc.Get<IPublicationsSection>();
-                    pubs.AddToFlowDocument(rdo, rfo, ResumePreview).DynamicInvoke();
-                }
+                IPublicationsSection pubs = _kernel.Get<IPublicationsSection>();
+                pubs.AddToFlowDocument(rdo, rfo, ResumePreview).DynamicInvoke();
             }
             catch (Exception e)
             {

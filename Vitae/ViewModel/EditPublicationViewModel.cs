@@ -1,5 +1,6 @@
 ﻿namespace Vitae.ViewModel
 {
+    using Ninject;
     using System;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
@@ -63,6 +64,7 @@
 
         public EditPublicationViewModel(IPublicationsRepository repository) 
         {
+            _kernel = kernel;
             repos = repository;
             LoadPublications();
             SetUpRelayCommands();

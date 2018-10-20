@@ -5,6 +5,7 @@ using Vitae.Model;
 using Vitae.Services;
 using Moq;
 using System.Linq;
+using Vitae;
 
 namespace VitaeUnitTests
 {
@@ -14,7 +15,7 @@ namespace VitaeUnitTests
         [TestMethod]
         public void PublicationsRepository_ImplementsInterfaces() 
         {
-            var repos = new PublicationsRepository(new PublicationsXMLService());
+            var repos = new PublicationsRepository(new PublicationsXMLService(new VitaeNinjectKernel()));
 
             Assert.IsTrue(repos is IPublicationsRepository);
             Assert.IsTrue(repos is IRepository<IPublicationEntity>);

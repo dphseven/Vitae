@@ -7,13 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Vitae.Model;
 using Moq;
+using Vitae;
 
 namespace VitaeUnitTests
 {
     [TestClass()]
     public class PublicationsXMLService_UnitTests
     {
-        PublicationsXMLService serv = new PublicationsXMLService();
+        PublicationsXMLService serv = new PublicationsXMLService(new VitaeNinjectKernel());
 
         [TestMethod()]
         public void PublicationsXMLService_Delete_Works() 

@@ -7,6 +7,7 @@
 
     public class AddEducationViewModel : ViewModelBase, IAddEducationViewModel
     {
+        private readonly IKernel _kernel;
         private IEducationRepository repos;
 
         private string institution;
@@ -36,8 +37,9 @@
 
         public event EventHandler EducationAdded;
 
-        public AddEducationViewModel(IEducationRepository repository) 
+        public AddEducationViewModel(IEducationRepository repository, IKernel kernel) 
         {
+            _kernel = kernel;
             repos = repository;
 
             SetUpRelayCommands();
@@ -45,15 +47,12 @@
 
         private void AddEducation() 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var ent = ioc.Get<IEducationEntity>();
-                ent.Institution = Institution;
-                ent.Credential = Credential;
-                repos.Add(ent);
+            var ent = _kernel.Get<IEducationEntity>();
+            ent.Institution = Institution;
+            ent.Credential = Credential;
+            repos.Add(ent);
 
-                EducationAdded?.Invoke(this, new EventArgs());
-            }
+            EducationAdded?.Invoke(this, new EventArgs());
         }
 
         private void Reset() 

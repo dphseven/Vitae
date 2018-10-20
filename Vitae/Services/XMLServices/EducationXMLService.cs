@@ -11,10 +11,12 @@
 
     public class EducationXMLService : IEducationXMLService
     {
+        private readonly IKernel _kernel;
         private readonly string educationFilePath;
 
-        public EducationXMLService() 
+        public EducationXMLService(IKernel kernel) 
         {
+            _kernel = kernel;
             string prefix = string.Empty;
 
             if (ApplicationDeployment.IsNetworkDeployed) prefix = ApplicationDeployment.CurrentDeployment.DataDirectory;
@@ -28,7 +30,7 @@
             if (guid == null) throw new ArgumentNullException("guid");
 
             var doc = XDocument.Load(educationFilePath);
-            getXElement(doc, guid).Remove();
+            GetXElement(doc, guid).Remove();
 
             doc.Save(educationFilePath);
         }
@@ -37,10 +39,10 @@
         {
             var doc = XDocument.Load(educationFilePath);
 
-            var element = getXElement(doc, guid);
+            var element = GetXElement(doc, guid);
             if (element == null) return null;
 
-            return convertToObject(element);
+            return ConvertToObject(element);
         }
 
         public IList<IEducationEntity> GetAll() 
@@ -53,7 +55,7 @@
                 var elements = doc.Root.Elements("EducationItem").ToList();
                 foreach (var element in elements)
                 {
-                    list.Add(convertToObject(element));
+                    list.Add(ConvertToObject(element));
                 }
 
                 return list;
@@ -65,7 +67,7 @@
             var doc = XDocument.Load(educationFilePath);
 
             var guid = Guid.NewGuid();
-            var newElement = convertToXml(guid, entity);
+            var newElement = ConvertToXml(guid, entity);
             doc.Root.Add(newElement);
 
             doc.Save(educationFilePath);
@@ -79,20 +81,20 @@
             if (entity == null) throw new ArgumentNullException("entity");
 
             var doc = XDocument.Load(educationFilePath);
-            XElement oldEl = getXElement(doc, guid);
+            XElement oldEl = GetXElement(doc, guid);
             if (oldEl == null) throw new ArgumentException("guid not found.");
-            oldEl.ReplaceWith(convertToXml(guid, entity));
+            oldEl.ReplaceWith(ConvertToXml(guid, entity));
 
             doc.Save(educationFilePath);
         }
 
-        private XElement getXElement(XDocument doc, Guid guid) 
+        private XElement GetXElement(XDocument doc, Guid guid) 
         {
             return doc.Root.Elements("EducationItem")
                 .FirstOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
         }
 
-        private XElement convertToXml(Guid id, IEducationEntity ent) 
+        private XElement ConvertToXml(Guid id, IEducationEntity ent) 
         {
             return new XElement("EducationItem",
                 new XAttribute("Guid", id.ToString()),
@@ -100,24 +102,21 @@
                 new XElement("Institution", ent.Institution));
         }
 
-        private IEducationEntity convertToObject(XElement el) 
+        private IEducationEntity ConvertToObject(XElement el) 
         {
-            using (var ioc = new VitaeNinjectKernel())
+            var ee = _kernel.Get<IEducationEntity>();
+
+            if (el.Attribute("Guid") != null)
             {
-                var ee = ioc.Get<IEducationEntity>();
-
-                if (el.Attribute("Guid") != null)
-                {
-                    if (Guid.TryParse(el.Attribute("Guid").Value, out Guid output))
-                        ee.ID = output;
-                    else ee.ID = Guid.NewGuid();
-                }
-
-                ee.Credential = el.Element("Credential").Value;
-                ee.Institution = el.Element("Institution").Value;
-
-                return ee;
+                if (Guid.TryParse(el.Attribute("Guid").Value, out Guid output))
+                    ee.ID = output;
+                else ee.ID = Guid.NewGuid();
             }
+
+            ee.Credential = el.Element("Credential").Value;
+            ee.Institution = el.Element("Institution").Value;
+
+            return ee;
         }
     }
 }

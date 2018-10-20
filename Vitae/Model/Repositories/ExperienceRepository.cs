@@ -9,11 +9,15 @@
 
     public class ExperienceRepository : IExperienceRepository
     {
-        IExperienceXMLService xs;
+        private readonly IExperienceXMLService xs;
+        private readonly IKernel kernel;
 
-        public ExperienceRepository(IExperienceXMLService xmlService) 
+        public ExperienceRepository(IExperienceXMLService xmlService,
+                                    IKernel kernel) 
+
         {
             xs = xmlService;
+            this.kernel = kernel;
         }
 
         public Guid Add(IExperienceEntity entity) 
@@ -56,23 +60,20 @@
         {
             try
             {
-                using (var ioc = new VitaeNinjectKernel())
+                var temp = xs.GetAll();
+                var listToReturn = new List<IDecoratedExperienceEntity>();
+                foreach (var item in temp)
                 {
-                    var temp = xs.GetAll();
-                    var listToReturn = new List<IDecoratedExperienceEntity>();
-                    foreach (var item in temp)
-                    {
-                        var decorated = ioc.Get<IDecoratedExperienceEntity>();
-                        decorated.ID = item.ID;
-                        decorated.Employer = item.Employer;
-                        decorated.Titles = item.Titles;
-                        decorated.StartDate = item.StartDate;
-                        decorated.EndDate = item.EndDate;
-                        decorated.Details = new ObservableCollection<string>(item.Details);
-                        listToReturn.Add(decorated);
-                    }
-                    return listToReturn;
+                    var decorated = kernel.Get<IDecoratedExperienceEntity>();
+                    decorated.ID = item.ID;
+                    decorated.Employer = item.Employer;
+                    decorated.Titles = item.Titles;
+                    decorated.StartDate = item.StartDate;
+                    decorated.EndDate = item.EndDate;
+                    decorated.Details = new ObservableCollection<string>(item.Details);
+                    listToReturn.Add(decorated);
                 }
+                return listToReturn;
             }
             catch (Exception)
             {
@@ -84,23 +85,20 @@
         {
             try
             {
-                using (var ioc = new VitaeNinjectKernel())
+                var list = new List<IExperienceItem>();
+
+                foreach (var job in xs.GetAll())
                 {
-                    var list = new List<IExperienceItem>();
-
-                    foreach (var job in xs.GetAll())
+                    foreach (var detail in job.Details)
                     {
-                        foreach (var detail in job.Details)
-                        {
-                            var item = ioc.Get<IExperienceItem>();
-                            item.Employer = job.Employer;
-                            item.ExperienceDetail = detail;
-                            list.Add(item);
-                        }
+                        var item = kernel.Get<IExperienceItem>();
+                        item.Employer = job.Employer;
+                        item.ExperienceDetail = detail;
+                        list.Add(item);
                     }
-
-                    return list;
                 }
+
+                return list;
             }
             catch (Exception)
             {
@@ -141,23 +139,20 @@
         {
             try
             {
-                using (var ioc = new VitaeNinjectKernel())
+                var list = new List<IJobTitle>();
+
+                foreach (var job in xs.GetAll())
                 {
-                    var list = new List<IJobTitle>();
-
-                    foreach (var job in xs.GetAll())
+                    foreach (var title in job.Titles)
                     {
-                        foreach (var title in job.Titles)
-                        {
-                            var item = ioc.Get<IJobTitle>();
-                            item.Employer = job.Employer;
-                            item.Title = title;
-                            list.Add(item);
-                        }
+                        var item = kernel.Get<IJobTitle>();
+                        item.Employer = job.Employer;
+                        item.Title = title;
+                        list.Add(item);
                     }
-
-                    return list;
                 }
+
+                return list;
             }
             catch (Exception)
             {
@@ -169,22 +164,19 @@
         {
             try
             {
-                using (var ioc = new VitaeNinjectKernel())
+                List<IJobTitle> list = new List<IJobTitle>();
+
+                var job = GetAll().FirstOrDefault(T => T.ID.ToString() == jobID.ToString());
+
+                foreach (var title in job.Titles)
                 {
-                    List<IJobTitle> list = new List<IJobTitle>();
-
-                    var job = GetAll().FirstOrDefault(T => T.ID.ToString() == jobID.ToString());
-
-                    foreach (var title in job.Titles)
-                    {
-                        var titleEntity = ioc.Get<IJobTitle>();
-                        titleEntity.Employer = job.Employer;
-                        titleEntity.Title = title;
-                        list.Add(titleEntity);
-                    }
-
-                    return list;
+                    var titleEntity = kernel.Get<IJobTitle>();
+                    titleEntity.Employer = job.Employer;
+                    titleEntity.Title = title;
+                    list.Add(titleEntity);
                 }
+
+                return list;
             }
             catch (Exception)
             {

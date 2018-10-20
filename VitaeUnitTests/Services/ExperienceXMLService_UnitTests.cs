@@ -12,7 +12,7 @@ namespace Vitae.Services_UnitTests
     [TestClass()]
     public class ExperienceXMLService_UnitTests
     {
-        ExperienceXMLService xs = new ExperienceXMLService();
+        ExperienceXMLService xs = new ExperienceXMLService(new VitaeNinjectKernel());
 
         [TestMethod()]
         public void ExperienceXMLService_ExperienceXMLService_Works() 

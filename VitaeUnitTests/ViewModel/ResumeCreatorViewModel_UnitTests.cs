@@ -62,7 +62,8 @@ namespace VitaeUnitTests
                 mockExperienceRepos.Object,
                 mockExpertiseRepos.Object,
                 mockEdRepos.Object,
-                mockPubRepos.Object);
+                mockPubRepos.Object,
+                new VitaeNinjectKernel());
 
             Assert.AreEqual("fn", vm.FullName);
             Assert.AreEqual("add1", vm.AddLine1);

@@ -7,15 +7,16 @@
     using System.Deployment.Application;
     using System.IO;
     using System.Linq;
-    using System.Xml;
     using System.Xml.Linq;
 
     public class ExpertiseXMLService : IExpertiseXMLService
     {
+        private readonly IKernel _kernel;
         private readonly string expertiseFilePath;
 
-        public ExpertiseXMLService() 
+        public ExpertiseXMLService(IKernel kernel) 
         {
+            _kernel = kernel;
             string prefix = string.Empty;
 
             if (ApplicationDeployment.IsNetworkDeployed) prefix = ApplicationDeployment.CurrentDeployment.DataDirectory;
@@ -26,18 +27,15 @@
 
         public IList<IExpertiseEntity> GetAll() 
         {
-            using (var ioc = new VitaeNinjectKernel())
+            var list = new List<IExpertiseEntity>();
+            var doc = XDocument.Load(expertiseFilePath);
+
+            foreach (var el in doc.Root.Elements("ExpertiseItem"))
             {
-                var list = new List<IExpertiseEntity>();
-                var doc = XDocument.Load(expertiseFilePath);
-
-                foreach (var el in doc.Root.Elements("ExpertiseItem"))
-                {
-                    list.Add(convertToObject(el));
-                }
-
-                return list;
+                list.Add(ConvertToObject(el));
             }
+
+            return list;
         }
 
         public Guid Insert(IExpertiseEntity entity) 
@@ -45,7 +43,7 @@
             var g = Guid.NewGuid();
             var doc = XDocument.Load(expertiseFilePath);
 
-            doc.Root.Add(convertToXml(g, entity));
+            doc.Root.Add(ConvertToXml(g, entity));
 
             doc.Save(expertiseFilePath);
             return g;
@@ -55,17 +53,17 @@
         {
             var doc = XDocument.Load(expertiseFilePath);
 
-            var el = getXElement(doc, guid);
+            var el = GetXElement(doc, guid);
             if (el == null) throw new ArgumentException("guid not found.");
 
-            return convertToObject(el);
+            return ConvertToObject(el);
         }
 
         public void Delete(Guid guid) 
         {
             var doc = XDocument.Load(expertiseFilePath);
 
-            var element = getXElement(doc, guid);
+            var element = GetXElement(doc, guid);
             if (element != null) element.Remove();
 
             doc.Save(expertiseFilePath);
@@ -75,36 +73,33 @@
         {
             var doc = XDocument.Load(expertiseFilePath);
 
-            var element = getXElement(doc, guid);
-            element.ReplaceWith(convertToXml(guid, entity));
+            var element = GetXElement(doc, guid);
+            element.ReplaceWith(ConvertToXml(guid, entity));
 
             doc.Save(expertiseFilePath);
         }
 
-        private XElement getXElement(XDocument doc, Guid guid) 
+        private XElement GetXElement(XDocument doc, Guid guid) 
         {
             return doc.Root.Elements("ExpertiseItem")
                 .SingleOrDefault(T => T.Attribute("Guid").Value == guid.ToString());
         }
 
-        private IExpertiseEntity convertToObject(XElement element) 
+        private IExpertiseEntity ConvertToObject(XElement element) 
         {
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                var ee = ioc.Get<IExpertiseEntity>();
+            var ee = _kernel.Get<IExpertiseEntity>();
 
-                if (Guid.TryParse(element.Attribute("Guid").Value, out Guid output))
-                    ee.ID = output;
-                else ee.ID = Guid.NewGuid();
+            if (Guid.TryParse(element.Attribute("Guid").Value, out Guid output))
+                ee.ID = output;
+            else ee.ID = Guid.NewGuid();
 
-                ee.Category = element.Element("Category").Value;
-                ee.Expertise = element.Element("Expertise").Value;
+            ee.Category = element.Element("Category").Value;
+            ee.Expertise = element.Element("Expertise").Value;
 
-                return ee;
-            }
+            return ee;
         }
 
-        private XElement convertToXml(Guid guid, IExpertiseEntity entity) 
+        private XElement ConvertToXml(Guid guid, IExpertiseEntity entity) 
         {
             return new XElement("ExpertiseItem", 
                 new XAttribute("Guid", guid.ToString()),

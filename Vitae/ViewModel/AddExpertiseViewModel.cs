@@ -7,6 +7,7 @@
 
     public class AddExpertiseViewModel : ViewModelBase, IAddExpertiseViewModel
     {
+        private readonly IKernel _kernel;
         private IExpertiseRepository repos;
 
         private UIState formState;
@@ -55,13 +56,12 @@
 
 		// Public Methods
 
-        public AddExpertiseViewModel(IExpertiseRepository repository) 
+        public AddExpertiseViewModel(IExpertiseRepository repository, IKernel kernel) 
         {
+            _kernel = kernel;
             repos = repository;
-            using (var ioc = new VitaeNinjectKernel())
-            {
-                entity = ioc.Get<IExpertiseEntity>();
-            }
+            entity = _kernel.Get<IExpertiseEntity>();
+            
             setUpRelayCommands();
         }
 

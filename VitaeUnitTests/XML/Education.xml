@@ -44,4 +44,16 @@
     <Credential>uCred</Credential>
     <Institution>uInst</Institution>
   </EducationItem>
+  <EducationItem Guid="55f6f66f-12bd-4c21-8094-868402126fc2">
+    <Credential>cred</Credential>
+    <Institution>inst</Institution>
+  </EducationItem>
+  <EducationItem Guid="675db46f-4f63-4f7e-bd0c-db553f73c72c">
+    <Credential>cred</Credential>
+    <Institution>inst</Institution>
+  </EducationItem>
+  <EducationItem Guid="977b1b0b-2c9e-4ac9-9bc8-fba2e217dc18">
+    <Credential>uCred</Credential>
+    <Institution>uInst</Institution>
+  </EducationItem>
 </EducationItems>
