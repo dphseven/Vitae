@@ -1,17 +1,16 @@
-﻿using System.Collections.Generic;
-using Vitae.Services;
-using System;
-
-namespace Vitae.Model
+﻿namespace Vitae.Model
 {
+    using System.Collections.Generic;
+    using Vitae.Services;
+    using System;
+
     public class EducationRepository : IEducationRepository
     {
         private IEducationXMLService xs;
 
         public EducationRepository(IEducationXMLService xmlService) 
         {
-            if (xmlService == null) throw new ArgumentNullException("xmlService");
-            else xs = xmlService;
+            xs = xmlService;
         }
 
         public Guid Add(IEducationEntity entity) 
@@ -43,11 +42,11 @@ namespace Vitae.Model
             }
         }
 
-        public void Remove(Guid g) 
+        public void Remove(Guid guid) 
         {
             try
             {
-                xs.Delete(g);
+                xs.Delete(guid);
             }
             catch (Exception)
             {
@@ -55,11 +54,11 @@ namespace Vitae.Model
             }
         }
 
-        public void Update(Guid g, IEducationEntity t) 
+        public void Update(Guid guid, IEducationEntity entity) 
         {
             try
             {
-                xs.Update(g, t);
+                xs.Update(guid, entity);
             }
             catch (Exception)
             {

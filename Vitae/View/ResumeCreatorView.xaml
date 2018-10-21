@@ -348,21 +348,41 @@
 
         <!-- RESUME PREVIEW AREA -->
         <Grid Grid.Column="1" Grid.Row="0" Margin="10 10 10 10" Visibility="Visible" >
-            <RichTextBox Name="DocViewRTB" IsReadOnly="True" 
-                         ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                         Margin="0">
-                <RichTextBox.Resources>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBox Name="SearchTextBox" 
+                     VerticalContentAlignment="Center"
+                     Margin="3" Grid.Row="0" Grid.Column="0" />
+            <Button Content="Search" 
+                    Command="{Binding SearchCmd}"
+                    CommandParameter="{Binding ElementName=SearchTextBox, Path=Text}"
+                    Height="30" Width="100" HorizontalAlignment="Left"
+                    Margin="3" Grid.Row="0" Grid.Column="1" />
+            <FlowDocumentReader Name="FlowDocViewer" 
+                                ViewingMode="Scroll" IsTwoPageViewEnabled="False" IsPageViewEnabled="False" 
+                                IsPrintEnabled="True" IsFindEnabled="True" 
+                                BorderBrush="DarkGray" BorderThickness="1"
+                                Margin="3" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
+                <FlowDocumentReader.Resources>
                     <Style TargetType="{x:Type Paragraph}">
                         <Setter Property="Margin" Value="0"/>
                     </Style>
-                </RichTextBox.Resources>
-            </RichTextBox>
+                </FlowDocumentReader.Resources>
+            </FlowDocumentReader>
 
         </Grid>
 
         <!-- BOTTOM AREA -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
-                    Margin="10 0 10 10" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" >
+                    Margin="10 0 13 10" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" >
 
             <Button Content="Export to PDF" Name="ExportPdfButton" Click="ExportPdfButton_Click" 
                     Height="30" Width="100" HorizontalAlignment="Right" Margin="0 0 0 0" />

@@ -27,7 +27,7 @@
 
             this.kernel = kernel;
 
-            DocViewRTB.Document = vm.ResumePreview;
+            FlowDocViewer.Document = vm.ResumePreview;
 
             listOfExpanders.Add(hGeneralInfo);
             listOfExpanders.Add(hExpertise);

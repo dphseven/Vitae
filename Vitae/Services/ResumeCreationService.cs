@@ -5,9 +5,6 @@
 
     public class ResumeCreationService : IResumeCreationService 
     {
-        private readonly IResumeDataObject rdo;
-        private readonly IResumeFormatObject rfo;
-        private readonly IResumeStructureObject rso;
         private readonly IPersistenceService persister;
 
         public ResumeCreationService(IPersistenceService persistenceService) 

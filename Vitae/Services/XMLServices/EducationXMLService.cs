@@ -3,8 +3,6 @@
     using Ninject;
     using System;
     using System.Collections.Generic;
-    using System.Deployment.Application;
-    using System.IO;
     using System.Linq;
     using System.Xml.Linq;
     using Vitae.Model;

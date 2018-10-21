@@ -12,9 +12,9 @@
         private readonly IExperienceXMLService xs;
         private readonly IKernel kernel;
 
-        public ExperienceRepository(IExperienceXMLService xmlService,
-                                    IKernel kernel) 
-
+        public ExperienceRepository(
+            IExperienceXMLService xmlService,
+            IKernel kernel) 
         {
             xs = xmlService;
             this.kernel = kernel;
@@ -118,11 +118,11 @@
             }
         }
 
-        public void Update(Guid g, IExperienceEntity t) 
+        public void Update(Guid guid, IExperienceEntity entity) 
         {
             try
             {
-                xs.Update(g, t);
+                xs.Update(guid, entity);
             }
             catch (Exception)
             {

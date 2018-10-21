@@ -12,6 +12,11 @@
     using System.Windows.Documents;
     using System.Windows.Input;
     using System.Collections.Generic;
+    using System.Windows;
+    using System.Windows.Media;
+    using System.Text.RegularExpressions;
+    using System.Text;
+    using System.Windows.Controls;
 
     public class ResumeCreatorViewModel : ViewModelBase, IResumeCreatorViewModel
     {
@@ -209,6 +214,8 @@
         public ICommand RemovePublicationCommand { get; set; }
         public ICommand MovePublicationUpCommand { get; set; }
         public ICommand MovePublicationDownCommand { get; set; }
+
+        public ICommand SearchCmd { get; set; }
 
         /*************************
         **************************
@@ -688,6 +695,81 @@
             }
         }
 
+
+
+        // SKETCHY, HACKY DOCUMENT SEARCH METHODS FOLLOW:
+
+        private void SearchDocumentPreview(string searchText) 
+        {
+            HighlightWords(
+                ResumePreview.ContentStart, 
+                searchText,
+                new TextRange(ResumePreview.ContentEnd, ResumePreview.ContentStart).Text);
+        }
+
+        private void HighlightWords(TextPointer startOfText, string searchTerm, string fullText) 
+        {
+            TextRange fullDoc = new TextRange(startOfText.DocumentStart, startOfText.DocumentEnd);
+            fullDoc.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.White));
+
+            int countMatches = Regex.Matches(fullText.ToLower(), searchTerm.ToLower()).Count;
+
+            for (int i = 0; i < countMatches; i++)
+            {
+                int lastInstanceIndex = HighlightNextInstance(startOfText, searchTerm);
+                if (lastInstanceIndex == -1)
+                {
+                    break;
+                }
+                startOfText = startOfText.GetPositionAtOffset(lastInstanceIndex);
+            }
+        }
+
+        private int HighlightNextInstance(TextPointer text, string searchWord) 
+        {
+            int indexOfLastInstance = -1;
+
+            while (true)
+            {
+                TextPointer next = text.GetNextContextPosition(LogicalDirection.Forward);
+                if (next == null)
+                {
+                    break;
+                }
+                TextRange newText = new TextRange(text, next);
+
+                int index = newText.Text.ToLower().IndexOf(searchWord.ToLower());
+                if (index != -1)
+                {
+                    indexOfLastInstance = index;
+                }
+
+                if (index >= 0)
+                {
+                    TextPointer start = text.GetPositionAtOffset(index);
+                    TextPointer end = text.GetPositionAtOffset(index + searchWord.Length);
+
+                    if (start.Paragraph != null &&
+                        start.Paragraph.Parent.GetType() == typeof(ListItem) &&
+                        new TextRange(start, end).Text.ToLower() != searchWord.ToLower())
+                    {
+                        start = text.GetPositionAtOffset(index - 2);
+                        end = text.GetPositionAtOffset(index - 2 + searchWord.Length);
+                    }
+                                                                             
+                    TextRange textRange = new TextRange(start, end);
+                    textRange.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.Goldenrod));
+                }
+                text = next;
+            }
+
+            return indexOfLastInstance;
+        }
+
+        // SKETCHY, HACKY DOCUMENT SEARCH METHODS ABOVE
+
+
+
         private void SetUpRelayCommands() 
         {
             AddExpertiseCommand = new RelayCommand(T => AddExpertiseToResume(), T => SelectedOutExpertise != null);
@@ -724,6 +806,12 @@
             MovePublicationDownCommand = new RelayCommand(
                 T => MovePublicationDownInResume(),
                 T => SelectedInPublication != null && InPublications.IndexOf(SelectedInPublication) < InPublications.Count - 1);
+
+
+
+            SearchCmd = new RelayCommand(
+                T => SearchDocumentPreview((string)T),
+                T => true);
         }
 
         protected override void NotifyPropertyChanged([CallerMemberName] string propertyName = "") 
